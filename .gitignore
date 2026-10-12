@@ -1,0 +1,19 @@
+# Maven
+backend/target/
+target/
+*.class
+
+# Log & Data
+*.log
+data/
+backend/data/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
+# WeChat Developer Tools local private cache
+frontend/project.private.config.json
+project.private.config.json

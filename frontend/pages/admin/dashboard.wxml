@@ -1,0 +1,104 @@
+<view class="container admin-dash-page">
+  <!-- 管理员身份名片 -->
+  <view class="card admin-hero-card flex-between">
+    <view class="flex-row">
+      <image class="avatar" src="{{admin.avatar}}" mode="aspectFill"></image>
+      <view>
+        <view class="admin-name">{{admin.name}}</view>
+        <view class="admin-dept">{{admin.dept}}</view>
+        <view class="admin-id">{{admin.adminId}}</view>
+      </view>
+    </view>
+    <button class="btn-outline btn-switch" bindtap="handleLogout">退出</button>
+  </view>
+
+  <!-- 全局健康态势监控大屏快捷横幅 (数字媒体核心亮点) -->
+  <view class="card screen-banner flex-between" bindtap="navToAnalytics">
+    <view class="flex-row">
+      <text class="screen-icon">📊</text>
+      <view>
+        <view class="screen-title">全校心理健康数据大屏 (数字媒体可视化)</view>
+        <view class="screen-sub">全校情绪晴雨表、学院预警柱状图、干预闭环看板</view>
+      </view>
+    </view>
+    <text class="screen-arrow">开启大屏 ➔</text>
+  </view>
+
+  <!-- 待办指标总览 -->
+  <view class="card metrics-card flex-around">
+    <view class="metric-item" bindtap="navToUserAudit">
+      <text class="metric-num text-blue">{{pendingUserAudits}}</text>
+      <text class="metric-label">待审核账号</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="metric-item" bindtap="navToArticleManage">
+      <text class="metric-num text-green">{{articlesCount}}</text>
+      <text class="metric-label">科普推文</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="metric-item" bindtap="navToTreeholeAudit">
+      <text class="metric-num text-orange">{{postsCount}}</text>
+      <text class="metric-label">树洞内容监控</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="metric-item" bindtap="navToAnalytics">
+      <text class="metric-num text-red">{{crisisCount}}</text>
+      <text class="metric-label">重点危机追踪</text>
+    </view>
+  </view>
+
+  <!-- 3大管理员核心模块 -->
+  <view class="section-header">
+    <view class="section-title">管理与维护功能模块</view>
+  </view>
+
+  <view class="admin-menu-list">
+    <!-- 模块 7: 用户账号审核 -->
+    <view class="card menu-entry-card flex-between" bindtap="navToUserAudit">
+      <view class="flex-row">
+        <view class="menu-icon-box bg-blue">👤</view>
+        <view>
+          <view class="entry-title">用户与资质审核中心</view>
+          <view class="entry-desc">审核学生学籍实名认证与心理咨询师入驻执业资质</view>
+        </view>
+      </view>
+      <text class="entry-arrow">➔</text>
+    </view>
+
+    <!-- 模块 7: 心理科普文章发布 -->
+    <view class="card menu-entry-card flex-between" bindtap="navToArticleManage">
+      <view class="flex-row">
+        <view class="menu-icon-box bg-mint">📰</view>
+        <view>
+          <view class="entry-title">心理科普推文发布与管理</view>
+          <view class="entry-desc">新建、编辑、置顶、删除心理科普图文文章</view>
+        </view>
+      </view>
+      <text class="entry-arrow">➔</text>
+    </view>
+
+    <!-- 模块 7: 树洞违规审核与下架 -->
+    <view class="card menu-entry-card flex-between" bindtap="navToTreeholeAudit">
+      <view class="flex-row">
+        <view class="menu-icon-box bg-peach">🛡️</view>
+        <view>
+          <view class="entry-title">树洞内容安全审核与下架</view>
+          <view class="entry-desc">实时监控高危敏感词言论，一键处置违规倾诉</view>
+        </view>
+      </view>
+      <text class="entry-arrow">➔</text>
+    </view>
+
+    <!-- 模块 8/9: 数据大屏 -->
+    <view class="card menu-entry-card flex-between" bindtap="navToAnalytics">
+      <view class="flex-row">
+        <view class="menu-icon-box bg-purple">📈</view>
+        <view>
+          <view class="entry-title">全校心理健康数字媒体大屏</view>
+          <view class="entry-desc">Canvas 2D 情绪晴雨表环形图、学院预警柱状图、趋势分析</view>
+        </view>
+      </view>
+      <text class="entry-arrow">➔</text>
+    </view>
+  </view>
+</view>

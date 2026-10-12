@@ -1,0 +1,98 @@
+.article-page {
+  padding-bottom: 60rpx;
+}
+
+.article-full-card {
+  padding: 36rpx 28rpx;
+}
+.cat-pill-wrap {
+  margin-bottom: 16rpx;
+}
+.article-main-title {
+  font-size: 38rpx;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.4;
+  margin-bottom: 20rpx;
+}
+
+.author-meta-row {
+  padding-bottom: 24rpx;
+  border-bottom: 1rpx solid #F1F5F9;
+  margin-bottom: 24rpx;
+}
+.author-icon {
+  margin-right: 10rpx;
+}
+.author-name {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: var(--text-main);
+}
+.date-read {
+  font-size: 20rpx;
+  color: var(--text-muted);
+}
+
+.cover-image {
+  width: 100%;
+  height: 360rpx;
+  border-radius: 16rpx;
+  margin-bottom: 28rpx;
+}
+
+.summary-box {
+  background: #F8FAFC;
+  border-left: 6rpx solid var(--accent-orange);
+  padding: 20rpx 24rpx;
+  border-radius: 8rpx;
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 30rpx;
+}
+.quote-mark {
+  font-size: 32rpx;
+  color: var(--accent-orange);
+  font-weight: bold;
+  margin-right: 6rpx;
+}
+
+.paragraphs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+.p-item {
+  font-size: 28rpx;
+  color: #334155;
+  line-height: 1.75;
+  text-align: justify;
+}
+
+.like-section {
+  margin-top: 50rpx;
+  padding-top: 30rpx;
+  border-top: 1rpx solid #F1F5F9;
+}
+.btn-like {
+  background: #F8FAFC;
+  border: 2rpx solid #E2E8F0;
+  border-radius: var(--radius-full);
+  padding: 16rpx 48rpx;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+.btn-like.liked {
+  background: #FFF1F0;
+  border-color: #FFA39E;
+  color: #F5222D;
+}
+.like-icon {
+  font-size: 32rpx;
+}
+.like-count {
+  font-size: 26rpx;
+  font-weight: 600;
+}

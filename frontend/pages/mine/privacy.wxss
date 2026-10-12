@@ -1,0 +1,65 @@
+.privacy-page {
+  padding-bottom: 70rpx;
+  background-color: var(--bg-color);
+}
+
+.privacy-notice-card {
+  background: linear-gradient(135deg, #F0FAF7 0%, #E6F7F0 100%);
+  border: 1rpx solid #B7EB8F;
+  border-radius: var(--radius-md);
+  padding: 24rpx 28rpx;
+  margin-bottom: 24rpx;
+  box-shadow: var(--shadow-sm);
+}
+.notice-title {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 6rpx;
+}
+.notice-desc {
+  font-size: 22rpx;
+  color: #2F6F5E;
+  line-height: 1.5;
+}
+
+.settings-card {
+  padding: 8rpx 24rpx;
+  border-radius: var(--radius-md);
+  margin-bottom: 24rpx;
+}
+.setting-item {
+  padding: 28rpx 0;
+  border-bottom: 1rpx solid #F1F5F9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.setting-item:last-child {
+  border-bottom: none;
+}
+.setting-info {
+  margin-right: 20rpx;
+  flex: 1;
+}
+.setting-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 6rpx;
+}
+.setting-desc {
+  font-size: 22rpx;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.submit-wrap {
+  margin-top: 36rpx;
+}
+.submit-wrap .btn-primary {
+  width: 100% !important;
+  padding: 24rpx 0 !important;
+  font-size: 28rpx !important;
+  border-radius: var(--radius-full) !important;
+}

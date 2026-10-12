@@ -1,0 +1,319 @@
+.relax-page {
+  padding-bottom: 60rpx;
+}
+
+/* 顶部 Tab 栏 */
+.relax-tab-bar {
+  background: #FFFFFF;
+  padding: 12rpx 16rpx;
+  border-radius: var(--radius-md);
+  margin-bottom: 24rpx;
+  box-shadow: var(--shadow-sm);
+  border: 1rpx solid var(--border-color);
+}
+.relax-tab-bar .tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12rpx 36rpx;
+  border-radius: 14rpx;
+  transition: all 150ms ease;
+}
+.relax-tab-bar .tab-item.active {
+  background: var(--primary-light);
+}
+.tab-emoji {
+  font-size: 36rpx;
+  margin-bottom: 4rpx;
+}
+.tab-text {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.relax-tab-bar .tab-item.active .tab-text {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+/* 4-7-8 呼吸动效区 (Soft UI Neumorphism Orb) */
+.breath-intro-card {
+  background: #FFFFFF;
+  padding: 24rpx;
+  border-radius: var(--radius-md);
+  margin-bottom: 24rpx;
+  border: 1rpx solid var(--border-color);
+}
+.intro-title {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 6rpx;
+}
+.intro-desc {
+  font-size: 22rpx;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.breath-canvas-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60rpx 0;
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1rpx solid var(--border-color);
+  margin-bottom: 24rpx;
+}
+
+.breath-orb-wrap {
+  position: relative;
+  width: 380rpx;
+  height: 380rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 1s ease-in-out;
+}
+
+/* 吸气膨胀 */
+.breath-orb-wrap.inhale {
+  transform: scale(1.28);
+  transition: transform 4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+/* 屏息微颤 */
+.breath-orb-wrap.hold {
+  transform: scale(1.28);
+  transition: transform 0.5s ease;
+}
+/* 缓呼收缩 */
+.breath-orb-wrap.exhale {
+  transform: scale(0.85);
+  transition: transform 8s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.orb-outer-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(61, 139, 117, 0.12);
+  animation: glowPulse 4s infinite alternate;
+}
+.orb-middle-ring {
+  position: absolute;
+  width: 76%;
+  height: 76%;
+  border-radius: 50%;
+  background: rgba(61, 139, 117, 0.22);
+}
+.orb-core {
+  position: relative;
+  z-index: 2;
+  width: 52%;
+  height: 52%;
+  border-radius: 50%;
+  background: var(--primary-gradient);
+  box-shadow: 0 10rpx 32rpx rgba(61, 139, 117, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+}
+.orb-status-text {
+  font-size: 32rpx;
+  font-weight: 700;
+}
+.orb-countdown {
+  font-size: 26rpx;
+  opacity: 0.9;
+  margin-top: 4rpx;
+}
+
+@keyframes glowPulse {
+  0% { transform: scale(0.95); opacity: 0.6; }
+  100% { transform: scale(1.08); opacity: 1; }
+}
+
+.breath-guidance-tip {
+  margin-top: 36rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--primary-color);
+  text-align: center;
+  padding: 0 20rpx;
+}
+
+.breath-stats-row {
+  background: #FFFFFF;
+  padding: 24rpx;
+  border-radius: var(--radius-md);
+  margin-bottom: 28rpx;
+  border: 1rpx solid var(--border-color);
+}
+.b-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.b-num {
+  font-size: 36rpx;
+  font-weight: 800;
+  color: var(--text-main);
+}
+.b-label {
+  font-size: 20rpx;
+  color: var(--text-muted);
+  margin-top: 4rpx;
+}
+
+.breath-controls {
+  margin-top: 10rpx;
+}
+.btn-breath-toggle {
+  width: 80%;
+  padding: 24rpx;
+  font-size: 30rpx;
+  letter-spacing: 2rpx;
+}
+.btn-breath-toggle.btn-stop {
+  background: linear-gradient(135deg, #FF8E53, #E65100);
+}
+
+/* 白噪音播放器卡片 */
+.sound-player-card {
+  border-radius: var(--radius-lg);
+  padding: 36rpx 28rpx;
+  color: #FFFFFF;
+  margin-bottom: 30rpx;
+  box-shadow: 0 12rpx 32rpx rgba(0, 0, 0, 0.15);
+}
+.sound-tag {
+  background: rgba(255, 255, 255, 0.22);
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 20rpx;
+}
+.status-name {
+  font-size: 22rpx;
+  margin-left: 10rpx;
+  opacity: 0.9;
+}
+.equalizer-bars {
+  display: flex;
+  gap: 4rpx;
+  align-items: flex-end;
+  height: 24rpx;
+}
+.eq-bar {
+  width: 4rpx;
+  background: #FFFFFF;
+  animation: eqBounce 0.8s infinite alternate ease-in-out;
+}
+.b1 { height: 16rpx; }
+.b2 { height: 24rpx; animation-delay: 0.2s; }
+.b3 { height: 12rpx; animation-delay: 0.4s; }
+
+@keyframes eqBounce {
+  0% { transform: scaleY(0.3); }
+  100% { transform: scaleY(1); }
+}
+
+.sound-center-visual {
+  height: 200rpx;
+}
+.sound-hero-icon {
+  font-size: 110rpx;
+  animation: floatIcon 3s infinite ease-in-out;
+}
+
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12rpx); }
+}
+
+.sound-track-name {
+  font-size: 36rpx;
+  font-weight: 800;
+}
+.sound-track-desc {
+  font-size: 22rpx;
+  opacity: 0.88;
+  margin-top: 6rpx;
+}
+.sound-freq-tag {
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.15);
+  font-size: 18rpx;
+  padding: 4rpx 14rpx;
+  border-radius: 10rpx;
+  margin-top: 10rpx;
+}
+
+.sound-player-action {
+  margin-top: 30rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid rgba(255, 255, 255, 0.2);
+}
+.btn-play-sound {
+  width: auto !important;
+  background: #FFFFFF !important;
+  color: #1E293B !important;
+  font-size: 26rpx !important;
+  font-weight: 700 !important;
+  padding: 14rpx 40rpx !important;
+  border-radius: var(--radius-full) !important;
+  margin: 0 !important;
+}
+.timer-pill {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10rpx 20rpx;
+  border-radius: 30rpx;
+  font-size: 22rpx;
+  gap: 8rpx;
+}
+.clock-icon {
+  font-size: 24rpx;
+}
+
+/* 声轨列表 */
+.sound-tracks-list {
+  margin-top: 16rpx;
+}
+.sound-track-item {
+  padding: 24rpx;
+  margin-bottom: 18rpx;
+  transition: all 0.2s ease;
+}
+.sound-track-item.active-track {
+  border-color: var(--primary-color);
+  background: #F0FAF7;
+}
+.track-icon-box {
+  font-size: 44rpx;
+  margin-right: 20rpx;
+}
+.track-name {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--text-main);
+}
+.track-sub {
+  font-size: 20rpx;
+  color: var(--text-muted);
+  margin-top: 2rpx;
+}
+.track-select-dot {
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 50%;
+  border: 2rpx solid #CBD5E1;
+}
+.track-select-dot.active {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}

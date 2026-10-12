@@ -1,0 +1,97 @@
+<view class="container report-page">
+  <!-- 核心得分卡片 -->
+  <view class="card score-header-card">
+    <view class="flex-between">
+      <view>
+        <view class="report-scale-title">{{report.scaleTitle}}</view>
+        <view class="report-time">评估时间：{{report.date}}</view>
+      </view>
+      <view class="level-badge" style="background: {{report.levelColor}}15; color: {{report.levelColor}}; border: 2rpx solid {{report.levelColor}};">
+        {{report.levelTitle}}
+      </view>
+    </view>
+
+    <!-- 得分大数字与刻度指示 -->
+    <view class="score-display-box flex-center">
+      <view class="score-circle">
+        <text class="score-number" style="color: {{report.levelColor}};">{{report.standardScore}}</text>
+        <text class="score-unit">标准分 (T-Score)</text>
+      </view>
+    </view>
+
+    <!-- 刻度尺指示条 -->
+    <view class="scale-gauge-bar">
+      <view class="gauge-labels flex-between">
+        <text>正常 (&lt;53)</text>
+        <text>轻度 (53-62)</text>
+        <text>中度 (63-72)</text>
+        <text>重度 (≥73)</text>
+      </view>
+      <view class="gauge-track">
+        <view class="gauge-seg seg-1"></view>
+        <view class="gauge-seg seg-2"></view>
+        <view class="gauge-seg seg-3"></view>
+        <view class="gauge-seg seg-4"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 重度异常红色预警 Banner (数字媒体警报交互) -->
+  <view wx:if="{{report.level === 'severe'}}" class="crisis-alert-banner">
+    <view class="flex-row">
+      <text class="alert-icon">⚠️</text>
+      <view class="flex-1">
+        <view class="alert-title">心理中心重度危机关注已触发</view>
+        <view class="alert-text">您当前心理负荷极重，请不要一个人默默承受，学校专职咨询师随时准备倾听您的心声。</view>
+      </view>
+    </view>
+    <button class="btn-danger btn-call-crisis" bindtap="callCrisisHelp">一键直拨校园危机热线</button>
+  </view>
+
+  <!-- 数字媒体特色 1: 多维心理雷达图 (Radar Chart) -->
+  <view class="card chart-card">
+    <view class="chart-header flex-between">
+      <view class="section-title">维度雷达分析 (数字媒体交互)</view>
+      <text class="badge badge-primary">ECharts / Canvas 2D</text>
+    </view>
+    <view class="chart-subtitle">全方位展现各项心理因子表现，偏离中心越远表明负荷越高：</view>
+    <view class="canvas-wrap">
+      <canvas type="2d" id="radarCanvas" class="chart-canvas"></canvas>
+    </view>
+  </view>
+
+  <!-- 数字媒体特色 2: 情绪与量表历史趋势折线图 (Trend Line Chart) -->
+  <view class="card chart-card">
+    <view class="chart-header flex-between">
+      <view class="section-title">测评与情绪历史走势</view>
+      <text class="badge badge-warm">动态曲线</text>
+    </view>
+    <view class="chart-subtitle">记录近期身心状态演进轨迹，洞察情绪复原力：</view>
+    <view class="canvas-wrap">
+      <canvas type="2d" id="trendCanvas" class="chart-canvas"></canvas>
+    </view>
+  </view>
+
+  <!-- 专业解读分析 -->
+  <view class="card text-card">
+    <view class="section-title">专业解读与身心评估</view>
+    <view class="analysis-content">{{report.analysis}}</view>
+  </view>
+
+  <!-- 针对性干预调节建议 -->
+  <view class="card text-card">
+    <view class="section-title">针对性调适与干预建议</view>
+    <view class="suggestions-list">
+      <view wx:for="{{report.suggestions}}" wx:key="*this" class="suggestion-item flex-row">
+        <text class="sug-bullet">🌿</text>
+        <text class="sug-text flex-1">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部行动操作栏 -->
+  <view class="bottom-actions flex-between">
+    <button class="btn-outline btn-act" bindtap="retest">重新测评</button>
+    <button class="btn-primary btn-act" bindtap="bookCounselor">预约专业咨询师 ➔</button>
+  </view>
+</view>

@@ -1,0 +1,57 @@
+<view class="container post-create-page">
+  <!-- 随机匿名化身卡片 -->
+  <view class="card anon-profile-card flex-between">
+    <view class="flex-row">
+      <view class="avatar-badge" style="background: {{avatarColor}}20; border-color: {{avatarColor}};">
+        <text class="emoji">{{avatarTag}}</text>
+      </view>
+      <view>
+        <view class="anon-label">本次倾诉化身</view>
+        <view class="anon-name">{{anonymousName}}</view>
+      </view>
+    </view>
+    <button class="btn-outline btn-refresh-anon" bindtap="randomizeIdentity">换个代号 🔄</button>
+  </view>
+
+  <!-- 话题标签选择 -->
+  <view class="card form-card">
+    <view class="section-title">选择倾诉分类</view>
+    <view class="tag-chips-wrap">
+      <view 
+        wx:for="{{categories}}" 
+        wx:key="*this"
+        class="chip-tag {{selectedTag === item ? 'active' : ''}}"
+        bindtap="onSelectTag"
+        data-tag="{{item}}"
+      >
+        {{item}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 倾诉内容输入 -->
+  <view class="card form-card">
+    <view class="section-title flex-between">
+      <text>写下你的心声与困惑</text>
+      <text class="counter">{{content.length}}/300</text>
+    </view>
+    <textarea 
+      class="content-input"
+      placeholder="这里没有评判，只有接纳与倾听。无论是深夜的崩溃、学业的重压，还是人际里的微小委屈，都可以放心倾诉..."
+      maxlength="300"
+      value="{{content}}"
+      bindinput="onInputContent"
+    />
+  </view>
+
+  <!-- 树洞安全倡议 -->
+  <view class="rules-tip">
+    <text class="tip-icon">🛡️</text>
+    <text>系统承诺：发帖全过程脱敏加密，不展示真实学号姓名。若言论涉及危及生命安全，系统将触发心理中心暖心援助。</text>
+  </view>
+
+  <!-- 发布按钮 -->
+  <view class="submit-wrap">
+    <button class="btn-primary btn-submit" bindtap="submitPost">投入树洞，静待回音 🌱</button>
+  </view>
+</view>

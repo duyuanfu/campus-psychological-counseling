@@ -1,0 +1,169 @@
+<view class="container home-container">
+  <!-- 顶部温馨问候卡片 -->
+  <view class="welcome-hero-card">
+    <view class="hero-content">
+      <view class="hero-greeting">Hi, {{userInfo.name || '同学'}}</view>
+      <view class="hero-quote">“在喧嚣的世界里，留一点时间与自己温柔相处。”</view>
+      <view class="hero-meta">
+        <text class="meta-tag">⛅ 今日心晴指数 88%</text>
+        <text class="meta-tag">中心开放中</text>
+      </view>
+    </view>
+    <view class="hero-bg-art">🌱</view>
+  </view>
+
+  <!-- 今日情绪打卡 (情绪日记快捷入口) -->
+  <view class="card mood-checkin-card">
+    <view class="flex-between">
+      <view class="mood-card-title">
+        <text class="mood-title-icon">🎨</text>
+        <text>记录今天的心情</text>
+      </view>
+      <view class="mood-diary-link" bindtap="navToMoodDiary">情绪日记 ➔</view>
+    </view>
+    <view class="mood-options-row">
+      <view 
+        wx:for="{{moodIcons}}" 
+        wx:key="score" 
+        class="mood-opt-item {{selectedMoodScore === item.score ? 'selected' : ''}}"
+        bindtap="quickCheckInMood"
+        data-item="{{item}}"
+      >
+        <text class="mood-opt-emoji">{{item.emoji}}</text>
+        <text class="mood-opt-label">{{item.label}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 身心放松动效专区 -->
+  <view class="section-header">
+    <view class="section-title">身心放松</view>
+    <view class="section-more" bindtap="navToRelax">更多 ➔</view>
+  </view>
+
+  <view class="media-feature-grid">
+    <!-- 呼吸训练入口 -->
+    <view class="media-card breath-card" bindtap="navToRelax" data-tab="breath">
+      <view class="media-card-badge">节律动效</view>
+      <view class="breath-visual-halo">
+        <view class="halo-circle breathe-animation"></view>
+        <text class="halo-icon">🫁</text>
+      </view>
+      <view class="media-card-name">4-7-8 节律呼吸</view>
+      <view class="media-card-sub">跟随光晕缩放，平复焦虑</view>
+    </view>
+
+    <!-- 白噪音入口 -->
+    <view class="media-card sound-card" bindtap="navToRelax" data-tab="sound">
+      <view class="media-card-badge">声景疗愈</view>
+      <view class="sound-visual-waves">
+        <view class="sound-wave-bar bar-1"></view>
+        <view class="sound-wave-bar bar-2"></view>
+        <view class="sound-wave-bar bar-3"></view>
+        <view class="sound-wave-bar bar-4"></view>
+      </view>
+      <view class="media-card-name">自然白噪音</view>
+      <view class="media-card-sub">雨声 / 潮汐 / 森林鸟鸣</view>
+    </view>
+  </view>
+
+  <!-- 核心功能导航 -->
+  <view class="section-header">
+    <view class="section-title">核心功能</view>
+  </view>
+  <view class="quick-nav-grid">
+    <view class="quick-nav-item" bindtap="navToAppointment">
+      <view class="nav-icon-box bg-mint">📅</view>
+      <text class="nav-label">在线预约</text>
+      <text class="nav-desc">专业咨询</text>
+    </view>
+    <view class="quick-nav-item" bindtap="navToAssessment" data-id="sds">
+      <view class="nav-icon-box bg-sky">📊</view>
+      <text class="nav-label">SDS测评</text>
+      <text class="nav-desc">抑郁筛查</text>
+    </view>
+    <view class="quick-nav-item" bindtap="navToAssessment" data-id="sas">
+      <view class="nav-icon-box bg-peach">📉</view>
+      <text class="nav-label">SAS测评</text>
+      <text class="nav-desc">焦虑评估</text>
+    </view>
+    <view class="quick-nav-item" bindtap="navToTreehole">
+      <view class="nav-icon-box bg-purple">💌</view>
+      <text class="nav-label">匿名树洞</text>
+      <text class="nav-desc">倾诉心声</text>
+    </view>
+  </view>
+
+  <!-- 专职咨询师推荐 -->
+  <view class="section-header">
+    <view class="section-title">专职咨询师</view>
+    <view class="section-more" bindtap="navToAppointment">全部 ➔</view>
+  </view>
+
+  <view class="counselor-cards-scroll">
+    <view 
+      wx:for="{{counselors}}" 
+      wx:key="id" 
+      class="card counselor-card"
+      bindtap="navToCounselorDetail"
+      data-id="{{item.id}}"
+    >
+      <view class="flex-row">
+        <image class="counselor-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+        <view class="counselor-info flex-1">
+          <view class="counselor-name-row">
+            <text class="counselor-name">{{item.name}}</text>
+            <text class="counselor-score">★ {{item.rating}}</text>
+          </view>
+          <view class="counselor-title">{{item.title}}</view>
+          <view class="counselor-tags">
+            <text wx:for="{{item.tagList}}" wx:key="*this" wx:for-item="tag" class="badge badge-primary tag-item">{{tag}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="counselor-footer">
+        <text class="counselor-location">📍 {{item.location}}</text>
+        <button class="btn-primary btn-book-sm" catchtap="quickBook" data-id="{{item.id}}">预约</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 心理科普精选文章 -->
+  <view class="section-header">
+    <view class="section-title">科普精选</view>
+  </view>
+
+  <view 
+    wx:for="{{articles}}" 
+    wx:key="id" 
+    class="card article-card"
+    bindtap="navToArticle"
+    data-id="{{item.id}}"
+  >
+    <image class="article-cover" src="{{item.cover}}" mode="aspectFill"></image>
+    <view class="article-body">
+      <view class="article-cat-row">
+        <text class="badge badge-warm">{{item.category}}</text>
+        <text class="article-date">{{item.date}}</text>
+      </view>
+      <view class="article-title">{{item.title}}</view>
+      <view class="article-summary">{{item.summary}}</view>
+      <view class="article-meta">
+        <text>✍ {{item.author}}</text>
+        <text>👀 {{item.readCount}} 阅读</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 24小时校园紧急求助热线 -->
+  <view class="emergency-banner" bindtap="callEmergencyLine">
+    <view class="flex-row">
+      <text class="emergency-icon">🚨</text>
+      <view>
+        <view class="emergency-title">24小时心理援助热线</view>
+        <view class="emergency-num">010-8888-6666 (全天候倾听)</view>
+      </view>
+    </view>
+    <text class="emergency-call-btn">拨打</text>
+  </view>
+</view>

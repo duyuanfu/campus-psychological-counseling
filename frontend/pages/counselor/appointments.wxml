@@ -1,0 +1,135 @@
+<view class="container counselor-apts-page">
+  <!-- 状态过滤 Tabs -->
+  <view class="status-tabs flex-between">
+    <view 
+      wx:for="{{tabs}}" 
+      wx:key="key" 
+      class="tab-item {{currentTab === item.key ? 'active' : ''}}"
+      bindtap="switchTab"
+      data-key="{{item.key}}"
+    >
+      <text>{{item.label}}</text>
+      <view wx:if="{{currentTab === item.key}}" class="tab-indicator"></view>
+    </view>
+  </view>
+
+  <!-- 预约列表 -->
+  <view class="apts-list">
+    <view wx:if="{{list.length === 0}}" class="empty-box">
+      <text class="empty-icon">📭</text>
+      <text class="empty-text">当前分类下暂无预约记录</text>
+    </view>
+
+    <view 
+      wx:for="{{list}}" 
+      wx:key="id" 
+      class="card apt-manage-card"
+    >
+      <view class="apt-header flex-between">
+        <view class="flex-row">
+          <text class="student-name">{{item.studentName}}</text>
+          <text class="badge badge-warm">{{item.problemCategory}}</text>
+        </view>
+        <text class="status-pill {{item.status}}">{{item.statusText}}</text>
+      </view>
+
+      <view class="apt-body">
+        <view class="info-row">
+          <text class="info-label">预约时间：</text>
+          <text class="info-val highlight">📅 {{item.date}}  🕒 {{item.timeSlot}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">咨询形式：</text>
+          <text class="info-val">{{item.mode}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">联系电话：</text>
+          <text class="info-val phone">{{item.studentPhone || '138****6688'}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">学生主诉：</text>
+          <text class="info-val desc">{{item.description}}</text>
+        </view>
+
+        <!-- 历史反馈附言 -->
+        <view wx:if="{{item.feedbackNotes}}" class="feedback-box">
+          <view class="feedback-title">已附回复：</view>
+          <view class="feedback-text">{{item.feedbackNotes}}</view>
+        </view>
+      </view>
+
+      <!-- 操作按钮栏 -->
+      <view class="apt-actions flex-between">
+        <text class="id-tag">单号: {{item.id}}</text>
+
+        <view class="btn-group flex-row">
+          <!-- 待审核状态 -->
+          <block wx:if="{{item.status === 'pending'}}">
+            <button class="btn-outline btn-sm btn-reject" bindtap="openRejectModal" data-item="{{item}}">驳回申请</button>
+            <button class="btn-primary btn-sm btn-confirm" bindtap="openConfirmModal" data-item="{{item}}">确认接单</button>
+          </block>
+
+          <!-- 已排期状态 -->
+          <block wx:elif="{{item.status === 'confirmed'}}">
+            <button class="btn-secondary btn-sm" bindtap="markComplete" data-item="{{item}}">标记已完成</button>
+            <button class="btn-primary btn-sm" bindtap="writeRecord" data-item="{{item}}">填写记录</button>
+          </block>
+
+          <!-- 已完成状态 -->
+          <block wx:elif="{{item.status === 'completed'}}">
+            <button class="btn-outline btn-sm" bindtap="writeRecord" data-item="{{item}}">查看/补录记录</button>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 确认接单弹窗 Modal -->
+  <view wx:if="{{showConfirmModal}}" class="modal-mask flex-center">
+    <view class="modal-card">
+      <view class="modal-title">确认接单与分配场地</view>
+      <view class="modal-field">
+        <view class="field-label">咨询室分配 / 会议号：</view>
+        <input 
+          class="modal-input" 
+          value="{{confirmLocation}}" 
+          bindinput="onConfirmLocationInput" 
+          placeholder="如：中心302个案室 或 腾讯会议号"
+        />
+      </view>
+      <view class="modal-field">
+        <view class="field-label">给来访学生的温馨备忘：</view>
+        <textarea 
+          class="modal-textarea" 
+          value="{{confirmNotes}}" 
+          bindinput="onConfirmNotesInput" 
+          placeholder="如：请提前5分钟到达，保持轻松心情..."
+        />
+      </view>
+      <view class="modal-btn-row flex-between">
+        <button class="btn-outline modal-btn" bindtap="closeModals">取消</button>
+        <button class="btn-primary modal-btn" bindtap="submitConfirm">确认排期并通知学生</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 驳回申请弹窗 Modal -->
+  <view wx:if="{{showRejectModal}}" class="modal-mask flex-center">
+    <view class="modal-card">
+      <view class="modal-title text-danger">驳回预约申请</view>
+      <view class="modal-field">
+        <view class="field-label">驳回原因 (必填)：</view>
+        <textarea 
+          class="modal-textarea" 
+          value="{{rejectReason}}" 
+          bindinput="onRejectReasonInput" 
+          placeholder="请说明驳回原因，如：此时段已有督导会议冲突，建议改选周三上午时段..."
+        />
+      </view>
+      <view class="modal-btn-row flex-between">
+        <button class="btn-outline modal-btn" bindtap="closeModals">取消</button>
+        <button class="btn-danger modal-btn" bindtap="submitReject">确认驳回</button>
+      </view>
+    </view>
+  </view>
+</view>

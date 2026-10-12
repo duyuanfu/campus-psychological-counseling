@@ -1,0 +1,116 @@
+<view class="container counselor-dash-page">
+  <!-- 咨询师信息卡片 -->
+  <view class="card counselor-hero-card flex-between">
+    <view class="flex-row">
+      <image class="avatar" src="{{counselor.avatar}}" mode="aspectFill"></image>
+      <view>
+        <view class="c-name">{{counselor.name}}</view>
+        <view class="c-title">{{counselor.title}}</view>
+        <view class="c-dept">{{counselor.college}}</view>
+      </view>
+    </view>
+    <button class="btn-outline btn-switch-back" bindtap="handleLogout">退出</button>
+  </view>
+
+  <!-- 红色重度危机预警提醒条 -->
+  <view wx:if="{{crisisAlerts.length > 0}}" class="crisis-notify-bar flex-between" bindtap="navToCrisis">
+    <view class="flex-row">
+      <text class="alert-icon">🚨</text>
+      <view>
+        <view class="alert-title">危机预警：当前有 {{crisisAlerts.length}} 名重度预警学生待跟进</view>
+        <view class="alert-sub">SDS/SAS重度超标或言论筛查异常，点击立即干预</view>
+      </view>
+    </view>
+    <text class="alert-btn">立即查看 ➔</text>
+  </view>
+
+  <!-- 工作台指标看板 -->
+  <view class="card metrics-card flex-around">
+    <view class="metric-item" bindtap="navToAppointments" data-tab="pending">
+      <text class="metric-num text-orange">{{pendingCount}}</text>
+      <text class="metric-label">待审核预约</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="metric-item" bindtap="navToAppointments" data-tab="confirmed">
+      <text class="metric-num text-green">{{confirmedCount}}</text>
+      <text class="metric-label">已排期咨询</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="metric-item" bindtap="navToCrisis">
+      <text class="metric-num text-red">{{crisisAlerts.length}}</text>
+      <text class="metric-label">重度红色预警</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="metric-item" bindtap="navToRecords">
+      <text class="metric-num">{{recordsCount}}</text>
+      <text class="metric-label">已建咨询档案</text>
+    </view>
+  </view>
+
+  <!-- 核心管理模块快捷入口 -->
+  <view class="section-header">
+    <view class="section-title">工作台核心功能</view>
+  </view>
+
+  <view class="work-grid">
+    <!-- 模块 5: 排班管理 -->
+    <view class="card work-card" bindtap="navToSchedule">
+      <view class="card-icon-box bg-mint">🕒</view>
+      <view class="work-title">排班设置</view>
+      <view class="work-desc">设置每周可预约时间段与名额</view>
+      <text class="work-arrow">进入设置 ➔</text>
+    </view>
+
+    <!-- 模块 5: 预约审核 -->
+    <view class="card work-card" bindtap="navToAppointments">
+      <view class="card-icon-box bg-sky">📋</view>
+      <view class="work-title">预约申请审批</view>
+      <view class="work-desc">确认接单、分配房间或驳回申请</view>
+      <text class="work-arrow">查看申请 ➔</text>
+    </view>
+
+    <!-- 模块 6: 危机预警专区 -->
+    <view class="card work-card" bindtap="navToCrisis">
+      <view class="card-icon-box bg-danger">⚠️</view>
+      <view class="work-title">危机预警干预</view>
+      <view class="work-desc">红色重度异常名单与紧急处置</view>
+      <text class="work-arrow">进入干预 ➔</text>
+    </view>
+
+    <!-- 模块 6: 填写咨询记录 -->
+    <view class="card work-card" bindtap="navToRecordEdit">
+      <view class="card-icon-box bg-purple">✍️</view>
+      <view class="work-title">填写咨询记录</view>
+      <view class="work-desc">录入主诉摘要、评估与后续计划</view>
+      <text class="work-arrow">新建记录 ➔</text>
+    </view>
+  </view>
+
+  <!-- 今日/近期预约动态卡片 -->
+  <view class="section-header">
+    <view class="section-title">待处理预约申请 ({{pendingList.length}})</view>
+  </view>
+
+  <view class="recent-requests">
+    <view wx:if="{{pendingList.length === 0}}" class="empty-box">
+      <text class="empty-icon">☕</text>
+      <text class="empty-text">当前没有待审核的预约申请</text>
+    </view>
+
+    <view 
+      wx:for="{{pendingList}}" 
+      wx:key="id" 
+      class="card pending-card flex-between"
+    >
+      <view class="pending-info flex-1">
+        <view class="pending-student flex-row">
+          <text class="s-name">{{item.studentName}}</text>
+          <text class="badge badge-warm">{{item.problemCategory}}</text>
+        </view>
+        <view class="pending-time">期望时间: {{item.date}} {{item.timeSlot}}</view>
+        <view class="pending-desc">{{item.description}}</view>
+      </view>
+      <button class="btn-primary btn-deal-sm" bindtap="dealAppointment" data-item="{{item}}">去审批</button>
+    </view>
+  </view>
+</view>

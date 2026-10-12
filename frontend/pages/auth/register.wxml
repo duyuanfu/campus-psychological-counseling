@@ -1,0 +1,158 @@
+<view class="container register-container">
+  <!-- 头部 -->
+  <view class="register-header">
+    <view class="header-title">新用户注册</view>
+    <view class="header-sub">请选择身份并填写真实信息</view>
+  </view>
+
+  <view class="card register-box">
+    <!-- 身份选择 Tabs -->
+    <view class="role-selector flex-between">
+      <view 
+        class="role-tab {{selectedRole === 'student' ? 'active' : ''}}"
+        bindtap="switchRole"
+        data-role="student"
+      >
+        <text class="r-icon">👨‍🎓</text>
+        <text class="r-text">学生端注册</text>
+      </view>
+      <view 
+        class="role-tab {{selectedRole === 'counselor' ? 'active' : ''}}"
+        bindtap="switchRole"
+        data-role="counselor"
+      >
+        <text class="r-icon">👩‍🏫</text>
+        <text class="r-text">咨询师端注册</text>
+      </view>
+    </view>
+
+    <!-- 基础账号信息 -->
+    <view class="block-title">账号与安全凭证</view>
+
+    <view class="form-row">
+      <view class="form-item flex-1">
+        <view class="field-label"><text class="req">*</text>登录账号</view>
+        <input class="field-input" placeholder="输入用户名" value="{{form.username}}" bindinput="onInput" data-field="username" />
+      </view>
+    </view>
+
+    <view class="form-row flex-between">
+      <view class="form-item flex-1" style="margin-right: 16rpx;">
+        <view class="field-label"><text class="req">*</text>登录密码</view>
+        <input class="field-input" password placeholder="至少6位" value="{{form.password}}" bindinput="onInput" data-field="password" />
+      </view>
+      <view class="form-item flex-1">
+        <view class="field-label"><text class="req">*</text>确认密码</view>
+        <input class="field-input" password placeholder="重复密码" value="{{form.confirmPassword}}" bindinput="onInput" data-field="confirmPassword" />
+      </view>
+    </view>
+
+    <view class="form-row flex-between">
+      <view class="form-item flex-1" style="margin-right: 16rpx;">
+        <view class="field-label"><text class="req">*</text>真实姓名</view>
+        <input class="field-input" placeholder="实名认证" value="{{form.name}}" bindinput="onInput" data-field="name" />
+      </view>
+      <view class="form-item flex-1">
+        <view class="field-label"><text class="req">*</text>联系手机</view>
+        <input class="field-input" type="number" placeholder="11位手机号" value="{{form.phone}}" bindinput="onInput" data-field="phone" />
+      </view>
+    </view>
+
+    <!-- 学生端专属字段 -->
+    <block wx:if="{{selectedRole === 'student'}}">
+      <view class="block-title" style="margin-top: 30rpx;">学生在校档案</view>
+
+      <view class="form-row flex-between">
+        <view class="form-item flex-1" style="margin-right: 16rpx;">
+          <view class="field-label"><text class="req">*</text>学号</view>
+          <input class="field-input" placeholder="在校学号" value="{{form.studentId}}" bindinput="onInput" data-field="studentId" />
+        </view>
+        <view class="form-item flex-1">
+          <view class="field-label"><text class="req">*</text>年级</view>
+          <input class="field-input" placeholder="如：大二" value="{{form.grade}}" bindinput="onInput" data-field="grade" />
+        </view>
+      </view>
+
+      <view class="form-row">
+        <view class="form-item flex-1">
+          <view class="field-label"><text class="req">*</text>就读学院</view>
+          <picker bindchange="onCollegeChange" range="{{colleges}}">
+            <view class="picker-cell flex-between">
+              <text>{{colleges[collegeIndex]}}</text>
+              <text class="arrow">▾</text>
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      <view class="form-row">
+        <view class="form-item flex-1">
+          <view class="field-label"><text class="req">*</text>所学专业</view>
+          <input class="field-input" placeholder="如：数字媒体艺术" value="{{form.major}}" bindinput="onInput" data-field="major" />
+        </view>
+      </view>
+
+      <view class="form-row flex-between">
+        <view class="form-item flex-1" style="margin-right: 16rpx;">
+          <view class="field-label">紧急联系人</view>
+          <input class="field-input" placeholder="辅导员/家属" value="{{form.emergencyContact}}" bindinput="onInput" data-field="emergencyContact" />
+        </view>
+        <view class="form-item flex-1">
+          <view class="field-label">紧急电话</view>
+          <input class="field-input" type="number" placeholder="危机联络电话" value="{{form.emergencyPhone}}" bindinput="onInput" data-field="emergencyPhone" />
+        </view>
+      </view>
+    </block>
+
+    <!-- 咨询师端专属字段 -->
+    <block wx:if="{{selectedRole === 'counselor'}}">
+      <view class="block-title" style="margin-top: 30rpx;">咨询师执业资质</view>
+
+      <view class="form-row">
+        <view class="form-item flex-1">
+          <view class="field-label"><text class="req">*</text>专业职称</view>
+          <input class="field-input" placeholder="如：副教授 / 国家二级心理咨询师" value="{{form.title}}" bindinput="onInput" data-field="title" />
+        </view>
+      </view>
+
+      <view class="form-row">
+        <view class="form-item flex-1">
+          <view class="field-label"><text class="req">*</text>执业资质证书编号</view>
+          <input class="field-input" placeholder="如：国家二级心理咨询师 (No.1802000045)" value="{{form.qualification}}" bindinput="onInput" data-field="qualification" />
+        </view>
+      </view>
+
+      <view class="form-row">
+        <view class="form-item flex-1">
+          <view class="field-label"><text class="req">*</text>擅长领域标签 (逗号分隔)</view>
+          <input class="field-input" placeholder="如：学业焦虑,人际关系,情绪舒缓" value="{{form.tags}}" bindinput="onInput" data-field="tags" />
+        </view>
+      </view>
+
+      <view class="form-row">
+        <view class="form-item flex-1">
+          <view class="field-label"><text class="req">*</text>办公地点 / 咨询室</view>
+          <input class="field-input" placeholder="如：阳光校区 心理健康中心 302室" value="{{form.location}}" bindinput="onInput" data-field="location" />
+        </view>
+      </view>
+
+      <view class="form-row">
+        <view class="form-item flex-1">
+          <view class="field-label">咨询取向与寄语</view>
+          <textarea class="field-textarea" placeholder="请简要介绍受训流派与给学生的寄语..." value="{{form.intro}}" bindinput="onInput" data-field="intro" />
+        </view>
+      </view>
+    </block>
+
+    <!-- 提交按钮 -->
+    <view class="submit-section">
+      <button class="btn-primary btn-submit-reg" bindtap="handleRegister">
+        注 册
+      </button>
+
+      <view class="back-login flex-center" bindtap="navToLogin">
+        <text class="back-text">已有账号，直接登录</text>
+      </view>
+    </view>
+  </view>
+</view>

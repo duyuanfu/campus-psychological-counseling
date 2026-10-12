@@ -1,0 +1,83 @@
+<view class="container article-manage-page">
+  <!-- 顶部发布新文章按钮 -->
+  <view class="create-bar flex-between">
+    <view>
+      <view class="bar-title">心理科普推文库</view>
+      <view class="bar-sub">面向全校师生发布情绪调节、考研减压、人际边界科普</view>
+    </view>
+    <button class="btn-primary btn-new" bindtap="openCreateModal">+ 发布新推文</button>
+  </view>
+
+  <!-- 文章列表 -->
+  <view class="articles-list">
+    <view 
+      wx:for="{{articles}}" 
+      wx:key="id" 
+      class="card article-item-card flex-between"
+    >
+      <image class="cover-thumb" src="{{item.cover}}" mode="aspectFill"></image>
+      <view class="art-content flex-1">
+        <view class="art-badge-row flex-between">
+          <text class="badge badge-warm">{{item.category}}</text>
+          <text class="art-date">{{item.date}}</text>
+        </view>
+        <view class="art-title">{{item.title}}</view>
+        <view class="art-meta">
+          <text>✍ {{item.author}}</text>
+          <text>👀 {{item.readCount}} 阅读 · ❤️ {{item.likesCount}} 赞</text>
+        </view>
+      </view>
+      <view class="act-col">
+        <button class="btn-outline btn-xs" bindtap="previewArticle" data-id="{{item.id}}">预览</button>
+        <button class="btn-outline btn-xs btn-del" bindtap="deleteArticle" data-id="{{item.id}}">删除</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 发布新推文 Modal -->
+  <view wx:if="{{showCreateModal}}" class="modal-mask flex-center">
+    <view class="modal-card">
+      <view class="modal-title">发布校园心理科普推文</view>
+
+      <view class="modal-item">
+        <view class="label">文章标题：</view>
+        <input class="input" value="{{form.title}}" bindinput="onInput" data-field="title" placeholder="如：面对期末与DDL焦虑..." />
+      </view>
+
+      <view class="modal-item">
+        <view class="label">科普分类：</view>
+        <picker bindchange="onCatChange" range="{{categories}}">
+          <view class="picker-box flex-between">
+            <text>{{categories[catIndex]}}</text>
+            <text class="arrow">▾</text>
+          </view>
+        </picker>
+      </view>
+
+      <view class="modal-item">
+        <view class="label">作者署名：</view>
+        <input class="input" value="{{form.author}}" bindinput="onInput" data-field="author" placeholder="如：心理中心 陈清心 教授" />
+      </view>
+
+      <view class="modal-item">
+        <view class="label">封面图链接：</view>
+        <input class="input" value="{{form.cover}}" bindinput="onInput" data-field="cover" placeholder="默认使用精选治愈配图" />
+      </view>
+
+      <view class="modal-item">
+        <view class="label">导语摘要：</view>
+        <textarea class="textarea summary-area" value="{{form.summary}}" bindinput="onInput" data-field="summary" placeholder="简要概括文章核心观点..." />
+      </view>
+
+      <view class="modal-item">
+        <view class="label">正文内容：</view>
+        <textarea class="textarea body-area" value="{{form.content}}" bindinput="onInput" data-field="content" placeholder="输入科普正文段落..." />
+      </view>
+
+      <view class="modal-btn-row flex-between">
+        <button class="btn-outline modal-btn" bindtap="closeModal">取消</button>
+        <button class="btn-primary modal-btn" bindtap="submitArticle">立即发布到全校</button>
+      </view>
+    </view>
+  </view>
+</view>

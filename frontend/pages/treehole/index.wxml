@@ -1,0 +1,88 @@
+<view class="container treehole-page">
+  <!-- 树洞顶部公约卡片 -->
+  <view class="treehole-banner-card">
+    <view class="banner-title flex-row">
+      <text class="banner-icon">🌳</text>
+      <text>校园匿名树洞</text>
+    </view>
+    <view class="banner-desc">全程脱敏保护，安全倾诉，友善交流。</view>
+  </view>
+
+  <!-- 分类标签栏 -->
+  <scroll-view class="category-scroll" scroll-x enable-flex>
+    <view 
+      wx:for="{{categories}}" 
+      wx:key="*this" 
+      class="cat-chip {{currentCategory === item ? 'active' : ''}}"
+      bindtap="selectCategory"
+      data-cat="{{item}}"
+    >
+      {{item}}
+    </view>
+  </scroll-view>
+
+  <!-- 树洞帖子流 -->
+  <view class="posts-list">
+    <view wx:if="{{posts.length === 0}}" class="empty-box">
+      <text class="empty-icon">🍂</text>
+      <text class="empty-text">当前分类暂无倾诉，快来做第一个倾诉者吧</text>
+    </view>
+
+    <view 
+      wx:for="{{posts}}" 
+      wx:key="id" 
+      class="card post-card"
+    >
+      <!-- 匿名作者信息 -->
+      <view class="post-header flex-between">
+        <view class="flex-row">
+          <view class="anon-avatar" style="background-color: {{item.avatarColor}}20; border-color: {{item.avatarColor}};">
+            <text class="avatar-emoji">{{item.avatarTag}}</text>
+          </view>
+          <view>
+            <view class="anon-name">{{item.anonymousName}}</view>
+            <view class="post-time">{{item.timeDesc}}</view>
+          </view>
+        </view>
+        <text class="badge badge-primary tag-badge">{{item.tag}}</text>
+      </view>
+
+      <!-- 倾诉正文 -->
+      <view class="post-content" bindtap="navToDetail" data-id="{{item.id}}">
+        {{item.content}}
+      </view>
+
+      <!-- 互动工具栏 -->
+      <view class="post-footer flex-between">
+        <view class="left-actions flex-row">
+          <!-- 抱抱/共鸣 -->
+          <view 
+            class="action-item hug-action {{item.isHugged ? 'active' : ''}}" 
+            catchtap="onHugPost" 
+            data-id="{{item.id}}"
+          >
+            <text class="action-icon">{{item.isHugged ? '🫂' : '🤍'}}</text>
+            <text class="action-text">{{item.isHugged ? '已抱抱' : '抱抱他'}} {{item.hugCount}}</text>
+          </view>
+
+          <!-- 评论数 -->
+          <view class="action-item" bindtap="navToDetail" data-id="{{item.id}}">
+            <text class="action-icon">💬</text>
+            <text class="action-text">{{item.commentCount || 0}} 暖评</text>
+          </view>
+        </view>
+
+        <!-- 举报/安全 -->
+        <view class="report-action" catchtap="reportPost">
+          <text class="report-text">反馈</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 悬浮发帖按钮 -->
+  <view class="fab-post-btn" bindtap="navToPost">
+    <text class="fab-icon">✍️</text>
+    <text class="fab-text">匿名倾诉</text>
+  </view>
+</view>

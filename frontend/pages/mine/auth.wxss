@@ -1,0 +1,154 @@
+.auth-page {
+  padding-bottom: 70rpx;
+  background-color: var(--bg-color);
+}
+
+.auth-status-card {
+  background: linear-gradient(135deg, #F0FAF7 0%, #E6F7F0 100%);
+  border: 1rpx solid #B7EB8F;
+  border-radius: var(--radius-md);
+  padding: 24rpx 28rpx;
+  margin-bottom: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+}
+.status-icon {
+  font-size: 38rpx;
+  margin-right: 16rpx;
+}
+.status-title {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+.status-sub {
+  font-size: 20rpx;
+  color: #2F6F5E;
+  margin-top: 4rpx;
+}
+
+/* 认证状态胶囊 */
+.cert-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38rpx;
+  line-height: 38rpx;
+  padding: 0 16rpx;
+  border-radius: 19rpx;
+  font-size: 20rpx;
+  font-weight: 600;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+.cert-badge-success {
+  background: rgba(82, 196, 26, 0.15);
+  color: #237804;
+  border: 1rpx solid rgba(82, 196, 26, 0.4);
+}
+
+/* 表单卡片 (iOS Inset Group) */
+.form-card {
+  padding: 28rpx 24rpx;
+  margin-bottom: 24rpx;
+  border-radius: var(--radius-md);
+}
+.form-item {
+  margin-top: 22rpx;
+}
+.form-label {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 10rpx;
+}
+
+/* iOS 风格平整输入框：高度标准、绝对居中 */
+.form-input {
+  width: 100%;
+  height: 84rpx;
+  min-height: 84rpx;
+  line-height: 84rpx;
+  background: #F8FAFC;
+  border: 1rpx solid #E2E8F0;
+  border-radius: var(--radius-md);
+  padding: 0 24rpx;
+  font-size: 28rpx;
+  color: var(--text-main);
+  box-sizing: border-box;
+  transition: all 150ms ease;
+}
+.form-input:focus {
+  border-color: var(--primary-color);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 4rpx rgba(61, 139, 117, 0.12);
+}
+
+.picker-box {
+  width: 100%;
+  height: 84rpx;
+  min-height: 84rpx;
+  line-height: 84rpx;
+  background: #F8FAFC;
+  border: 1rpx solid #E2E8F0;
+  border-radius: var(--radius-md);
+  padding: 0 24rpx;
+  font-size: 28rpx;
+  color: var(--text-main);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.arrow {
+  color: #94A3B8;
+  font-size: 24rpx;
+}
+
+.card-upload-box {
+  height: 180rpx;
+  background: #F8FAFC;
+  border: 2rpx dashed #CBD5E1;
+  border-radius: var(--radius-md);
+  margin-top: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 150ms ease;
+}
+.card-upload-box:active {
+  background: var(--primary-light);
+  border-color: var(--primary-color);
+}
+.upload-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.upload-icon {
+  font-size: 40rpx;
+  margin-bottom: 4rpx;
+}
+.upload-text {
+  font-size: 24rpx;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+.upload-sub {
+  font-size: 20rpx;
+  color: var(--text-muted);
+  margin-top: 4rpx;
+}
+
+.submit-wrap {
+  margin-top: 36rpx;
+}
+.btn-save {
+  width: 100% !important;
+  padding: 24rpx 0 !important;
+  font-size: 28rpx !important;
+  font-weight: 600 !important;
+  border-radius: var(--radius-full) !important;
+}

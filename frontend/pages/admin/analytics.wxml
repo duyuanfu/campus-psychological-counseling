@@ -1,0 +1,99 @@
+<view class="container analytics-page">
+  <!-- 大屏科技感标题栏 -->
+  <view class="bigscreen-header flex-between">
+    <view>
+      <view class="bigscreen-title flex-row">
+        <text class="dot-live"></text>
+        <text>高校心理健康态势数字媒体大屏</text>
+      </view>
+      <view class="bigscreen-time">实时监测 · 数据每小时动态刷新</view>
+    </view>
+    <view class="safe-badge flex-row">
+      <text class="safe-icon">🛡️</text>
+      <text>校园态势: 平稳可控</text>
+    </view>
+  </view>
+
+  <!-- 4大核心态势指标卡片 -->
+  <view class="kpi-grid">
+    <view class="kpi-card">
+      <view class="kpi-num text-cyan">98.6%</view>
+      <view class="kpi-label">全校心理建档率</view>
+      <view class="kpi-trend text-green">↑ 覆盖全员</view>
+    </view>
+    <view class="kpi-card">
+      <view class="kpi-num text-purple">1,420</view>
+      <view class="kpi-label">学期累计咨询人次</view>
+      <view class="kpi-trend text-blue">本周 +48人</view>
+    </view>
+    <view class="kpi-card">
+      <view class="kpi-num text-green">99.2%</view>
+      <view class="kpi-label">危机干预闭环率</view>
+      <view class="kpi-trend text-green">一人一档联动</view>
+    </view>
+    <view class="kpi-card">
+      <view class="kpi-num text-amber">84.6%</view>
+      <view class="kpi-label">全校心晴阳光指数</view>
+      <view class="kpi-trend text-green">健康良好态势</view>
+    </view>
+  </view>
+
+  <!-- 可视化图表 1: 全校情绪晴雨表环形图 (Canvas 2D) -->
+  <view class="card chart-box-card">
+    <view class="chart-box-header flex-between">
+      <view class="chart-box-title">全校学生情绪晴雨表分布 (Donut Chart)</view>
+      <text class="badge badge-purple">Canvas 2D 环形渲染</text>
+    </view>
+    <view class="chart-box-sub">基于近两周情绪日记与SDS/SAS量表综合打卡聚合计算</view>
+    <view class="canvas-wrap">
+      <canvas type="2d" id="donutCanvas" class="screen-canvas"></canvas>
+    </view>
+  </view>
+
+  <!-- 可视化图表 2: 各二级学院预警与咨询人次柱状图 (Canvas 2D) -->
+  <view class="card chart-box-card">
+    <view class="chart-box-header flex-between">
+      <view class="chart-box-title">各学院心理预警与咨询负荷 (Bar Chart)</view>
+      <text class="badge badge-primary">柱状图对比</text>
+    </view>
+    <view class="chart-box-sub">数媒学院、计科院、经管院等核心学院需求分布</view>
+    <view class="canvas-wrap">
+      <canvas type="2d" id="barCanvas" class="screen-canvas"></canvas>
+    </view>
+  </view>
+
+  <!-- 可视化图表 3: 学期月度心理咨询趋势面积折线图 (Canvas 2D) -->
+  <view class="card chart-box-card">
+    <view class="chart-box-header flex-between">
+      <view class="chart-box-title">学期月度咨询人次走势 (Trend Chart)</view>
+      <text class="badge badge-warm">平滑面积曲线</text>
+    </view>
+    <view class="chart-box-sub">期中/期末考试季出现峰值，与学业压力周期强相关</view>
+    <view class="canvas-wrap">
+      <canvas type="2d" id="adminTrendCanvas" class="screen-canvas"></canvas>
+    </view>
+  </view>
+
+  <!-- 高频心理困扰词云与议题排行榜 -->
+  <view class="card rank-card">
+    <view class="chart-box-header flex-between">
+      <view class="chart-box-title">高频心理困扰议题分布榜</view>
+      <text class="badge badge-warm">NLP 词频热度</text>
+    </view>
+
+    <view class="rank-list">
+      <view wx:for="{{issuesRank}}" wx:key="name" class="rank-item">
+        <view class="rank-item-header flex-between">
+          <view class="flex-row">
+            <text class="rank-idx idx-{{index + 1}}">{{index + 1}}</text>
+            <text class="rank-name">{{item.name}}</text>
+          </view>
+          <text class="rank-pct">{{item.pct}}% ({{item.count}}人次)</text>
+        </view>
+        <view class="rank-progress-track">
+          <view class="rank-progress-fill" style="width: {{item.pct}}%; background: {{item.color}};"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

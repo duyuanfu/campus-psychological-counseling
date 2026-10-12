@@ -1,0 +1,36 @@
+<view class="container privacy-page">
+  <view class="privacy-notice-card">
+    <view class="notice-title">🔒 隐私最高级别承诺</view>
+    <view class="notice-desc">平台遵照国家《中华人民共和国个人信息保护法》及心理咨询保密伦理，学生所有测评、树洞与咨询数据采用端到端数据加密处理。</view>
+  </view>
+
+  <view class="card settings-card">
+    <view class="setting-item flex-between">
+      <view class="setting-info flex-1">
+        <view class="setting-title">匿名树洞发表脱敏保护</view>
+        <view class="setting-desc">发帖与回复时不展示任何真实姓名、学号或IP归属地。</view>
+      </view>
+      <switch checked="{{settings.anonymousTreehole}}" bindchange="onToggleAnonymous" color="#3D8B75" />
+    </view>
+
+    <view class="setting-item flex-between">
+      <view class="setting-info flex-1">
+        <view class="setting-title">咨询师面谈预约信息保护</view>
+        <view class="setting-desc">仅咨询师本人可见诉求描述，其他人员无权查阅。</view>
+      </view>
+      <switch checked="{{settings.hideRealNameFromCounselor}}" bindchange="onToggleCounselor" color="#3D8B75" />
+    </view>
+
+    <view class="setting-item flex-between">
+      <view class="setting-info flex-1">
+        <view class="setting-title">参与全校心理健康匿名大数据</view>
+        <view class="setting-desc">将去标识化后的心理测评指数用于全校心理态势综合大屏展示。</view>
+      </view>
+      <switch checked="{{settings.allowDataAnalysis}}" bindchange="onToggleData" color="#3D8B75" />
+    </view>
+  </view>
+
+  <view class="submit-wrap">
+    <button class="btn-primary" bindtap="savePrivacy">保存隐私设置</button>
+  </view>
+</view>

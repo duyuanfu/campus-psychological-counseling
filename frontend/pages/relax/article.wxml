@@ -1,0 +1,44 @@
+<view class="container article-page">
+  <view class="card article-full-card" wx:if="{{article}}">
+    <!-- 分类与标题 -->
+    <view class="cat-pill-wrap">
+      <text class="badge badge-warm">{{article.category}}</text>
+    </view>
+    <view class="article-main-title">{{article.title}}</view>
+
+    <!-- 作者与元数据 -->
+    <view class="author-meta-row flex-between">
+      <view class="flex-row">
+        <text class="author-icon">✍️</text>
+        <text class="author-name">{{article.author}}</text>
+      </view>
+      <view class="date-read">
+        <text>{{article.date}} · {{article.readCount}} 阅读</text>
+      </view>
+    </view>
+
+    <!-- 封面图 -->
+    <image class="cover-image" src="{{article.cover}}" mode="aspectFill"></image>
+
+    <!-- 导语摘要 -->
+    <view class="summary-box">
+      <text class="quote-mark">“</text>
+      <text>{{article.summary}}</text>
+    </view>
+
+    <!-- 正文段落 -->
+    <view class="paragraphs-list">
+      <view wx:for="{{article.content}}" wx:key="*this" class="p-item">
+        {{item}}
+      </view>
+    </view>
+
+    <!-- 点赞与反馈 -->
+    <view class="like-section flex-center">
+      <button class="btn-like {{isLiked ? 'liked' : ''}}" bindtap="toggleLike">
+        <text class="like-icon">{{isLiked ? '❤️' : '🤍'}}</text>
+        <text class="like-count">点赞启发 ({{likesCount}})</text>
+      </button>
+    </view>
+  </view>
+</view>

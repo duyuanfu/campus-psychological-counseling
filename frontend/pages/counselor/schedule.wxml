@@ -1,0 +1,64 @@
+<view class="container schedule-page">
+  <view class="schedule-intro-card">
+    <view class="intro-title">🕒 咨询师每周排班时间表</view>
+    <view class="intro-desc">配置开放给学生预约的星期与时间段。学生端预约时将自动匹配以下规则。</view>
+  </view>
+
+  <!-- 1. 每周开放日期多选 -->
+  <view class="card form-card">
+    <view class="section-title">每周可预约星期</view>
+    <view class="days-grid">
+      <view 
+        wx:for="{{allDays}}" 
+        wx:key="*this"
+        class="day-toggle {{selectedDaysMap[item] ? 'selected' : ''}}"
+        bindtap="toggleDay"
+        data-day="{{item}}"
+      >
+        <text class="day-check">{{selectedDaysMap[item] ? '✓' : '+'}}</text>
+        <text class="day-text">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 2. 每日开放时段 -->
+  <view class="card form-card">
+    <view class="section-title">开放时段配置 (单次50分钟)</view>
+    <view class="slots-list">
+      <view 
+        wx:for="{{allSlots}}" 
+        wx:key="*this" 
+        class="slot-toggle-row flex-between"
+        bindtap="toggleSlot"
+        data-slot="{{item}}"
+      >
+        <view class="flex-row">
+          <text class="slot-icon">⏰</text>
+          <text class="slot-text">{{item}}</text>
+        </view>
+        <checkbox checked="{{selectedSlotsMap[item]}}" color="#3D8B75" />
+      </view>
+    </view>
+  </view>
+
+  <!-- 3. 每日最大预约接待人数限制 -->
+  <view class="card form-card">
+    <view class="section-title">每日最大接待人数上限</view>
+    <view class="max-stepper-row flex-between">
+      <view class="stepper-left">
+        <view class="stepper-title">单日最多预约人次</view>
+        <view class="stepper-sub">超出将自动显示“约满”</view>
+      </view>
+      <view class="stepper-box flex-row">
+        <button class="step-btn" bindtap="decreaseMax">-</button>
+        <text class="step-val">{{maxPerDay}} 人</text>
+        <button class="step-btn" bindtap="increaseMax">+</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 保存按钮 -->
+  <view class="submit-wrap">
+    <button class="btn-primary btn-save" bindtap="saveSchedule">保存并发布排班计划</button>
+  </view>
+</view>

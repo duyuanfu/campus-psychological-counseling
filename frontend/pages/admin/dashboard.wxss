@@ -1,0 +1,129 @@
+.admin-dash-page {
+  padding-bottom: 60rpx;
+}
+
+.admin-hero-card {
+  padding: 28rpx 24rpx;
+  background: #FFFFFF;
+}
+.avatar {
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 20rpx;
+  margin-right: 20rpx;
+}
+.admin-name {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--text-main);
+}
+.admin-dept {
+  font-size: 22rpx;
+  color: #CF1322;
+  margin-top: 4rpx;
+}
+.admin-id {
+  font-size: 20rpx;
+  color: var(--text-muted);
+  margin-top: 2rpx;
+}
+.btn-switch {
+  width: auto !important;
+  min-width: 130rpx !important;
+  max-width: 160rpx !important;
+  margin: 0 !important;
+  padding: 8rpx 20rpx !important;
+  font-size: 22rpx !important;
+  line-height: 1.3 !important;
+  white-space: nowrap !important;
+  border-radius: 30rpx !important;
+  flex-shrink: 0 !important;
+}
+
+.screen-banner {
+  background: linear-gradient(135deg, #1E1B4B, #312E81);
+  color: #FFFFFF;
+  border-radius: var(--radius-md);
+  padding: 24rpx 28rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(49, 46, 129, 0.25);
+}
+.screen-icon {
+  font-size: 40rpx;
+  margin-right: 16rpx;
+}
+.screen-title {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #A5B4FC;
+}
+.screen-sub {
+  font-size: 20rpx;
+  opacity: 0.85;
+  margin-top: 4rpx;
+}
+.screen-arrow {
+  font-size: 24rpx;
+  color: #38EF7D;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.metrics-card {
+  padding: 28rpx 10rpx;
+  margin-bottom: 24rpx;
+}
+.metric-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+.metric-num {
+  font-size: 40rpx;
+  font-weight: 800;
+}
+.metric-label {
+  font-size: 20rpx;
+  color: var(--text-muted);
+  margin-top: 6rpx;
+}
+.text-blue { color: #1890FF; }
+.text-green { color: #52C41A; }
+.text-orange { color: #FA8C16; }
+.text-red { color: #F5222D; }
+
+.menu-entry-card {
+  padding: 24rpx;
+  margin-bottom: 18rpx;
+}
+.menu-icon-box {
+  width: 76rpx;
+  height: 76rpx;
+  border-radius: 18rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  margin-right: 18rpx;
+  flex-shrink: 0;
+}
+.bg-blue { background: #E6F7FF; }
+.bg-mint { background: #E6F7F0; }
+.bg-peach { background: #FFF0E8; }
+.bg-purple { background: #F6EDFC; }
+
+.entry-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 4rpx;
+}
+.entry-desc {
+  font-size: 20rpx;
+  color: var(--text-muted);
+}
+.entry-arrow {
+  font-size: 24rpx;
+  color: var(--text-muted);
+}

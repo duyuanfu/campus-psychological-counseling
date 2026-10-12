@@ -1,0 +1,169 @@
+.report-page {
+  padding-bottom: 80rpx;
+}
+
+.score-header-card {
+  padding: 32rpx 28rpx;
+  background: #FFFFFF;
+}
+.report-scale-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--text-main);
+}
+.report-time {
+  font-size: 20rpx;
+  color: var(--text-muted);
+  margin-top: 4rpx;
+}
+.level-badge {
+  font-size: 22rpx;
+  font-weight: 700;
+  padding: 6rpx 18rpx;
+  border-radius: 20rpx;
+}
+
+.score-display-box {
+  margin: 32rpx 0 20rpx 0;
+}
+.score-circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 220rpx;
+  height: 220rpx;
+  border-radius: 50%;
+  background: #F8FAFC;
+  box-shadow: inset 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+.score-number {
+  font-size: 72rpx;
+  font-weight: 800;
+  line-height: 1;
+}
+.score-unit {
+  font-size: 20rpx;
+  color: var(--text-muted);
+  margin-top: 8rpx;
+}
+
+.scale-gauge-bar {
+  margin-top: 20rpx;
+}
+.gauge-labels {
+  font-size: 18rpx;
+  color: var(--text-muted);
+  margin-bottom: 8rpx;
+}
+.gauge-track {
+  display: flex;
+  height: 12rpx;
+  border-radius: 6rpx;
+  overflow: hidden;
+  gap: 4rpx;
+}
+.gauge-seg {
+  flex: 1;
+}
+.seg-1 { background: #52C41A; }
+.seg-2 { background: #FAAD14; }
+.seg-3 { background: #FF8E53; }
+.seg-4 { background: #F5222D; }
+
+/* 危机预警横幅 */
+.crisis-alert-banner {
+  background: #FFF1F0;
+  border: 2rpx solid #FFA39E;
+  border-radius: var(--radius-md);
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+}
+.alert-icon {
+  font-size: 40rpx;
+  margin-right: 14rpx;
+}
+.alert-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #CF1322;
+}
+.alert-text {
+  font-size: 22rpx;
+  color: #A8071A;
+  margin-top: 6rpx;
+  line-height: 1.45;
+}
+.btn-call-crisis {
+  margin-top: 18rpx;
+  width: 100%;
+  padding: 14rpx;
+  font-size: 26rpx;
+}
+
+/* 图表卡片 */
+.chart-card {
+  padding: 28rpx 20rpx;
+}
+.chart-header {
+  margin-bottom: 8rpx;
+}
+.chart-subtitle {
+  font-size: 22rpx;
+  color: var(--text-muted);
+  margin-bottom: 16rpx;
+  padding: 0 8rpx;
+}
+.canvas-wrap {
+  width: 100%;
+  height: 480rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chart-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.text-card {
+  padding: 28rpx 24rpx;
+}
+.analysis-content {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-top: 14rpx;
+}
+
+.suggestions-list {
+  margin-top: 14rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+.suggestion-item {
+  align-items: flex-start;
+}
+.sug-bullet {
+  margin-right: 12rpx;
+  font-size: 26rpx;
+  line-height: 1.4;
+}
+.sug-text {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.bottom-actions {
+  margin-top: 24rpx;
+  display: flex;
+  gap: 20rpx;
+}
+.btn-act {
+  flex: 1;
+  padding: 20rpx;
+  font-size: 26rpx;
+  line-height: 1.3;
+}

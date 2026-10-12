@@ -1,0 +1,111 @@
+<view class="container my-records-page">
+  <!-- 状态过滤 Tabs -->
+  <view class="status-tabs flex-between">
+    <view 
+      wx:for="{{tabs}}" 
+      wx:key="key" 
+      class="tab-item {{currentTab === item.key ? 'active' : ''}}"
+      bindtap="switchTab"
+      data-key="{{item.key}}"
+    >
+      <text>{{item.label}}</text>
+      <view wx:if="{{currentTab === item.key}}" class="tab-indicator"></view>
+    </view>
+  </view>
+
+  <!-- 列表内容 -->
+  <view class="records-list">
+    <view wx:if="{{records.length === 0}}" class="empty-box">
+      <text class="empty-icon">📭</text>
+      <text class="empty-text">暂无相关预约记录</text>
+      <button class="btn-primary" style="margin-top: 30rpx;" bindtap="navToNewAppointment">立即发起新预约</button>
+    </view>
+
+    <view 
+      wx:for="{{records}}" 
+      wx:key="id" 
+      class="card record-card"
+    >
+      <!-- 卡片头部 -->
+      <view class="record-header flex-between">
+        <view class="flex-row">
+          <text class="c-name">{{item.counselorName}}</text>
+          <text class="c-title">{{item.counselorTitle}}</text>
+        </view>
+        <text class="status-pill {{item.status}}">{{item.statusText}}</text>
+      </view>
+
+      <!-- 预约详情信息 -->
+      <view class="record-body">
+        <view class="meta-row">
+          <text class="meta-icon">🔖</text>
+          <text class="meta-label">预约单号：</text>
+          <text class="meta-value id-code">{{item.id}}</text>
+        </view>
+        <view class="meta-row">
+          <text class="meta-icon">📅</text>
+          <text class="meta-label">预约时间：</text>
+          <text class="meta-value highlight">{{item.date}}  {{item.timeSlot}}</text>
+        </view>
+        <view class="meta-row">
+          <text class="meta-icon">🏷️</text>
+          <text class="meta-label">咨询形式：</text>
+          <text class="meta-value">{{item.mode}}</text>
+        </view>
+        <view class="meta-row">
+          <text class="meta-icon">📍</text>
+          <text class="meta-label">咨询地点：</text>
+          <text class="meta-value">{{item.location || '待咨询师分配'}}</text>
+        </view>
+        <view class="meta-row">
+          <text class="meta-icon">💬</text>
+          <text class="meta-label">困扰诉求：</text>
+          <text class="meta-value desc">{{item.problemCategory}} - {{item.description}}</text>
+        </view>
+
+        <!-- 咨询师反馈说明 -->
+        <view wx:if="{{item.feedbackNotes}}" class="feedback-box">
+          <view class="feedback-title">👨‍🏫 咨询师反馈附言：</view>
+          <view class="feedback-content">{{item.feedbackNotes}}</view>
+        </view>
+      </view>
+
+      <!-- 操作按钮栏 (宽敞整齐，绝不换行) -->
+      <view class="record-footer flex-between">
+        <text class="mode-tip-text">单次 50 分钟咨询</text>
+
+        <view class="btn-group flex-row">
+          <!-- 取消预约 (待审核或已确认状态可用) -->
+          <button 
+            wx:if="{{item.status === 'pending' || item.status === 'confirmed'}}" 
+            class="btn-outline btn-sm btn-cancel" 
+            bindtap="cancelAppointment" 
+            data-id="{{item.id}}"
+          >
+            取消预约
+          </button>
+
+          <!-- 改约申请 (待审核或已确认状态可用) -->
+          <button 
+            wx:if="{{item.status === 'pending' || item.status === 'confirmed'}}" 
+            class="btn-primary btn-sm" 
+            bindtap="rescheduleAppointment" 
+            data-item="{{item}}"
+          >
+            申请改约
+          </button>
+
+          <!-- 重新预约 (已取消或已驳回时可用) -->
+          <button 
+            wx:if="{{item.status === 'canceled' || item.status === 'rejected'}}" 
+            class="btn-secondary btn-sm" 
+            bindtap="rebookCounselor" 
+            data-id="{{item.counselorId}}"
+          >
+            重新预约
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

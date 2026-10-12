@@ -1,0 +1,74 @@
+<view class="container mood-diary-page">
+  <!-- 记录新日记卡片 -->
+  <view class="card new-diary-card">
+    <view class="section-title">今日心情记录</view>
+
+    <!-- 心情打分选择 -->
+    <view class="mood-levels-row">
+      <view 
+        wx:for="{{moodLevels}}" 
+        wx:key="score" 
+        class="mood-opt {{currentScore === item.score ? 'active' : ''}}"
+        bindtap="selectMoodScore"
+        data-item="{{item}}"
+      >
+        <text class="opt-emoji">{{item.emoji}}</text>
+        <text class="opt-text">{{item.text}}</text>
+      </view>
+    </view>
+
+    <!-- 心情原因标签勾选 -->
+    <view class="tags-section">
+      <view class="tags-title">关联事件与感受：</view>
+      <view class="tag-chips">
+        <view 
+          wx:for="{{presetTags}}" 
+          wx:key="*this" 
+          class="tag-chip {{selectedTagsMap[item] ? 'selected' : ''}}"
+          bindtap="toggleTag"
+          data-tag="{{item}}"
+        >
+          {{item}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 日记文字输入 -->
+    <textarea 
+      class="diary-input" 
+      placeholder="记录下一刻微小的感动、烦恼或感悟..."
+      value="{{diaryText}}"
+      bindinput="onInputText"
+      maxlength="200"
+    />
+
+    <button class="btn-primary btn-save-diary" bindtap="saveDiary">保存今日心晴 📝</button>
+  </view>
+
+  <!-- 历史情绪日记时间流 -->
+  <view class="section-header">
+    <view class="section-title">情绪历程时间流 ({{diaries.length}}篇)</view>
+  </view>
+
+  <view class="diary-timeline">
+    <view 
+      wx:for="{{diaries}}" 
+      wx:key="id" 
+      class="card timeline-card"
+    >
+      <view class="timeline-header flex-between">
+        <view class="flex-row">
+          <text class="diary-emoji">{{item.moodIcon}}</text>
+          <text class="diary-mood-label">{{item.moodText}}</text>
+        </view>
+        <text class="diary-date">{{item.date}} ({{item.dayStr}})</text>
+      </view>
+
+      <view class="diary-tags-row">
+        <text wx:for="{{item.tags}}" wx:key="*this" wx:for-item="tag" class="badge badge-primary">{{tag}}</text>
+      </view>
+
+      <view class="diary-content">{{item.content}}</view>
+    </view>
+  </view>
+</view>

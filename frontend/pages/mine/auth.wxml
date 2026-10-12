@@ -1,0 +1,61 @@
+<view class="container auth-page">
+  <view class="auth-status-card flex-between">
+    <view class="flex-row">
+      <text class="status-icon">🛡️</text>
+      <view>
+        <view class="status-title">在校生学籍实名认证</view>
+        <view class="status-sub">认证后可享有一对一专属预约咨询与危机护航</view>
+      </view>
+    </view>
+    <view class="cert-badge cert-badge-success">认证有效</view>
+  </view>
+
+  <view class="card form-card">
+    <view class="section-title">学籍档案信息</view>
+
+    <view class="form-item">
+      <view class="form-label">真实姓名</view>
+      <input class="form-input" value="{{name}}" bindinput="onNameInput" placeholder="请输入姓名" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">学号 / 学籍编号</view>
+      <input class="form-input" value="{{studentId}}" bindinput="onIdInput" placeholder="请输入学号" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">就读学院</view>
+      <picker bindchange="onCollegeChange" value="{{collegeIndex}}" range="{{colleges}}">
+        <view class="picker-box flex-between">
+          <text>{{colleges[collegeIndex]}}</text>
+          <text class="arrow">▾</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">专业与年级</view>
+      <input class="form-input" value="{{majorGrade}}" bindinput="onMajorInput" placeholder="如：数字媒体艺术 大二" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">联系手机</view>
+      <input class="form-input" type="number" value="{{phone}}" bindinput="onPhoneInput" placeholder="请输入手机号" />
+    </view>
+  </view>
+
+  <view class="card form-card">
+    <view class="section-title">学生证 / 校园卡证明</view>
+    <view class="card-upload-box flex-center" bindtap="uploadCard">
+      <view class="upload-inner">
+        <text class="upload-icon">📷</text>
+        <text class="upload-text">点击模拟重新上传校园卡封面</text>
+        <text class="upload-sub">已通过校内学籍库自动比对校验</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="submit-wrap">
+    <button class="btn-primary btn-save" bindtap="saveAuth">保存并更新认证信息</button>
+  </view>
+</view>

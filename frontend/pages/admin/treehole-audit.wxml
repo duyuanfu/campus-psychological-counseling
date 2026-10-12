@@ -1,0 +1,54 @@
+<view class="container treehole-audit-page">
+  <view class="audit-notice-card">
+    <view class="notice-title">🛡️ 树洞内容合规与危机筛查</view>
+    <view class="notice-desc">维护校园树洞温暖健康氛围。若发现人身攻击、违规言论或极端消极轻生言论，请及时处理或转介危机干预。</view>
+  </view>
+
+  <view class="section-header">
+    <view class="section-title">树洞公开发帖流 ({{posts.length}}条)</view>
+  </view>
+
+  <view class="posts-manage-list">
+    <view wx:if="{{posts.length === 0}}" class="empty-box">
+      <text class="empty-icon">🍃</text>
+      <text class="empty-text">当前树洞内容全部健康合规</text>
+    </view>
+
+    <view 
+      wx:for="{{posts}}" 
+      wx:key="id" 
+      class="card post-audit-card"
+    >
+      <view class="post-audit-top flex-between">
+        <view class="flex-row">
+          <text class="anon-emoji">{{item.avatarTag}}</text>
+          <text class="anon-name">{{item.anonymousName}}</text>
+          <text class="badge badge-warm">{{item.tag}}</text>
+        </view>
+        <text class="post-time">{{item.timeDesc}}</text>
+      </view>
+
+      <view class="post-body-text">{{item.content}}</view>
+
+      <view class="post-stats-row flex-between">
+        <text class="stats-text">🤍 {{item.hugCount}} 抱抱 · 💬 {{item.commentCount || 0}} 评论</text>
+        <text class="id-text">ID: {{item.id}}</text>
+      </view>
+
+      <view class="post-audit-actions flex-between">
+        <button class="btn-outline btn-sm btn-crisis" bindtap="escalateCrisis" data-item="{{item}}">
+          🚨 标记为危机干预
+        </button>
+
+        <view class="btn-right-group flex-row">
+          <button class="btn-outline btn-sm btn-delete" bindtap="removePost" data-id="{{item.id}}">
+            违规下架
+          </button>
+          <button class="btn-primary btn-sm btn-pass" bindtap="approvePost" data-id="{{item.id}}">
+            审核通过
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

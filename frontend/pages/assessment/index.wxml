@@ -1,0 +1,104 @@
+<view class="container assessment-page">
+  <!-- 顶部测评导航 Banner -->
+  <view class="assessment-hero-card">
+    <view class="hero-title">科学心理测评</view>
+    <view class="hero-desc">国际标准化临床量表，多维度评估身心状态。</view>
+    <view class="hero-stats flex-row">
+      <view class="stat-item">
+        <text class="num">20,000+</text>
+        <text class="label">全校已测人次</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <text class="num">100%</text>
+        <text class="label">严格隐私加密</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <text class="num">即时</text>
+        <text class="label">AI多维出具报告</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 最近一次测评速览 (如果有) -->
+  <view wx:if="{{latestReport}}" class="card latest-report-card">
+    <view class="flex-between">
+      <view class="card-title-sm flex-row">
+        <text class="icon">📈</text>
+        <text>最近结果：{{latestReport.scaleTitle}}</text>
+      </view>
+      <text class="report-date">{{latestReport.date}}</text>
+    </view>
+    <view class="latest-score-row flex-between">
+      <view>
+        <text class="score-val">{{latestReport.standardScore}}</text>
+        <text class="score-unit">分 (标准分)</text>
+      </view>
+      <text class="badge" style="background: {{latestReport.levelColor}}20; color: {{latestReport.levelColor}};">
+        {{latestReport.levelTitle}}
+      </text>
+    </view>
+    <view class="latest-analysis-text">{{latestReport.analysis}}</view>
+    <button class="btn-outline btn-view-report" bindtap="viewReportDetail" data-id="{{latestReport.id}}">
+      查看报告分析 ➔
+    </button>
+  </view>
+
+  <!-- 测评量表列表 -->
+  <view class="section-header">
+    <view class="section-title">标准心理量表</view>
+  </view>
+
+  <view class="scales-list">
+    <view 
+      wx:for="{{scales}}" 
+      wx:key="id" 
+      class="card scale-card"
+    >
+      <view class="scale-header flex-between">
+        <view class="badge badge-purple">{{item.code}}</view>
+        <text class="tested-count">{{item.testedCount}} 人已测</text>
+      </view>
+
+      <view class="scale-title">{{item.title}}</view>
+      <view class="scale-subtitle">{{item.subtitle}}</view>
+      <view class="scale-desc">{{item.desc}}</view>
+
+      <view class="scale-meta-row flex-between">
+        <view class="scale-specs flex-row">
+          <text class="spec-tag">📝 共 {{item.itemCount}} 题</text>
+          <text class="spec-tag">⏱ 约 {{item.estimateMin}} 分钟</text>
+        </view>
+        <button class="btn-primary btn-start-test" bindtap="startTest" data-id="{{item.id}}">开始测评</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 历史报告归档列表 -->
+  <view class="section-header" wx:if="{{historyList.length > 0}}">
+    <view class="section-title">历史报告档案 ({{historyList.length}}份)</view>
+  </view>
+
+  <view class="history-list" wx:if="{{historyList.length > 0}}">
+    <view 
+      wx:for="{{historyList}}" 
+      wx:key="id" 
+      class="card history-item flex-between"
+      bindtap="viewReportDetail"
+      data-id="{{item.id}}"
+    >
+      <view class="history-left">
+        <view class="history-scale-title">{{item.scaleTitle}}</view>
+        <view class="history-date">{{item.date}}</view>
+      </view>
+      <view class="history-right flex-row">
+        <view class="history-score-box">
+          <text class="h-score">{{item.standardScore}}</text>
+          <text class="h-level" style="color: {{item.levelColor}};">{{item.levelTitle}}</text>
+        </view>
+        <text class="arrow">➔</text>
+      </view>
+    </view>
+  </view>
+</view>

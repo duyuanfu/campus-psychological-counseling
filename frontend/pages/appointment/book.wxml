@@ -1,0 +1,119 @@
+<view class="container book-page">
+  <!-- 模式提示 -->
+  <view wx:if="{{isReschedule}}" class="reschedule-banner">
+    <text class="banner-icon">🔄</text>
+    <text>您正在进行【改约申请】，提交后将覆盖原预约时段并重新审核。</text>
+  </view>
+
+  <!-- 咨询师摘要卡片 -->
+  <view class="card counselor-summary-card flex-row">
+    <image class="avatar" src="{{counselor.avatar}}" mode="aspectFill"></image>
+    <view class="flex-1">
+      <view class="flex-between">
+        <text class="name">{{counselor.name}}</text>
+        <text class="badge badge-primary">{{selectedMode}}</text>
+      </view>
+      <view class="title">{{counselor.title}}</view>
+      <view class="datetime-pill">
+        <text>📅 {{selectedDate}}  🕒 {{selectedSlot}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 预约信息填写表单 -->
+  <view class="card form-card">
+    <view class="section-title">预约信息确认</view>
+
+    <!-- 咨询方式 -->
+    <view class="form-item">
+      <view class="form-label">咨询形式</view>
+      <view class="mode-chips">
+        <view 
+          wx:for="{{counselor.availableModes}}" 
+          wx:key="*this"
+          class="chip {{selectedMode === item ? 'active' : ''}}"
+          bindtap="selectMode"
+          data-mode="{{item}}"
+        >
+          {{item}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 困扰分类 -->
+    <view class="form-item">
+      <view class="form-label">困扰分类 (主要议题)</view>
+      <picker bindchange="onCategoryChange" value="{{categoryIndex}}" range="{{categories}}">
+        <view class="picker-input flex-between">
+          <text>{{categories[categoryIndex]}}</text>
+          <text class="picker-arrow">▾</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 困扰详细描述 -->
+    <view class="form-item">
+      <view class="form-label flex-between">
+        <text>您希望探讨的问题与现状描述</text>
+        <text class="char-count">{{description.length}}/200</text>
+      </view>
+      <textarea 
+        class="form-textarea" 
+        placeholder="请简要描述您近期的困惑或期待咨询师协助探讨的方面（如持续时间、触发事件等）..." 
+        maxlength="200"
+        value="{{description}}"
+        bindinput="onDescriptionInput"
+      />
+    </view>
+  </view>
+
+  <!-- 来访者与安全信息 -->
+  <view class="card form-card">
+    <view class="section-title">来访学生身份与安全联络</view>
+
+    <view class="field-row flex-between">
+      <text class="field-name">姓名 / 学号</text>
+      <text class="field-val">{{currentUser.name}} ({{currentUser.studentId}})</text>
+    </view>
+
+    <view class="field-row flex-between">
+      <text class="field-name">所属学院</text>
+      <text class="field-val">{{currentUser.college}}</text>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">联系电话</view>
+      <input 
+        class="form-input" 
+        type="number" 
+        placeholder="请输入手机号" 
+        value="{{phone}}"
+        bindinput="onPhoneInput"
+      />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">紧急联络人电话 (辅导员/家属)</view>
+      <input 
+        class="form-input" 
+        type="number" 
+        placeholder="保障极端危机时的安全支持" 
+        value="{{emergencyPhone}}"
+        bindinput="onEmergencyInput"
+      />
+    </view>
+
+    <!-- 保密守则勾选 -->
+    <view class="agreement-box flex-row" bindtap="toggleAgreement">
+      <checkbox checked="{{agreed}}" color="#3D8B75" />
+      <text class="agreement-text">我已阅读并知悉《高校心理咨询保密伦理与预约守则》</text>
+    </view>
+  </view>
+
+  <!-- 提交申请按钮 -->
+  <view class="submit-box">
+    <button class="btn-primary btn-submit-large" bindtap="submitAppointment">
+      {{isReschedule ? '确认并提交改约申请' : '提交预约申请'}}
+    </button>
+  </view>
+</view>

@@ -1,0 +1,150 @@
+<view class="container record-edit-page">
+  <!-- 模式切换：新建记录 vs 查看档案列表 -->
+  <view class="top-nav-tabs flex-between">
+    <view 
+      class="tab-btn {{activeView === 'edit' ? 'active' : ''}}" 
+      bindtap="switchView" 
+      data-view="edit"
+    >
+      ✍️ 撰写咨询记录
+    </view>
+    <view 
+      class="tab-btn {{activeView === 'list' ? 'active' : ''}}" 
+      bindtap="switchView" 
+      data-view="list"
+    >
+      📂 已归档案卷 ({{records.length}})
+    </view>
+  </view>
+
+  <!-- ================= 模式一：撰写记录表单 ================= -->
+  <view wx:if="{{activeView === 'edit'}}" class="form-section">
+    <view class="card form-card">
+      <view class="section-title">个案基本档案</view>
+
+      <view class="form-item">
+        <view class="form-label">来访学生姓名</view>
+        <input class="form-input" value="{{formData.studentName}}" bindinput="onInput" data-field="studentName" placeholder="如：林微光" />
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">学院年级</view>
+        <input class="form-input" value="{{formData.studentMajor}}" bindinput="onInput" data-field="studentMajor" placeholder="如：数字媒体艺术 大二" />
+      </view>
+
+      <view class="form-row flex-between">
+        <view class="form-item flex-1" style="margin-right: 16rpx;">
+          <view class="form-label">咨询时长</view>
+          <input class="form-input" value="{{formData.duration}}" bindinput="onInput" data-field="duration" placeholder="如：50分钟" />
+        </view>
+        <view class="form-item flex-1">
+          <view class="form-label">危机风险级别</view>
+          <picker bindchange="onRiskChange" range="{{riskLevels}}">
+            <view class="picker-input flex-between">
+              <text>{{riskLevels[riskIndex]}}</text>
+              <text class="arrow">▾</text>
+            </view>
+          </picker>
+        </view>
+      </view>
+    </view>
+
+    <view class="card form-card">
+      <view class="section-title">专业观察与评估记录</view>
+
+      <view class="form-item">
+        <view class="form-label">1. 来访者状态与精神检查</view>
+        <textarea 
+          class="form-textarea" 
+          value="{{formData.mentalStatus}}" 
+          bindinput="onInput" 
+          data-field="mentalStatus"
+          placeholder="衣着外貌、情绪反应、言语思维连贯性、求助意愿..."
+        />
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">2. 主诉与谈话核心摘要</view>
+        <textarea 
+          class="form-textarea" 
+          value="{{formData.complaintSummary}}" 
+          bindinput="onInput" 
+          data-field="complaintSummary"
+          placeholder="来访者核心困扰议题、触发事件、近期主观痛苦..."
+        />
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">3. 评估结论与认知诊断</view>
+        <textarea 
+          class="form-textarea" 
+          value="{{formData.assessmentResult}}" 
+          bindinput="onInput" 
+          data-field="assessmentResult"
+          placeholder="心理动力学/CBT认知信念、行为模式分析与诊断结论..."
+        />
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">4. 本次干预策略与后续跟进计划</view>
+        <textarea 
+          class="form-textarea" 
+          value="{{formData.interventionStrategy}}" 
+          bindinput="onInput" 
+          data-field="interventionStrategy"
+          placeholder="采取的技术、布置的家庭作业、下次面谈周期安排..."
+        />
+      </view>
+    </view>
+
+    <view class="submit-wrap">
+      <button class="btn-primary btn-save" bindtap="saveRecord">保存并录入咨询个案档案 🔒</button>
+    </view>
+  </view>
+
+  <!-- ================= 模式二：已归档案卷列表 ================= -->
+  <view wx:else class="list-section">
+    <view wx:if="{{records.length === 0}}" class="empty-box">
+      <text class="empty-icon">📁</text>
+      <text class="empty-text">暂无归档咨询记录</text>
+    </view>
+
+    <view 
+      wx:for="{{records}}" 
+      wx:key="id" 
+      class="card record-file-card"
+    >
+      <view class="file-header flex-between">
+        <view class="flex-row">
+          <text class="file-student">{{item.studentName}}</text>
+          <text class="file-major">{{item.studentMajor}}</text>
+        </view>
+        <text class="badge badge-primary">{{item.riskLevel}}</text>
+      </view>
+
+      <view class="file-body">
+        <view class="file-row">
+          <text class="f-label">咨询时间：</text>
+          <text class="f-val">{{item.consultDate}} (时长 {{item.duration}})</text>
+        </view>
+        <view class="file-row">
+          <text class="f-label">咨询类型：</text>
+          <text class="f-val">{{item.type}} · 责任人：{{item.counselorName}}</text>
+        </view>
+        <view class="file-row">
+          <text class="f-label">主诉摘要：</text>
+          <text class="f-val clamp">{{item.complaintSummary}}</text>
+        </view>
+        <view class="file-row">
+          <text class="f-label">干预策略：</text>
+          <text class="f-val clamp">{{item.interventionStrategy}}</text>
+        </view>
+      </view>
+
+      <view class="file-footer flex-between">
+        <text class="f-id">档案编号: {{item.id}}</text>
+        <button class="btn-outline btn-sm" bindtap="editExisting" data-item="{{item}}">编辑修改</button>
+      </view>
+    </view>
+  </view>
+</view>

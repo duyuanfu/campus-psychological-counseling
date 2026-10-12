@@ -1,0 +1,78 @@
+<view class="container appointment-page">
+  <!-- 顶栏快捷通知与预约记录入口 -->
+  <view class="record-entry-bar flex-between" bindtap="navToMyRecords">
+    <view class="flex-row">
+      <text class="bar-icon">📋</text>
+      <text class="bar-text">查看我的预约记录</text>
+    </view>
+    <view class="bar-badge flex-row">
+      <text wx:if="{{pendingCount > 0}}" class="badge badge-warm">{{pendingCount}}条待确认</text>
+      <text class="arrow">➔</text>
+    </view>
+  </view>
+
+  <!-- 预约须知 -->
+  <view class="notice-card">
+    <view class="notice-title">💡 预约须知</view>
+    <view class="notice-desc">单次咨询50分钟，严格遵守保密守则，请提前5分钟到达。</view>
+  </view>
+
+  <!-- 专长分类筛选项 (垂直居中、紧凑整齐) -->
+  <scroll-view class="category-scroll" scroll-x enable-flex>
+    <view 
+      wx:for="{{categories}}" 
+      wx:key="*this" 
+      class="cat-chip {{selectedCategory === item ? 'active' : ''}}"
+      bindtap="selectCategory"
+      data-cat="{{item}}"
+    >
+      {{item}}
+    </view>
+  </scroll-view>
+
+  <!-- 咨询师卡片列表 -->
+  <view class="counselors-list">
+    <view 
+      wx:for="{{filteredCounselors}}" 
+      wx:key="id" 
+      class="card counselor-item-card"
+    >
+      <view class="counselor-main" bindtap="navToDetail" data-id="{{item.id}}">
+        <image class="avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+        <view class="details flex-1">
+          <view class="name-row flex-between">
+            <view class="flex-row">
+              <text class="name">{{item.name}}</text>
+              <text class="badge badge-primary title-badge">专职</text>
+            </view>
+            <view class="rating-box flex-row">
+              <text class="star">★</text>
+              <text class="rating-num">{{item.rating}}</text>
+              <text class="reviews">({{item.reviewsCount}}人评)</text>
+            </view>
+          </view>
+
+          <view class="title-text">{{item.title}}</view>
+
+          <view class="tag-row">
+            <text wx:for="{{item.tagList}}" wx:key="*this" wx:for-item="t" class="tag-item">{{t}}</text>
+          </view>
+
+          <view class="intro-clamp">{{item.intro}}</view>
+        </view>
+      </view>
+
+      <!-- 底部工作时间与操作按钮 (空间充裕，绝不换行) -->
+      <view class="counselor-bottom-bar flex-between">
+        <view class="work-time flex-row">
+          <text class="time-icon">🕒</text>
+          <text class="time-text">{{item.workHours}}</text>
+        </view>
+        <view class="btn-group flex-row">
+          <button class="btn-outline btn-detail-sm" catchtap="navToDetail" data-id="{{item.id}}">详情与排班</button>
+          <button class="btn-primary btn-book-sm" catchtap="navToBook" data-id="{{item.id}}">立即预约</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

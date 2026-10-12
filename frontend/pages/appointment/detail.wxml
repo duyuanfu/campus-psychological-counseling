@@ -1,0 +1,101 @@
+<view class="container counselor-detail-page">
+  <!-- 咨询师个人名片 -->
+  <view class="card counselor-profile-card">
+    <view class="flex-row">
+      <image class="avatar-lg" src="{{counselor.avatar}}" mode="aspectFill"></image>
+      <view class="flex-1">
+        <view class="name-title-box">
+          <text class="c-name">{{counselor.name}}</text>
+          <text class="c-badge">国家注册认证</text>
+        </view>
+        <view class="c-title">{{counselor.title}}</view>
+        <view class="c-college">{{counselor.college}}</view>
+        <view class="c-rating">
+          <text class="star">★</text>
+          <text class="rate-val">{{counselor.rating}}</text>
+          <text class="rate-sub">好评率 {{counselor.goodRate}} · {{counselor.reviewsCount}}次来访</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 支持咨询形式 -->
+    <view class="support-modes-row">
+      <text class="mode-label">支持形式：</text>
+      <view class="modes-tags">
+        <text wx:for="{{counselor.availableModes}}" wx:key="*this" class="badge badge-primary mode-tag">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 专业背景与受训资质 -->
+  <view class="card intro-card">
+    <view class="section-title">专业背景与流派取向</view>
+    <view class="intro-content">{{counselor.intro}}</view>
+    <view class="tags-container">
+      <text wx:for="{{counselor.tagList}}" wx:key="*this" class="badge badge-warm tag-pill"># {{item}}</text>
+    </view>
+  </view>
+
+  <!-- 可预约时间段（排班日历与时段选择） -->
+  <view class="card schedule-card">
+    <view class="section-title">可预约时间段 (本周/下周)</view>
+    <view class="schedule-subtitle">请选择您期望的咨询日期与时段：</view>
+
+    <!-- 日期选择器水平滚动 -->
+    <scroll-view class="dates-scroll" scroll-x enable-flex>
+      <view 
+        wx:for="{{availableDays}}" 
+        wx:key="date" 
+        class="date-cell {{selectedDate === item.date ? 'selected' : ''}}"
+        bindtap="onSelectDate"
+        data-date="{{item.date}}"
+      >
+        <text class="day-name">{{item.weekDay}}</text>
+        <text class="day-number">{{item.dayStr}}</text>
+        <text class="status-dot {{item.hasSlot ? 'available' : 'busy'}}">{{item.hasSlot ? '有号' : '约满'}}</text>
+      </view>
+    </scroll-view>
+
+    <!-- 时段列表 -->
+    <view class="slots-section">
+      <view class="slots-header">选择具体时段：</view>
+      <view class="slots-grid">
+        <view 
+          wx:for="{{schedule.slots}}" 
+          wx:key="*this" 
+          class="slot-btn {{selectedSlot === item ? 'active' : ''}}"
+          bindtap="onSelectSlot"
+          data-slot="{{item}}"
+        >
+          <text class="slot-text">{{item}}</text>
+          <text class="slot-sub">50分钟</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 咨询地点与守则 -->
+  <view class="card notice-card">
+    <view class="section-title">地点与保密原则</view>
+    <view class="info-row">
+      <text class="info-label">📍 地点：</text>
+      <text class="info-val">{{counselor.location}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">🔒 保密承诺：</text>
+      <text class="info-val">除危及生命的极端危机情况外，全程严格保护来访学生隐私。</text>
+    </view>
+  </view>
+
+  <!-- 底部吸底预约栏 -->
+  <view class="bottom-action-bar flex-between">
+    <view class="chosen-preview">
+      <view class="preview-text">
+        <text wx:if="{{selectedDate && selectedSlot}}">{{selectedDate}} · {{selectedSlot}}</text>
+        <text wx:else class="placeholder">请选择预约日期与时段</text>
+      </view>
+      <view class="preview-sub">校内公益咨询</view>
+    </view>
+    <button class="btn-primary btn-submit-book" bindtap="goToBookPage">确认预约</button>
+  </view>
+</view>

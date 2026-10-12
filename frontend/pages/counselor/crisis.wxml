@@ -1,0 +1,109 @@
+<view class="container crisis-page">
+  <!-- 预警说明卡片 -->
+  <view class="crisis-header-banner">
+    <view class="flex-row">
+      <text class="banner-icon">🚨</text>
+      <view>
+        <view class="banner-title">危机预警响应中心</view>
+        <view class="banner-desc">量表达重度值或言论触发敏感词时，实时预警并实施闭环跟进。</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 预警状态 Tabs -->
+  <view class="status-tabs flex-between">
+    <view 
+      wx:for="{{tabs}}" 
+      wx:key="key" 
+      class="tab-item {{currentTab === item.key ? 'active' : ''}}"
+      bindtap="switchTab"
+      data-key="{{item.key}}"
+    >
+      <text>{{item.label}}</text>
+      <view wx:if="{{currentTab === item.key}}" class="tab-indicator"></view>
+    </view>
+  </view>
+
+  <!-- 预警个案列表 -->
+  <view class="alerts-list">
+    <view wx:if="{{filteredAlerts.length === 0}}" class="empty-box">
+      <text class="empty-icon">🛡️</text>
+      <text class="empty-text">当前无待处理预警个案，校园平稳安宁</text>
+    </view>
+
+    <view 
+      wx:for="{{filteredAlerts}}" 
+      wx:key="id" 
+      class="card alert-card {{item.level === 'red' ? 'card-border-red' : 'card-border-yellow'}}"
+    >
+      <!-- 卡片头部 (垂直严格居中，框高紧凑自然) -->
+      <view class="alert-top flex-between">
+        <view class="student-info-row flex-row">
+          <text class="student-name">{{item.studentName}}</text>
+          <text class="student-sub">({{item.college}} · {{item.grade}})</text>
+        </view>
+        <view class="crisis-badge {{item.level === 'red' ? 'crisis-badge-red' : 'crisis-badge-yellow'}}">
+          {{item.levelName}}
+        </view>
+      </view>
+
+      <!-- 预警详情 -->
+      <view class="alert-info-box">
+        <view class="info-row">
+          <text class="label">触发原因：</text>
+          <text class="val text-danger-val">{{item.triggerReason}}</text>
+        </view>
+        <view class="info-row">
+          <text class="label">预警时间：</text>
+          <text class="val">{{item.triggerTime}}</text>
+        </view>
+        <view class="info-row">
+          <text class="label">责任导师：</text>
+          <text class="val">{{item.counselorInCharge}}</text>
+        </view>
+        <view class="info-row">
+          <text class="label">处置跟进备忘：</text>
+          <text class="val">{{item.notes || '暂无处置备忘'}}</text>
+        </view>
+      </view>
+
+      <!-- 操作工具条 (按钮排版整齐，自适应宽度，绝不换行) -->
+      <view class="alert-actions flex-between">
+        <!-- 查看学生测评历史 -->
+        <button class="btn-outline btn-sm" bindtap="viewStudentAssessmentHistory" data-item="{{item}}">
+          测评档案
+        </button>
+
+        <view class="right-btn-group flex-row">
+          <!-- 拨打紧急电话 -->
+          <button class="btn-outline btn-sm btn-phone" bindtap="callStudent" data-phone="{{item.phone}}">
+            紧急联络
+          </button>
+
+          <!-- 更新处置状态 -->
+          <button 
+            wx:if="{{item.status === 'pending'}}" 
+            class="btn-primary btn-sm" 
+            bindtap="updateStatus" 
+            data-id="{{item.id}}" 
+            data-status="handling"
+          >
+            启动干预
+          </button>
+
+          <button 
+            wx:elif="{{item.status === 'handling'}}" 
+            class="btn-success btn-sm" 
+            bindtap="updateStatus" 
+            data-id="{{item.id}}" 
+            data-status="resolved"
+          >
+            标记化解
+          </button>
+
+          <text wx:elif="{{item.status === 'resolved'}}" class="resolved-text">✓ 已化解</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

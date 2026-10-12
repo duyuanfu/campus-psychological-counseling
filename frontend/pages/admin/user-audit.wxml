@@ -1,0 +1,87 @@
+<view class="container audit-page">
+  <!-- Tabs 切换 -->
+  <view class="status-tabs flex-between">
+    <view 
+      class="tab-item {{currentTab === 'student' ? 'active' : ''}}" 
+      bindtap="switchTab" 
+      data-tab="student"
+    >
+      <text>学生学籍认证审核 ({{studentList.length}})</text>
+      <view wx:if="{{currentTab === 'student'}}" class="tab-indicator"></view>
+    </view>
+    <view 
+      class="tab-item {{currentTab === 'counselor' ? 'active' : ''}}" 
+      bindtap="switchTab" 
+      data-tab="counselor"
+    >
+      <text>咨询师资质入驻审核 ({{counselorList.length}})</text>
+      <view wx:if="{{currentTab === 'counselor'}}" class="tab-indicator"></view>
+    </view>
+  </view>
+
+  <!-- ================= 学生审核列表 ================= -->
+  <view wx:if="{{currentTab === 'student'}}" class="audit-list">
+    <view 
+      wx:for="{{studentList}}" 
+      wx:key="id" 
+      class="card audit-card"
+    >
+      <view class="audit-top flex-between">
+        <view class="flex-row">
+          <text class="user-title">{{item.name}}</text>
+          <text class="user-sub">{{item.studentId}}</text>
+        </view>
+        <text class="status-pill {{item.status}}">{{item.status === 'pending' ? '待审核' : '已通过'}}</text>
+      </view>
+
+      <view class="audit-body">
+        <view class="row"><text class="l">就读学院：</text><text class="v">{{item.college}}</text></view>
+        <view class="row"><text class="l">专业年级：</text><text class="v">{{item.major}} · {{item.grade}}</text></view>
+        <view class="row"><text class="l">联系电话：</text><text class="v">{{item.phone}}</text></view>
+        <view class="row"><text class="l">学籍证明：</text><text class="v text-link">已核验校园一卡通证件档案 ✓</text></view>
+      </view>
+
+      <view class="audit-bottom flex-between">
+        <text class="time">申请时间: {{item.time}}</text>
+        <view class="btn-group flex-row" wx:if="{{item.status === 'pending'}}">
+          <button class="btn-outline btn-sm btn-reject" bindtap="rejectStudent" data-id="{{item.id}}">驳回</button>
+          <button class="btn-primary btn-sm" bindtap="passStudent" data-id="{{item.id}}">通过认证</button>
+        </view>
+        <text wx:else class="approved-text">✓ 认证审核已通过</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ================= 咨询师审核列表 ================= -->
+  <view wx:else class="audit-list">
+    <view 
+      wx:for="{{counselorList}}" 
+      wx:key="id" 
+      class="card audit-card"
+    >
+      <view class="audit-top flex-between">
+        <view class="flex-row">
+          <text class="user-title">{{item.name}}</text>
+          <text class="user-sub">{{item.title}}</text>
+        </view>
+        <text class="status-pill {{item.status}}">{{item.status === 'pending' ? '待审核' : '已通过'}}</text>
+      </view>
+
+      <view class="audit-body">
+        <view class="row"><text class="l">执业资质：</text><text class="v">{{item.qualification}}</text></view>
+        <view class="row"><text class="l">擅长领域：</text><text class="v">{{item.tags}}</text></view>
+        <view class="row"><text class="l">从业年限：</text><text class="v">{{item.experience}}</text></view>
+        <view class="row"><text class="l">资质证书：</text><text class="v text-link">国家心理咨询师职业资格证 (已核验证书原件) ✓</text></view>
+      </view>
+
+      <view class="audit-bottom flex-between">
+        <text class="time">申请时间: {{item.time}}</text>
+        <view class="btn-group flex-row" wx:if="{{item.status === 'pending'}}">
+          <button class="btn-outline btn-sm btn-reject" bindtap="rejectCounselor" data-id="{{item.id}}">驳回补充</button>
+          <button class="btn-primary btn-sm" bindtap="passCounselor" data-id="{{item.id}}">批准入驻</button>
+        </view>
+        <text wx:else class="approved-text">✓ 入驻资质已核准</text>
+      </view>
+    </view>
+  </view>
+</view>

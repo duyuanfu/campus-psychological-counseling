@@ -1,0 +1,94 @@
+<view class="container login-container">
+  <!-- 品牌头部 -->
+  <view class="brand-section">
+    <view class="brand-icon">🌱</view>
+    <view class="brand-name">心语树 · 校园心理咨询</view>
+    <view class="brand-slogan">科学测评 · 专业倾听</view>
+  </view>
+
+  <!-- 登录卡片 -->
+  <view class="card login-box">
+    <!-- 角色切换选项卡 -->
+    <view class="role-switch flex-between">
+      <view 
+        class="role-btn {{selectedRole === 'student' ? 'active' : ''}}"
+        bindtap="switchRole"
+        data-role="student"
+      >
+        <text class="r-icon">👨‍🎓</text>
+        <text class="r-text">学生端</text>
+      </view>
+      <view 
+        class="role-btn {{selectedRole === 'counselor' ? 'active' : ''}}"
+        bindtap="switchRole"
+        data-role="counselor"
+      >
+        <text class="r-icon">👩‍🏫</text>
+        <text class="r-text">咨询师端</text>
+      </view>
+      <view 
+        class="role-btn {{selectedRole === 'admin' ? 'active' : ''}}"
+        bindtap="switchRole"
+        data-role="admin"
+      >
+        <text class="r-icon">🛡️</text>
+        <text class="r-text">管理员端</text>
+      </view>
+    </view>
+
+    <!-- 账号密码表单 -->
+    <view class="form-content">
+      <view class="form-group">
+        <view class="form-label">登录账号</view>
+        <view class="input-cell flex-row">
+          <text class="cell-icon">👤</text>
+          <input 
+            class="cell-input flex-1" 
+            type="text" 
+            placeholder="{{selectedRole === 'student' ? '请输入学号或用户名' : (selectedRole === 'counselor' ? '请输入咨询师工号/用户名' : '请输入管理员账号')}}" 
+            value="{{username}}"
+            bindinput="onUsernameInput"
+          />
+        </view>
+      </view>
+
+      <view class="form-group">
+        <view class="form-label">登录密码</view>
+        <view class="input-cell flex-row">
+          <text class="cell-icon">🔒</text>
+          <input 
+            class="cell-input flex-1" 
+            password="{{!showPassword}}" 
+            placeholder="请输入密码" 
+            value="{{password}}"
+            bindinput="onPasswordInput"
+          />
+          <text class="cell-toggle" bindtap="toggleShowPassword">{{showPassword ? '👁️' : '🙈'}}</text>
+        </view>
+      </view>
+
+      <!-- 快捷填入测试账号 -->
+      <view class="quick-row flex-between">
+        <text class="quick-hint">演示体验：</text>
+        <view class="quick-action" bindtap="fillDefaultAccount">填入演示账号 (123456)</view>
+      </view>
+
+      <!-- 登录操作 -->
+      <button class="btn-primary btn-submit" bindtap="handleLogin">
+        登 录
+      </button>
+
+      <!-- 注册引导 (单行展示，不折行) -->
+      <view class="action-footer" wx:if="{{selectedRole !== 'admin'}}">
+        <text class="footer-hint">还没有账号？</text>
+        <text class="footer-link" bindtap="navToRegister">立即注册{{selectedRole === 'student' ? '学生端' : '咨询师端'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部安全提示 -->
+  <view class="footer-security flex-center">
+    <text class="sec-icon">🔒</text>
+    <text>严格遵守心理咨询保密守则</text>
+  </view>
+</view>

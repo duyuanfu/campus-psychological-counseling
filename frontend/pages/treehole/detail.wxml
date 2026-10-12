@@ -1,0 +1,67 @@
+<view class="container treehole-detail-page">
+  <!-- 帖子正文卡片 -->
+  <view class="card main-post-card" wx:if="{{post}}">
+    <view class="post-header flex-between">
+      <view class="flex-row">
+        <view class="anon-avatar" style="background-color: {{post.avatarColor}}20; border-color: {{post.avatarColor}};">
+          <text class="avatar-emoji">{{post.avatarTag}}</text>
+        </view>
+        <view>
+          <view class="anon-name">{{post.anonymousName}}</view>
+          <view class="post-time">{{post.timeDesc}}</view>
+        </view>
+      </view>
+      <text class="badge badge-primary">{{post.tag}}</text>
+    </view>
+
+    <view class="post-content">{{post.content}}</view>
+
+    <!-- 抱抱大按钮 -->
+    <view class="hug-btn-wrap flex-center">
+      <button 
+        class="btn-hug-big {{post.isHugged ? 'active' : ''}}" 
+        bindtap="toggleHug"
+      >
+        <text class="hug-icon">{{post.isHugged ? '🫂' : '🤍'}}</text>
+        <text class="hug-label">{{post.isHugged ? '已送出温暖抱抱' : '给 TA 一个暖心抱抱'}} ({{post.hugCount}})</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- 评论回音流列表 -->
+  <view class="comments-section">
+    <view class="section-title">温暖回音 ({{post.comments.length || 0}})</view>
+
+    <view wx:if="{{!post.comments || post.comments.length === 0}}" class="empty-comment">
+      <text>暂无回音，快来留下第一句鼓励的话吧~</text>
+    </view>
+
+    <view 
+      wx:for="{{post.comments}}" 
+      wx:key="id" 
+      class="card comment-card flex-row"
+    >
+      <view class="comment-avatar">{{item.avatarTag || '🍀'}}</view>
+      <view class="comment-body flex-1">
+        <view class="comment-top flex-between">
+          <text class="comment-user">{{item.user}}</text>
+          <text class="comment-time">{{item.time}}</text>
+        </view>
+        <view class="comment-text">{{item.text}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部吸底评论输入栏 -->
+  <view class="bottom-comment-bar flex-between">
+    <input 
+      class="comment-input flex-1" 
+      placeholder="写一句温暖的鼓励或建议..." 
+      value="{{inputComment}}"
+      bindinput="onInputComment"
+      confirm-type="send"
+      bindconfirm="submitComment"
+    />
+    <button class="btn-primary btn-send" bindtap="submitComment">发送</button>
+  </view>
+</view>

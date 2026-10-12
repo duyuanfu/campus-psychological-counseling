@@ -1,0 +1,110 @@
+.post-create-page {
+  padding-bottom: 60rpx;
+}
+
+.anon-profile-card {
+  padding: 24rpx;
+}
+.avatar-badge {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  border: 3rpx solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+}
+.emoji {
+  font-size: 46rpx;
+}
+.anon-label {
+  font-size: 20rpx;
+  color: var(--text-muted);
+}
+.anon-name {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-top: 4rpx;
+}
+.btn-refresh-anon {
+  width: auto !important;
+  margin: 0 !important;
+  font-size: 22rpx !important;
+  padding: 8rpx 20rpx !important;
+  line-height: 1.3 !important;
+  white-space: nowrap !important;
+  border-radius: 30rpx !important;
+  flex-shrink: 0 !important;
+}
+
+.form-card {
+  padding: 28rpx 24rpx;
+}
+.tag-chips-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-top: 16rpx;
+}
+.chip-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 56rpx;
+  line-height: 56rpx;
+  padding: 0 24rpx;
+  background: #F8FAFC;
+  border: 1rpx solid #E2E8F0;
+  border-radius: var(--radius-full);
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  box-sizing: border-box;
+}
+.chip-tag.active {
+  background: #EAF5F1;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.counter {
+  font-size: 22rpx;
+  color: var(--text-muted);
+  font-weight: normal;
+}
+.content-input {
+  width: 100%;
+  height: 320rpx;
+  background: #F8FAFC;
+  border: 1rpx solid #E2E8F0;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  font-size: 28rpx;
+  color: var(--text-main);
+  line-height: 1.5;
+  margin-top: 16rpx;
+}
+
+.rules-tip {
+  display: flex;
+  font-size: 22rpx;
+  color: var(--text-muted);
+  line-height: 1.45;
+  padding: 0 10rpx;
+  margin-top: 12rpx;
+}
+.tip-icon {
+  margin-right: 10rpx;
+  font-size: 28rpx;
+}
+
+.submit-wrap {
+  margin-top: 40rpx;
+}
+.btn-submit {
+  width: 100%;
+  padding: 24rpx;
+  font-size: 30rpx;
+}

@@ -1,0 +1,148 @@
+<view class="container mine-page">
+  <!-- 个人名片 (Apple iOS Inset Card) -->
+  <view class="card user-profile-card flex-between">
+    <view class="flex-row flex-1">
+      <image class="user-avatar" src="{{userInfo.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150'}}" mode="aspectFill"></image>
+      <view class="user-info">
+        <view class="user-name-row">
+          <text class="user-name">{{userInfo.name || '同学'}}</text>
+          <view class="cert-badge {{userInfo.isCertified ? 'cert-badge-success' : 'cert-badge-warning'}}">{{userInfo.isCertified ? '已认证' : '待认证'}}</view>
+        </view>
+        <view class="user-meta">{{userInfo.college || '在校学生'}}</view>
+        <view class="user-sub" wx:if="{{currentRole === 'student'}}">学号: {{userInfo.studentId || '2022030142'}}</view>
+        <view class="user-sub" wx:elif="{{currentRole === 'counselor'}}">资质: {{userInfo.qualification || '专职心理咨询师'}}</view>
+        <view class="user-sub" wx:else>工号: {{userInfo.adminId || 'ADMIN-8080'}}</view>
+      </view>
+    </view>
+
+    <view class="edit-btn-box flex-center" bindtap="navToAuth">
+      <text class="edit-text">编辑</text>
+      <text class="ios-chevron">›</text>
+    </view>
+  </view>
+
+  <!-- 咨询师或管理员工作台入口 -->
+  <view wx:if="{{currentRole === 'counselor'}}" class="counselor-quick-entrance flex-between" bindtap="navToCounselorDashboard">
+    <view class="flex-row">
+      <view class="entrance-icon-box bg-blue">📊</view>
+      <view>
+        <view class="quick-title">咨询师工作台</view>
+        <view class="quick-sub">排班、审批、危机预警</view>
+      </view>
+    </view>
+    <button class="btn-primary btn-enter-sm">进入</button>
+  </view>
+
+  <view wx:if="{{currentRole === 'admin'}}" class="admin-quick-entrance flex-between" bindtap="navToAdminDashboard">
+    <view class="flex-row">
+      <view class="entrance-icon-box bg-red">🛡️</view>
+      <view>
+        <view class="quick-title">管理后台</view>
+        <view class="quick-sub">审核、文章、数据大屏</view>
+      </view>
+    </view>
+    <button class="btn-danger btn-enter-sm">进入</button>
+  </view>
+
+  <!-- 数据概览 -->
+  <view class="card stats-card flex-around">
+    <view class="stat-block" bindtap="navToAppointments">
+      <text class="num">{{stats.aptCount}}</text>
+      <text class="label">我的预约</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-block" bindtap="navToAssessments">
+      <text class="num">{{stats.reportCount}}</text>
+      <text class="label">测评报告</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-block" bindtap="navToMoodDiary">
+      <text class="num">{{stats.diaryCount}}</text>
+      <text class="label">情绪日记</text>
+    </view>
+  </view>
+
+  <!-- 功能菜单列表 (精简精炼) -->
+  <view class="card menu-card">
+    <view class="menu-item flex-between" bindtap="navToMoodDiary">
+      <view class="flex-row">
+        <view class="menu-icon-tile tile-coral">📔</view>
+        <text class="menu-label">情绪日记</text>
+      </view>
+      <view class="flex-row">
+        <text class="menu-tip">心晴打卡</text>
+        <text class="ios-chevron">›</text>
+      </view>
+    </view>
+
+    <view class="menu-item flex-between" bindtap="navToAuth">
+      <view class="flex-row">
+        <view class="menu-icon-tile tile-blue">🎓</view>
+        <text class="menu-label">身份认证</text>
+      </view>
+      <view class="flex-row">
+        <text class="menu-tip">{{userInfo.isCertified ? '已认证' : '去认证'}}</text>
+        <text class="ios-chevron">›</text>
+      </view>
+    </view>
+
+    <view class="menu-item flex-between" bindtap="navToPrivacy">
+      <view class="flex-row">
+        <view class="menu-icon-tile tile-purple">🔒</view>
+        <text class="menu-label">隐私设置</text>
+      </view>
+      <view class="flex-row">
+        <text class="menu-tip">脱敏保护</text>
+        <text class="ios-chevron">›</text>
+      </view>
+    </view>
+
+    <view class="menu-item flex-between" bindtap="navToAppointments">
+      <view class="flex-row">
+        <view class="menu-icon-tile tile-green">📅</view>
+        <text class="menu-label">我的预约</text>
+      </view>
+      <view class="flex-row">
+        <text class="ios-chevron">›</text>
+      </view>
+    </view>
+
+    <view class="menu-item flex-between" bindtap="navToAssessments">
+      <view class="flex-row">
+        <view class="menu-icon-tile tile-teal">📊</view>
+        <text class="menu-label">测评档案</text>
+      </view>
+      <view class="flex-row">
+        <text class="ios-chevron">›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 援助热线与地址 -->
+  <view class="card info-card">
+    <view class="info-item flex-between" bindtap="callHotline">
+      <view class="flex-row">
+        <view class="menu-icon-tile tile-red">☎️</view>
+        <text class="info-label">心理援助热线</text>
+      </view>
+      <view class="flex-row">
+        <text class="info-val phone">010-8888-6666</text>
+        <text class="ios-chevron">›</text>
+      </view>
+    </view>
+    <view class="info-item flex-between">
+      <view class="flex-row">
+        <view class="menu-icon-tile tile-gray">📍</view>
+        <text class="info-label">咨询室地址</text>
+      </view>
+      <text class="info-val">学生活动中心 302室</text>
+    </view>
+  </view>
+
+  <!-- 退出按钮 (文案精简为“退出”) -->
+  <view class="logout-section">
+    <button class="btn-logout" bindtap="handleLogout">
+      退 出
+    </button>
+  </view>
+</view>

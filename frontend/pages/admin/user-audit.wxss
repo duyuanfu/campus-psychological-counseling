@@ -1,0 +1,101 @@
+.audit-page {
+  padding-bottom: 60rpx;
+}
+
+.status-tabs {
+  background: #FFFFFF;
+  padding: 16rpx 20rpx;
+  border-radius: var(--radius-md);
+  margin-bottom: 24rpx;
+}
+.tab-item {
+  position: relative;
+  padding: 12rpx 20rpx;
+  font-size: 26rpx;
+  color: var(--text-secondary);
+}
+.tab-item.active {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+.tab-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 4rpx;
+  background: var(--primary-color);
+  border-radius: 2rpx;
+}
+
+.audit-card {
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+}
+.audit-top {
+  padding-bottom: 16rpx;
+  border-bottom: 1rpx solid #F1F5F9;
+}
+.user-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-right: 12rpx;
+}
+.user-sub {
+  font-size: 22rpx;
+  color: var(--text-muted);
+}
+
+.audit-body {
+  padding: 16rpx 0;
+}
+.row {
+  display: flex;
+  font-size: 24rpx;
+  margin-bottom: 10rpx;
+  line-height: 1.4;
+}
+.l {
+  color: var(--text-muted);
+  width: 140rpx;
+  flex-shrink: 0;
+}
+.v {
+  color: var(--text-secondary);
+}
+.text-link {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.audit-bottom {
+  padding-top: 16rpx;
+  border-top: 1rpx solid #F1F5F9;
+}
+.time {
+  font-size: 20rpx;
+  color: var(--text-muted);
+}
+.btn-group {
+  gap: 14rpx;
+}
+.btn-sm {
+  width: auto !important;
+  margin: 0 !important;
+  font-size: 22rpx !important;
+  padding: 8rpx 20rpx !important;
+  line-height: 1.3 !important;
+  white-space: nowrap !important;
+  border-radius: 30rpx !important;
+  flex-shrink: 0 !important;
+}
+.btn-reject {
+  color: #F5222D;
+  border-color: #FFA39E;
+}
+.approved-text {
+  font-size: 22rpx;
+  color: #52C41A;
+  font-weight: 700;
+}

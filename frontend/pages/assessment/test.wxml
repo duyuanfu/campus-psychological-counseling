@@ -1,0 +1,65 @@
+<view class="container test-page">
+  <!-- 顶部答题进度指示 -->
+  <view class="progress-box">
+    <view class="progress-header flex-between">
+      <text class="scale-code-tag">{{scale.code}} 自评</text>
+      <text class="progress-text">{{currentIndex + 1}} / {{totalQuestions}}</text>
+    </view>
+    <view class="progress-track">
+      <view class="progress-fill" style="width: {{progressPercent}}%;"></view>
+    </view>
+  </view>
+
+  <!-- 题目卡片 -->
+  <view class="card question-card" wx:if="{{currentQuestion}}">
+    <view class="question-dim-tag">{{currentQuestion.dim || '身心维度'}}</view>
+    <view class="question-num-badge">Q{{currentIndex + 1}}.</view>
+    <view class="question-title">{{currentQuestion.text}}</view>
+
+    <!-- 答题指导语 -->
+    <view class="instruction-tip">请根据您【过去一周内的真实感受】选择最符合的项：</view>
+
+    <!-- 4级选项 -->
+    <view class="options-container">
+      <view 
+        wx:for="{{scale.options}}" 
+        wx:key="score" 
+        class="option-item {{answers[currentIndex] === item.score ? 'selected' : ''}}"
+        bindtap="onSelectOption"
+        data-score="{{item.score}}"
+      >
+        <view class="option-check-circle">
+          <text wx:if="{{answers[currentIndex] === item.score}}">✓</text>
+        </view>
+        <view class="option-label flex-1">{{item.text}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作导航 -->
+  <view class="nav-actions flex-between">
+    <button 
+      class="btn-outline btn-prev" 
+      disabled="{{currentIndex === 0}}"
+      bindtap="prevQuestion"
+    >
+      ◀ 上一题
+    </button>
+
+    <button 
+      wx:if="{{!isLastQuestion}}"
+      class="btn-primary btn-next" 
+      bindtap="nextQuestion"
+    >
+      下一题 ▶
+    </button>
+
+    <button 
+      wx:else
+      class="btn-primary btn-submit-test" 
+      bindtap="submitTest"
+    >
+      ✨ 提交并生成评估报告
+    </button>
+  </view>
+</view>

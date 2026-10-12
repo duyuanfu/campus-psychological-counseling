@@ -1,0 +1,131 @@
+<view class="container relax-page">
+  <!-- 顶部疗愈模块切换 (仅保留需求文档规定的 呼吸训练 与 白噪音) -->
+  <view class="relax-tab-bar flex-around">
+    <view 
+      class="tab-item {{activeTab === 'breath' ? 'active' : ''}}" 
+      bindtap="switchTab" 
+      data-tab="breath"
+    >
+      <text class="tab-emoji">🫁</text>
+      <text class="tab-text">4-7-8 呼吸训练</text>
+    </view>
+    <view 
+      class="tab-item {{activeTab === 'sound' ? 'active' : ''}}" 
+      bindtap="switchTab" 
+      data-tab="sound"
+    >
+      <text class="tab-emoji">🎧</text>
+      <text class="tab-text">自然白噪音</text>
+    </view>
+  </view>
+
+  <!-- ================= 模块一：4-7-8 呼吸训练动效 ================= -->
+  <view wx:if="{{activeTab === 'breath'}}" class="breath-section">
+    <!-- 科学原理卡片 -->
+    <view class="breath-intro-card">
+      <view class="intro-title">🌿 4-7-8 呼吸法</view>
+      <view class="intro-desc">吸气4秒、屏息7秒、缓呼8秒，快速平复焦虑与身心紧绷。</view>
+    </view>
+
+    <!-- 核心视觉交互动效区 -->
+    <view class="breath-canvas-container">
+      <!-- 动态呼吸光晕环 -->
+      <view class="breath-orb-wrap {{breathPhase}} {{isBreathing ? 'animating' : ''}}">
+        <view class="orb-outer-ring"></view>
+        <view class="orb-middle-ring"></view>
+        <view class="orb-core">
+          <text class="orb-status-text">{{phaseText}}</text>
+          <text class="orb-countdown">{{countDown}}s</text>
+        </view>
+      </view>
+
+      <view class="breath-guidance-tip">{{guidanceTip}}</view>
+    </view>
+
+    <!-- 训练数据看板 -->
+    <view class="breath-stats-row flex-around">
+      <view class="b-stat">
+        <text class="b-num">{{completedCycles}}</text>
+        <text class="b-label">完成周期 (轮)</text>
+      </view>
+      <view class="b-stat">
+        <text class="b-num">{{totalBreathMinutes}}</text>
+        <text class="b-label">训练时长 (分钟)</text>
+      </view>
+    </view>
+
+    <!-- 控制按钮 -->
+    <view class="breath-controls flex-center">
+      <button 
+        class="btn-primary btn-breath-toggle {{isBreathing ? 'btn-stop' : ''}}" 
+        bindtap="toggleBreathing"
+      >
+        {{isBreathing ? '⏸ 暂 停' : '▶ 开始训练'}}
+      </button>
+    </view>
+  </view>
+
+  <!-- ================= 模块二：沉浸式自然白噪音 ================= -->
+  <view wx:if="{{activeTab === 'sound'}}" class="sound-section">
+    <!-- 当前播放曲目大卡片 -->
+    <view class="card sound-player-card" style="background: {{currentTrack.gradient}};">
+      <view class="sound-header flex-between">
+        <view class="sound-tag">{{currentTrack.tag}}</view>
+        <view class="sound-playing-status flex-row">
+          <view wx:if="{{isPlayingSound}}" class="equalizer-bars">
+            <view class="eq-bar b1"></view>
+            <view class="eq-bar b2"></view>
+            <view class="eq-bar b3"></view>
+          </view>
+          <text class="status-name">{{isPlayingSound ? '正在播放' : '待播放'}}</text>
+        </view>
+      </view>
+
+      <view class="sound-center-visual flex-center">
+        <text class="sound-hero-icon">{{currentTrack.icon}}</text>
+      </view>
+
+      <view class="sound-info">
+        <view class="sound-track-name">{{currentTrack.name}}</view>
+        <view class="sound-track-desc">{{currentTrack.desc}}</view>
+        <view class="sound-freq-tag">{{currentTrack.frequency}}</view>
+      </view>
+
+      <!-- 播放控制行 -->
+      <view class="sound-player-action flex-between">
+        <button class="btn-play-sound" bindtap="toggleSoundPlay">
+          {{isPlayingSound ? '⏸ 暂停' : '▶ 沉浸播放'}}
+        </button>
+
+        <!-- 定时关闭选择器 -->
+        <picker bindchange="onTimerChange" range="{{timerOptions}}">
+          <view class="timer-pill flex-row">
+            <text class="clock-icon">⏲</text>
+            <text>{{timerOptions[timerIndex]}}</text>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <!-- 声轨切换列表 -->
+    <view class="section-title">精选自然声景</view>
+    <view class="sound-tracks-list">
+      <view 
+        wx:for="{{soundTracks}}" 
+        wx:key="id" 
+        class="card sound-track-item flex-between {{currentTrack.id === item.id ? 'active-track' : ''}}"
+        bindtap="selectTrack"
+        data-item="{{item}}"
+      >
+        <view class="flex-row">
+          <view class="track-icon-box">{{item.icon}}</view>
+          <view>
+            <view class="track-name">{{item.name}}</view>
+            <view class="track-sub">{{item.desc}}</view>
+          </view>
+        </view>
+        <view class="track-select-dot {{currentTrack.id === item.id ? 'active' : ''}}"></view>
+      </view>
+    </view>
+  </view>
+</view>
