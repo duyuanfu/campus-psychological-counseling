@@ -12,6 +12,9 @@
 .u-name {
   font-size: 30rpx;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  line-height: 1.2;
 }
 
 .u-role, .u-no {

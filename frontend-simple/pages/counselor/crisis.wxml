@@ -21,7 +21,7 @@
       </view>
 
       <view class="a-actions flex-between">
-        <button class="btn-default btn-sm" bindtap="callStudent" data-phone="{{item.phone}}">📞 电话联系</button>
+        <button class="btn-default btn-sm" bindtap="callStudent" data-phone="{{item.phone}}">电话联系</button>
         <button wx:if="{{item.status === 'pending'}}" class="btn-primary btn-sm" bindtap="updateStatus" data-id="{{item.id}}" data-status="handling">启动干预</button>
         <button wx:elif="{{item.status === 'handling'}}" class="btn-primary btn-sm" style="background:#19be6b!important;border-color:#19be6b!important;" bindtap="updateStatus" data-id="{{item.id}}" data-status="resolved">标记化解</button>
         <text wx:else class="tag tag-success">已化解</text>

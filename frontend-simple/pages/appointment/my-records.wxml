@@ -24,6 +24,7 @@
       </view>
 
       <view class="r-info">
+        <view class="row"><text class="label">预约单号：</text><text>{{item.id}}</text></view>
         <view class="row"><text class="label">预约时间：</text><text class="time">{{item.date}} {{item.timeSlot}}</text></view>
         <view class="row"><text class="label">咨询方式：</text><text>{{item.mode}}</text></view>
         <view class="row"><text class="label">咨询地点：</text><text>{{item.location || '待排期分配'}}</text></view>
@@ -33,7 +34,7 @@
 
       <!-- 操作按钮栏 -->
       <view class="r-footer flex-between">
-        <text class="r-id">单号: {{item.id}}</text>
+        <text class="r-tip">{{item.mode}} (50分钟)</text>
         <view class="btn-group flex-row">
           <button 
             wx:if="{{item.status === 'pending' || item.status === 'confirmed'}}" 

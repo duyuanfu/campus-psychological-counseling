@@ -16,6 +16,7 @@
   font-size: 28rpx;
   line-height: 1.6;
   margin: 20rpx 0;
+  word-break: break-all;
 }
 
 .d-time {
@@ -39,8 +40,34 @@
 .c-text {
   margin-top: 4rpx;
   color: var(--text-color);
+  line-height: 1.4;
+  word-break: break-all;
 }
 
 .reply-card {
   padding: 16rpx 20rpx;
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.reply-card .form-input {
+  flex: 1;
+  min-width: 0;
+  height: 76rpx;
+  line-height: 76rpx;
+  border: 1px solid var(--border-color);
+  border-radius: 8rpx;
+  padding: 0 18rpx;
+  font-size: 26rpx;
+  background: #ffffff;
+}
+
+.reply-card .btn-sm {
+  width: auto !important;
+  height: 76rpx !important;
+  line-height: 76rpx !important;
+  padding: 0 28rpx !important;
+  font-size: 26rpx !important;
+  flex-shrink: 0 !important;
 }

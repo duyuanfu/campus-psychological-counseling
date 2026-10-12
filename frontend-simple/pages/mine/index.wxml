@@ -4,9 +4,9 @@
     <view class="flex-row">
       <image class="u-avatar" src="{{userInfo.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150'}}" mode="aspectFill"></image>
       <view>
-        <view class="u-name">
-          {{userInfo.name || '同学'}}
-          <text class="tag tag-success" style="margin-left: 10rpx;">已认证</text>
+        <view class="u-name flex-row">
+          <text>{{userInfo.name || '同学'}}</text>
+          <text class="tag tag-success" style="margin-left: 12rpx;">已认证</text>
         </view>
         <view class="u-role">身份: {{currentRole === 'student' ? '在校学生' : (currentRole === 'counselor' ? '专职咨询师' : '管理员')}}</view>
         <view class="u-no" wx:if="{{currentRole === 'student'}}">学号: {{userInfo.studentId || '2022030142'}}</view>
