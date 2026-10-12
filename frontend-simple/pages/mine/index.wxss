@@ -1,0 +1,91 @@
+.mine-page {
+  padding-bottom: 50rpx;
+}
+
+.u-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 18rpx;
+}
+
+.u-name {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.u-role, .u-no {
+  font-size: 22rpx;
+  color: var(--sub-color);
+  margin-top: 4rpx;
+}
+
+.counselor-box {
+  background: #e8f4ff;
+  border-color: #b3d8ff;
+}
+
+.admin-box {
+  background: #feebee;
+  border-color: #ffcdd2;
+}
+
+.c-box-title {
+  font-size: 26rpx;
+  font-weight: bold;
+}
+
+.c-box-sub {
+  font-size: 20rpx;
+  color: var(--sub-color);
+  margin-top: 4rpx;
+}
+
+.stat-card {
+  padding: 20rpx 0;
+}
+
+.stat-item {
+  text-align: center;
+  flex: 1;
+}
+
+.s-val {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.s-txt {
+  font-size: 22rpx;
+  color: var(--sub-color);
+  margin-top: 4rpx;
+}
+
+.menu-card {
+  padding: 8rpx 20rpx;
+}
+
+.menu-item {
+  padding: 24rpx 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 26rpx;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.arrow {
+  color: var(--sub-color);
+}
+
+.logout-btn-wrap {
+  margin-top: 20rpx;
+}
+
+.btn-block {
+  width: 100% !important;
+  padding: 20rpx 0 !important;
+  font-size: 28rpx !important;
+}

@@ -1,0 +1,14 @@
+<view class="container article-page">
+  <view class="card">
+    <view class="a-title">{{article.title}}</view>
+    <view class="a-meta flex-between">
+      <text>{{article.author}}</text>
+      <text>{{article.date}}</text>
+    </view>
+    <image wx:if="{{article.cover}}" class="a-cover" src="{{article.cover}}" mode="aspectFill"></image>
+    <view class="a-summary">{{article.summary}}</view>
+    <view class="a-body">
+      <view wx:for="{{article.content}}" wx:key="*this" class="p">{{item}}</view>
+    </view>
+  </view>
+</view>

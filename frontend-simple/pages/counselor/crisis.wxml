@@ -1,0 +1,31 @@
+<view class="container crisis-page">
+  <view class="card alert-header">
+    <view class="a-title">⚠️ 重度危机预警监控</view>
+    <view class="a-desc">学生量表达到重度阈值或言论触发敏感词时自动预警，请及时联络干预。</view>
+  </view>
+
+  <view wx:if="{{alerts.length === 0}}" class="empty-tip">暂无需要干预的预警学生</view>
+
+  <view class="alerts-list">
+    <view wx:for="{{alerts}}" wx:key="id" class="card alert-card">
+      <view class="a-top flex-between">
+        <text class="a-name">{{item.studentName}} ({{item.college}} · {{item.grade}})</text>
+        <text class="tag tag-error">{{item.levelName}}</text>
+      </view>
+
+      <view class="a-info">
+        <view class="row"><text class="lbl">预警原因：</text><text class="color-red">{{item.triggerReason}}</text></view>
+        <view class="row"><text class="lbl">预警时间：</text><text>{{item.triggerTime}}</text></view>
+        <view class="row"><text class="lbl">电话：</text><text>{{item.phone}}</text></view>
+        <view class="row"><text class="lbl">跟进备注：</text><text>{{item.notes || '暂无跟进记录'}}</text></view>
+      </view>
+
+      <view class="a-actions flex-between">
+        <button class="btn-default btn-sm" bindtap="callStudent" data-phone="{{item.phone}}">📞 电话联系</button>
+        <button wx:if="{{item.status === 'pending'}}" class="btn-primary btn-sm" bindtap="updateStatus" data-id="{{item.id}}" data-status="handling">启动干预</button>
+        <button wx:elif="{{item.status === 'handling'}}" class="btn-primary btn-sm" style="background:#19be6b!important;border-color:#19be6b!important;" bindtap="updateStatus" data-id="{{item.id}}" data-status="resolved">标记化解</button>
+        <text wx:else class="tag tag-success">已化解</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,53 @@
+<view class="container counselor-page">
+  <view class="card c-header-card flex-between">
+    <view class="flex-row">
+      <image class="avatar" src="{{counselor.avatar || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150'}}" mode="aspectFill"></image>
+      <view>
+        <view class="name">{{counselor.name || '陈清心'}}</view>
+        <view class="title">{{counselor.title || '专职心理咨询师'}}</view>
+      </view>
+    </view>
+    <button class="btn-default btn-sm" bindtap="handleLogout">退出</button>
+  </view>
+
+  <!-- 危机预警醒目标签 -->
+  <view wx:if="{{crisisCount > 0}}" class="card alert-tip-box flex-between" bindtap="navTo" data-url="/pages/counselor/crisis">
+    <text class="alert-txt">⚠️ 重点危机关注：当前有 {{crisisCount}} 名学生需干预</text>
+    <button class="btn-danger btn-sm">查看</button>
+  </view>
+
+  <!-- 核心数据 -->
+  <view class="card flex-around stat-box">
+    <view class="stat-col" bindtap="navTo" data-url="/pages/counselor/appointments">
+      <view class="val color-warning">{{pendingCount}}</view>
+      <view class="lbl">待审核预约</view>
+    </view>
+    <view class="stat-col" bindtap="navTo" data-url="/pages/counselor/appointments">
+      <view class="val color-primary">{{confirmedCount}}</view>
+      <view class="lbl">已排期咨询</view>
+    </view>
+    <view class="stat-col" bindtap="navTo" data-url="/pages/counselor/crisis">
+      <view class="val color-danger">{{crisisCount}}</view>
+      <view class="lbl">危机预警</view>
+    </view>
+  </view>
+
+  <!-- 功能导航按钮 -->
+  <view class="card">
+    <view class="section-title">功能入口</view>
+    <view class="btn-grid">
+      <button class="btn-default menu-btn" bindtap="navTo" data-url="/pages/counselor/schedule">
+        🕒 每周排班设置
+      </button>
+      <button class="btn-default menu-btn" bindtap="navTo" data-url="/pages/counselor/appointments">
+        📋 预约申请审批
+      </button>
+      <button class="btn-default menu-btn" bindtap="navTo" data-url="/pages/counselor/crisis">
+        🚨 危机预警专区
+      </button>
+      <button class="btn-default menu-btn" bindtap="navTo" data-url="/pages/counselor/record-edit">
+        ✍️ 填写咨询记录
+      </button>
+    </view>
+  </view>
+</view>

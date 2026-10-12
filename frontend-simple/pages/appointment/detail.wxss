@@ -1,0 +1,104 @@
+.detail-page {
+  padding-bottom: 50rpx;
+}
+
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.name {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.title {
+  font-size: 24rpx;
+  color: var(--primary-color);
+  margin-top: 4rpx;
+}
+
+.dept {
+  font-size: 22rpx;
+  color: var(--sub-color);
+}
+
+.desc {
+  font-size: 24rpx;
+  color: var(--text-color);
+  margin-top: 16rpx;
+  line-height: 1.5;
+}
+
+.location {
+  font-size: 22rpx;
+  color: var(--sub-color);
+  margin-top: 12rpx;
+}
+
+.dates-row {
+  display: flex;
+  margin-bottom: 24rpx;
+}
+
+.date-item {
+  flex: 1;
+  text-align: center;
+  padding: 12rpx 8rpx;
+  border: 1px solid var(--border-color);
+  border-radius: 6rpx;
+  margin-right: 10rpx;
+  background: #ffffff;
+}
+
+.date-item.active {
+  background: var(--primary-color);
+  color: #ffffff;
+  border-color: var(--primary-color);
+}
+
+.week {
+  font-size: 22rpx;
+}
+
+.day {
+  font-size: 26rpx;
+  font-weight: bold;
+  margin-top: 4rpx;
+}
+
+.slots-header {
+  font-size: 24rpx;
+  font-weight: bold;
+  margin-bottom: 12rpx;
+}
+
+.slots-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12rpx;
+}
+
+.slot-item {
+  text-align: center;
+  padding: 16rpx;
+  border: 1px solid var(--border-color);
+  border-radius: 6rpx;
+  font-size: 24rpx;
+  background: #ffffff;
+}
+
+.slot-item.active {
+  background: #e8f4ff;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.btn-block {
+  width: 100% !important;
+  padding: 22rpx 0 !important;
+  font-size: 28rpx !important;
+}

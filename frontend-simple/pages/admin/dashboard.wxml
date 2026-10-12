@@ -1,0 +1,37 @@
+<view class="container admin-page">
+  <view class="card flex-between">
+    <view>
+      <view class="admin-name">{{admin.name || '系统管理员'}}</view>
+      <view class="admin-no">工号: {{admin.adminId || 'ADMIN-8080'}}</view>
+    </view>
+    <button class="btn-default btn-sm" bindtap="handleLogout">退出</button>
+  </view>
+
+  <!-- 大屏入口 -->
+  <view class="card screen-card flex-between" bindtap="navTo" data-url="/pages/admin/analytics">
+    <view>
+      <view class="screen-title">📊 全校心理数据看板大屏</view>
+      <view class="screen-desc">情绪晴雨表比例、各学院预警统计柱状图</view>
+    </view>
+    <button class="btn-primary btn-sm">查看大屏</button>
+  </view>
+
+  <!-- 3大管理模块入口 -->
+  <view class="card">
+    <view class="section-title">管理与审核功能</view>
+    <view class="menu-list">
+      <view class="menu-item flex-between" bindtap="navTo" data-url="/pages/admin/user-audit">
+        <text>👤 用户与资质审核 (学生/咨询师)</text>
+        <text class="arrow">&gt;</text>
+      </view>
+      <view class="menu-item flex-between" bindtap="navTo" data-url="/pages/admin/article-manage">
+        <text>📰 心理科普文章发布与管理</text>
+        <text class="arrow">&gt;</text>
+      </view>
+      <view class="menu-item flex-between" bindtap="navTo" data-url="/pages/admin/treehole-audit">
+        <text>🛡️ 树洞违规内容审核与下架</text>
+        <text class="arrow">&gt;</text>
+      </view>
+    </view>
+  </view>
+</view>

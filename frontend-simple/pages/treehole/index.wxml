@@ -1,0 +1,45 @@
+<view class="container treehole-page">
+  <!-- 发帖栏 -->
+  <view class="card post-entry-card flex-between">
+    <text class="entry-hint">有心事？来树洞倾诉一下吧...</text>
+    <button class="btn-primary btn-sm" bindtap="navToPost">去发帖</button>
+  </view>
+
+  <!-- 话题标签 -->
+  <view class="tag-scroll">
+    <view 
+      wx:for="{{categories}}" 
+      wx:key="*this" 
+      class="cat-chip {{selectedCat === item ? 'active' : ''}}"
+      bindtap="selectCat"
+      data-cat="{{item}}"
+    >
+      {{item}}
+    </view>
+  </view>
+
+  <!-- 贴子流 -->
+  <view class="posts-list">
+    <view wx:for="{{posts}}" wx:key="id" class="card post-card">
+      <view class="post-header flex-between">
+        <view class="flex-row">
+          <text class="post-avatar">{{item.avatarTag || '🍂'}}</text>
+          <text class="post-author">{{item.anonymousName}}</text>
+        </view>
+        <text class="tag tag-primary">{{item.tag}}</text>
+      </view>
+
+      <view class="post-content" bindtap="navToDetail" data-id="{{item.id}}">
+        {{item.content}}
+      </view>
+
+      <view class="post-footer flex-between">
+        <text class="post-time">{{item.timeDesc || '刚刚'}}</text>
+        <view class="post-actions flex-row">
+          <text class="act-btn" bindtap="hugPost" data-id="{{item.id}}">🤍 抱抱 ({{item.hugCount}})</text>
+          <text class="act-btn" bindtap="navToDetail" data-id="{{item.id}}">💬 评论 ({{item.commentCount || 0}})</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

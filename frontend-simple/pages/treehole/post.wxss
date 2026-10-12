@@ -1,0 +1,29 @@
+.post-page {
+  padding-bottom: 50rpx;
+}
+
+.tag-radios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+  font-size: 26rpx;
+  padding: 10rpx 0;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+}
+
+.count-tip {
+  font-size: 20rpx;
+  color: var(--sub-color);
+  text-align: right;
+  margin-top: 8rpx;
+}
+
+.btn-block {
+  width: 100% !important;
+  padding: 22rpx 0 !important;
+  font-size: 28rpx !important;
+}

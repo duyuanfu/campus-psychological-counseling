@@ -1,0 +1,52 @@
+.diary-page {
+  padding-bottom: 50rpx;
+}
+
+.mood-radios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.m-radio {
+  padding: 10rpx 16rpx;
+  border: 1px solid var(--border-color);
+  border-radius: 6rpx;
+  font-size: 24rpx;
+}
+
+.m-radio.active {
+  background: #e8f4ff;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.btn-block {
+  width: 100% !important;
+  padding: 20rpx 0 !important;
+  font-size: 28rpx !important;
+}
+
+.diary-item {
+  padding: 16rpx 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.d-score {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.d-date {
+  font-size: 20rpx;
+  color: var(--sub-color);
+}
+
+.d-txt {
+  font-size: 24rpx;
+  color: var(--text-color);
+  margin-top: 6rpx;
+  line-height: 1.4;
+}

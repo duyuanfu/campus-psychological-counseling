@@ -1,0 +1,44 @@
+<view class="container login-page">
+  <view class="app-header">
+    <view class="app-title">校园心理咨询平台</view>
+    <view class="app-subtitle">学生课程设计系统</view>
+  </view>
+
+  <view class="card login-card">
+    <!-- 角色切换 -->
+    <view class="role-tabs flex-row">
+      <view class="role-tab {{selectedRole === 'student' ? 'active' : ''}}" bindtap="switchRole" data-role="student">
+        学生端
+      </view>
+      <view class="role-tab {{selectedRole === 'counselor' ? 'active' : ''}}" bindtap="switchRole" data-role="counselor">
+        咨询师端
+      </view>
+      <view class="role-tab {{selectedRole === 'admin' ? 'active' : ''}}" bindtap="switchRole" data-role="admin">
+        管理员
+      </view>
+    </view>
+
+    <!-- 表单 -->
+    <view class="form-group">
+      <view class="form-label">账号</view>
+      <input class="form-input" placeholder="请输入用户名" value="{{username}}" bindinput="onInput" data-field="username" />
+    </view>
+
+    <view class="form-group">
+      <view class="form-label">密码</view>
+      <input class="form-input" password placeholder="请输入密码" value="{{password}}" bindinput="onInput" data-field="password" />
+    </view>
+
+    <view class="quick-fill flex-between">
+      <text class="quick-label">测试账号：</text>
+      <text class="quick-link" bindtap="fillDefault">一键填入 ({{selectedRole}} / 123456)</text>
+    </view>
+
+    <button class="btn-primary btn-block" bindtap="handleLogin">登 录</button>
+
+    <view class="register-link flex-center" wx:if="{{selectedRole !== 'admin'}}">
+      <text>还没有账号？</text>
+      <text class="link-text" bindtap="navToRegister">去注册{{selectedRole === 'student' ? '学生' : '咨询师'}}账号</text>
+    </view>
+  </view>
+</view>

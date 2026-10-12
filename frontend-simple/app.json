@@ -1,0 +1,80 @@
+{
+  "pages": [
+    "pages/auth/login",
+    "pages/auth/register",
+    "pages/index/index",
+    "pages/appointment/index",
+    "pages/appointment/detail",
+    "pages/appointment/book",
+    "pages/appointment/my-records",
+    "pages/assessment/index",
+    "pages/assessment/test",
+    "pages/assessment/report",
+    "pages/treehole/index",
+    "pages/treehole/post",
+    "pages/treehole/detail",
+    "pages/relax/relax",
+    "pages/relax/article",
+    "pages/mine/index",
+    "pages/mine/auth",
+    "pages/mine/mood-diary",
+    "pages/mine/privacy",
+    "pages/counselor/dashboard",
+    "pages/counselor/schedule",
+    "pages/counselor/appointments",
+    "pages/counselor/crisis",
+    "pages/counselor/record-edit",
+    "pages/admin/dashboard",
+    "pages/admin/user-audit",
+    "pages/admin/article-manage",
+    "pages/admin/treehole-audit",
+    "pages/admin/analytics"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#2d8cf0",
+    "navigationBarTitleText": "校园心理咨询系统",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f8f8f9"
+  },
+  "tabBar": {
+    "color": "#808695",
+    "selectedColor": "#2d8cf0",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tabbar/home.png",
+        "selectedIconPath": "images/tabbar/home_active.png"
+      },
+      {
+        "pagePath": "pages/appointment/index",
+        "text": "预约",
+        "iconPath": "images/tabbar/appoint.png",
+        "selectedIconPath": "images/tabbar/appoint_active.png"
+      },
+      {
+        "pagePath": "pages/assessment/index",
+        "text": "测评",
+        "iconPath": "images/tabbar/assess.png",
+        "selectedIconPath": "images/tabbar/assess_active.png"
+      },
+      {
+        "pagePath": "pages/treehole/index",
+        "text": "树洞",
+        "iconPath": "images/tabbar/treehole.png",
+        "selectedIconPath": "images/tabbar/treehole_active.png"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "text": "我的",
+        "iconPath": "images/tabbar/mine.png",
+        "selectedIconPath": "images/tabbar/mine_active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

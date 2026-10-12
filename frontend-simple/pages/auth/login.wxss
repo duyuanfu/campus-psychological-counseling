@@ -1,0 +1,75 @@
+.login-page {
+  padding-top: 80rpx;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 50rpx;
+}
+
+.app-title {
+  font-size: 38rpx;
+  font-weight: bold;
+  color: var(--title-color);
+}
+
+.app-subtitle {
+  font-size: 24rpx;
+  color: var(--sub-color);
+  margin-top: 8rpx;
+}
+
+.login-card {
+  padding: 30rpx 24rpx;
+}
+
+.role-tabs {
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 30rpx;
+}
+
+.role-tab {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx 0;
+  font-size: 28rpx;
+  color: var(--text-color);
+}
+
+.role-tab.active {
+  color: var(--primary-color);
+  font-weight: bold;
+  border-bottom: 2px solid var(--primary-color);
+  margin-bottom: -2px;
+}
+
+.quick-fill {
+  font-size: 22rpx;
+  margin: 16rpx 0 30rpx 0;
+}
+
+.quick-label {
+  color: var(--sub-color);
+}
+
+.quick-link {
+  color: var(--primary-color);
+}
+
+.btn-block {
+  width: 100% !important;
+  padding: 20rpx 0 !important;
+  font-size: 28rpx !important;
+}
+
+.register-link {
+  margin-top: 24rpx;
+  font-size: 24rpx;
+  color: var(--sub-color);
+}
+
+.link-text {
+  color: var(--primary-color);
+  font-weight: 500;
+  margin-left: 8rpx;
+}

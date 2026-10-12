@@ -1,0 +1,30 @@
+<view class="container test-page">
+  <view class="progress-bar flex-between">
+    <text class="p-scale">{{scale.title}}</text>
+    <text class="p-count">{{currentIndex + 1}} / {{totalCount}}</text>
+  </view>
+
+  <view class="card q-card">
+    <view class="q-title">Q{{currentIndex + 1}}. {{currentQuestion.text}}</view>
+    <view class="q-tip">请选择过去一周内最符合您的实际情况：</view>
+
+    <view class="options-list">
+      <view 
+        wx:for="{{scale.options}}" 
+        wx:key="score" 
+        class="opt-item {{answers[currentIndex] === item.score ? 'selected' : ''}}"
+        bindtap="selectOption"
+        data-score="{{item.score}}"
+      >
+        <text class="opt-radio">{{answers[currentIndex] === item.score ? '●' : '○'}}</text>
+        <text class="opt-text">{{item.text}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="action-row flex-between">
+    <button class="btn-default btn-nav" disabled="{{currentIndex === 0}}" bindtap="prevQ">上一题</button>
+    <button wx:if="{{!isLastQ}}" class="btn-primary btn-nav" bindtap="nextQ">下一题</button>
+    <button wx:else class="btn-primary btn-nav" bindtap="submitTest">提交交卷</button>
+  </view>
+</view>

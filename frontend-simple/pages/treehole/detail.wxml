@@ -1,0 +1,31 @@
+<view class="container detail-page">
+  <view class="card">
+    <view class="d-header flex-between">
+      <view class="flex-row">
+        <text class="d-avatar">{{post.avatarTag || '🍂'}}</text>
+        <text class="d-name">{{post.anonymousName}}</text>
+      </view>
+      <text class="tag tag-primary">{{post.tag}}</text>
+    </view>
+    <view class="d-content">{{post.content}}</view>
+    <view class="d-time">{{post.timeDesc || '刚刚'}}</view>
+  </view>
+
+  <!-- 评论区 -->
+  <view class="card">
+    <view class="section-title">评论列表 ({{post.comments.length || 0}})</view>
+    <view wx:if="{{!post.comments || post.comments.length === 0}}" class="empty-tip">
+      暂无评论，留下第一句暖心回音吧
+    </view>
+    <view wx:for="{{post.comments}}" wx:key="id" class="comment-item">
+      <view class="c-user">{{item.user || '同学'}}：</view>
+      <view class="c-text">{{item.text}}</view>
+    </view>
+  </view>
+
+  <!-- 底部写评论 -->
+  <view class="card reply-card flex-between">
+    <input class="form-input flex-1" style="margin-right: 16rpx;" placeholder="写一句鼓励的话..." value="{{commentText}}" bindinput="onInput" />
+    <button class="btn-primary btn-sm" bindtap="submitComment">发送</button>
+  </view>
+</view>

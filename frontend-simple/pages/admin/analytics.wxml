@@ -1,0 +1,41 @@
+<view class="container analytics-page">
+  <!-- 统计指标 -->
+  <view class="card flex-around stat-box">
+    <view class="stat-col">
+      <view class="val color-blue">1,420</view>
+      <view class="lbl">累计咨询人次</view>
+    </view>
+    <view class="stat-col">
+      <view class="val color-green">98.6%</view>
+      <view class="lbl">心理建档率</view>
+    </view>
+    <view class="stat-col">
+      <view class="val color-orange">99.2%</view>
+      <view class="lbl">干预闭环率</view>
+    </view>
+  </view>
+
+  <!-- 情绪环形图 -->
+  <view class="card">
+    <view class="section-title">全校学生情绪状态分布图</view>
+    <view class="canvas-wrap">
+      <canvas type="2d" id="donutCanvas" class="my-canvas"></canvas>
+    </view>
+  </view>
+
+  <!-- 学院柱状图 -->
+  <view class="card">
+    <view class="section-title">各学院咨询人次与预警统计</view>
+    <view class="canvas-wrap">
+      <canvas type="2d" id="barCanvas" class="my-canvas"></canvas>
+    </view>
+  </view>
+
+  <!-- 趋势折线图 -->
+  <view class="card">
+    <view class="section-title">月度咨询量变化走势</view>
+    <view class="canvas-wrap">
+      <canvas type="2d" id="trendCanvas" class="my-canvas"></canvas>
+    </view>
+  </view>
+</view>

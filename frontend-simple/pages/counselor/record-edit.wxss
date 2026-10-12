@@ -1,0 +1,10 @@
+.record-page {
+  padding-bottom: 50rpx;
+}
+
+.btn-block {
+  width: 100% !important;
+  padding: 22rpx 0 !important;
+  font-size: 28rpx !important;
+  margin-top: 20rpx;
+}

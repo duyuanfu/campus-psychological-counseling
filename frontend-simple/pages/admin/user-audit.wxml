@@ -1,0 +1,40 @@
+<view class="container audit-page">
+  <view class="tab-bar flex-around">
+    <view class="tab-btn {{currentTab === 'student' ? 'active' : ''}}" bindtap="switchTab" data-tab="student">
+      学生学籍认证 ({{students.length}})
+    </view>
+    <view class="tab-btn {{currentTab === 'counselor' ? 'active' : ''}}" bindtap="switchTab" data-tab="counselor">
+      咨询师资质 ({{counselors.length}})
+    </view>
+  </view>
+
+  <view wx:if="{{currentTab === 'student'}}" class="audit-list">
+    <view wx:for="{{students}}" wx:key="id" class="card">
+      <view class="flex-between">
+        <text class="name">{{item.name}} ({{item.studentId}})</text>
+        <text class="tag {{item.status === 'pending' ? 'tag-warning' : 'tag-success'}}">{{item.status === 'pending' ? '待审核' : '已通过'}}</text>
+      </view>
+      <view class="desc">{{item.college}} · {{item.major}} · {{item.grade}}</view>
+      <view class="desc">手机: {{item.phone}}</view>
+      <view class="actions flex-between" wx:if="{{item.status === 'pending'}}" style="margin-top: 14rpx; border-top: 1px solid #f0f0f0; padding-top: 14rpx;">
+        <button class="btn-danger btn-sm" bindtap="rejectStudent" data-id="{{item.id}}">驳回</button>
+        <button class="btn-primary btn-sm" bindtap="passStudent" data-id="{{item.id}}">通过认证</button>
+      </view>
+    </view>
+  </view>
+
+  <view wx:else class="audit-list">
+    <view wx:for="{{counselors}}" wx:key="id" class="card">
+      <view class="flex-between">
+        <text class="name">{{item.name}} ({{item.title}})</text>
+        <text class="tag {{item.status === 'pending' ? 'tag-warning' : 'tag-success'}}">{{item.status === 'pending' ? '待审核' : '已通过'}}</text>
+      </view>
+      <view class="desc">资质: {{item.qualification}}</view>
+      <view class="desc">擅长: {{item.tags}}</view>
+      <view class="actions flex-between" wx:if="{{item.status === 'pending'}}" style="margin-top: 14rpx; border-top: 1px solid #f0f0f0; padding-top: 14rpx;">
+        <button class="btn-danger btn-sm" bindtap="rejectCounselor" data-id="{{item.id}}">驳回</button>
+        <button class="btn-primary btn-sm" bindtap="passCounselor" data-id="{{item.id}}">批准入驻</button>
+      </view>
+    </view>
+  </view>
+</view>

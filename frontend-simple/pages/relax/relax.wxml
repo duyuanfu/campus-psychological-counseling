@@ -1,0 +1,51 @@
+<view class="container relax-page">
+  <!-- 4-7-8 呼吸训练 -->
+  <view class="card">
+    <view class="section-title">4-7-8 呼吸训练 (数字媒体交互)</view>
+    <view class="breath-tip">吸气 4s ➔ 屏息 7s ➔ 呼气 8s，平复身心紧绷状态。</view>
+
+    <view class="breath-circle-wrap flex-center">
+      <view class="breath-circle {{breathState}} {{isRunning ? 'running' : ''}}">
+        <text class="b-text">{{stateText}}</text>
+        <text class="b-time">{{countdown}}s</text>
+      </view>
+    </view>
+
+    <view class="breath-action flex-center">
+      <button class="btn-primary" style="width: 60%;" bindtap="toggleBreath">
+        {{isRunning ? '暂 停' : '开始呼吸训练'}}
+      </button>
+    </view>
+  </view>
+
+  <!-- 自然白噪音播放器 -->
+  <view class="card">
+    <view class="section-title">自然白噪音播放器</view>
+    
+    <view class="current-sound flex-between">
+      <view class="flex-row">
+        <text class="s-icon">{{currentTrack.icon}}</text>
+        <view>
+          <view class="s-name">{{currentTrack.name}}</view>
+          <view class="s-desc">{{currentTrack.desc}}</view>
+        </view>
+      </view>
+      <button class="btn-primary btn-sm" bindtap="toggleSound">
+        {{isPlaying ? '暂停播放' : '点击播放'}}
+      </button>
+    </view>
+
+    <view class="sound-grid">
+      <view 
+        wx:for="{{tracks}}" 
+        wx:key="id" 
+        class="sound-cell {{currentTrack.id === item.id ? 'active' : ''}}"
+        bindtap="selectTrack"
+        data-item="{{item}}"
+      >
+        <text class="cell-icon">{{item.icon}}</text>
+        <text class="cell-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+</view>

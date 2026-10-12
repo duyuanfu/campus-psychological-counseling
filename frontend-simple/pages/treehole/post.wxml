@@ -1,0 +1,19 @@
+<view class="container post-page">
+  <view class="card">
+    <view class="section-title">选择话题分类</view>
+    <radio-group bindchange="onTagChange" class="tag-radios">
+      <label wx:for="{{tags}}" wx:key="*this" class="radio-label">
+        <radio value="{{item}}" checked="{{selectedTag === item}}" color="#2d8cf0" />
+        {{item}}
+      </label>
+    </radio-group>
+  </view>
+
+  <view class="card">
+    <view class="section-title">倾诉内容</view>
+    <textarea class="form-textarea" style="height: 240rpx;" placeholder="在此输入您想说的话，全过程匿名保护..." value="{{content}}" bindinput="onInputContent" maxlength="300" />
+    <view class="count-tip">{{content.length}} / 300</view>
+  </view>
+
+  <button class="btn-primary btn-block" bindtap="submitPost">发布到树洞</button>
+</view>

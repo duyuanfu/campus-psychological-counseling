@@ -1,0 +1,35 @@
+<view class="container apts-page">
+  <view class="tab-bar flex-around">
+    <view wx:for="{{tabs}}" wx:key="key" class="tab-btn {{currentTab === item.key ? 'active' : ''}}" bindtap="switchTab" data-key="{{item.key}}">
+      {{item.label}}
+    </view>
+  </view>
+
+  <view wx:if="{{list.length === 0}}" class="empty-tip">暂无相关预约记录</view>
+
+  <view class="apts-list">
+    <view wx:for="{{list}}" wx:key="id" class="card apt-card">
+      <view class="apt-top flex-between">
+        <text class="s-name">学生: {{item.studentName}}</text>
+        <text class="tag {{item.status === 'confirmed' ? 'tag-success' : (item.status === 'pending' ? 'tag-warning' : 'tag-error')}}">{{item.statusText}}</text>
+      </view>
+
+      <view class="apt-info">
+        <view class="row"><text class="lbl">申请时间：</text><text class="time">{{item.date}} {{item.timeSlot}}</text></view>
+        <view class="row"><text class="lbl">咨询形式：</text><text>{{item.mode}}</text></view>
+        <view class="row"><text class="lbl">学生诉求：</text><text>{{item.problemCategory}} - {{item.description}}</text></view>
+        <view class="row"><text class="lbl">电话：</text><text>{{item.studentPhone}}</text></view>
+      </view>
+
+      <view class="apt-actions flex-between" wx:if="{{item.status === 'pending'}}">
+        <button class="btn-danger btn-sm" bindtap="rejectApt" data-item="{{item}}">驳回申请</button>
+        <button class="btn-primary btn-sm" bindtap="confirmApt" data-item="{{item}}">确认接单</button>
+      </view>
+
+      <view class="apt-actions flex-between" wx:elif="{{item.status === 'confirmed'}}">
+        <button class="btn-default btn-sm" bindtap="completeApt" data-item="{{item}}">标记完成</button>
+        <button class="btn-primary btn-sm" bindtap="writeRecord" data-item="{{item}}">填写记录</button>
+      </view>
+    </view>
+  </view>
+</view>

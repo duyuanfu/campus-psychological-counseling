@@ -1,0 +1,31 @@
+<view class="container schedule-page">
+  <view class="card">
+    <view class="section-title">每周可预约星期</view>
+    <checkbox-group bindchange="onDaysChange" class="days-check">
+      <label wx:for="{{allDays}}" wx:key="*this" class="check-item">
+        <checkbox value="{{item}}" checked="{{selectedDaysMap[item]}}" color="#2d8cf0" />
+        {{item}}
+      </label>
+    </checkbox-group>
+  </view>
+
+  <view class="card">
+    <view class="section-title">每日开放时段</view>
+    <checkbox-group bindchange="onSlotsChange" class="slots-check">
+      <label wx:for="{{allSlots}}" wx:key="*this" class="slot-check-item flex-between">
+        <text>{{item}}</text>
+        <checkbox value="{{item}}" checked="{{selectedSlotsMap[item]}}" color="#2d8cf0" />
+      </label>
+    </checkbox-group>
+  </view>
+
+  <view class="card">
+    <view class="section-title">单日最多接待人数</view>
+    <view class="flex-between" style="padding: 10rpx 0;">
+      <text>最大预约接待人数上限</text>
+      <input class="form-input" style="width: 140rpx; text-align: center;" type="number" value="{{maxPerDay}}" bindinput="onInputMax" />
+    </view>
+  </view>
+
+  <button class="btn-primary btn-block" bindtap="saveSchedule">保存排班设置</button>
+</view>

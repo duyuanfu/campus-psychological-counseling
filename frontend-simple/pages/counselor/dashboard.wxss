@@ -1,0 +1,73 @@
+.counselor-page {
+  padding-bottom: 50rpx;
+}
+
+.c-header-card {
+  padding: 24rpx;
+}
+
+.avatar {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  margin-right: 18rpx;
+}
+
+.name {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.title {
+  font-size: 22rpx;
+  color: var(--primary-color);
+  margin-top: 4rpx;
+}
+
+.alert-tip-box {
+  background: #feebee;
+  border-color: #ffcdd2;
+  padding: 18rpx 20rpx;
+}
+
+.alert-txt {
+  font-size: 24rpx;
+  color: var(--error-color);
+  font-weight: 500;
+}
+
+.stat-box {
+  padding: 24rpx 0;
+}
+
+.stat-col {
+  text-align: center;
+  flex: 1;
+}
+
+.val {
+  font-size: 38rpx;
+  font-weight: bold;
+}
+
+.color-warning { color: var(--warning-color); }
+.color-primary { color: var(--primary-color); }
+.color-danger { color: var(--error-color); }
+
+.lbl {
+  font-size: 22rpx;
+  color: var(--sub-color);
+  margin-top: 6rpx;
+}
+
+.btn-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16rpx;
+}
+
+.menu-btn {
+  padding: 24rpx 10rpx !important;
+  font-size: 26rpx !important;
+  text-align: center !important;
+}

@@ -1,0 +1,41 @@
+.admin-page {
+  padding-bottom: 50rpx;
+}
+
+.admin-name {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.admin-no {
+  font-size: 22rpx;
+  color: var(--sub-color);
+  margin-top: 4rpx;
+}
+
+.screen-card {
+  background: #e8f4ff;
+  border-color: #b3d8ff;
+}
+
+.screen-title {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.screen-desc {
+  font-size: 20rpx;
+  color: var(--text-color);
+  margin-top: 4rpx;
+}
+
+.menu-item {
+  padding: 24rpx 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 26rpx;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}

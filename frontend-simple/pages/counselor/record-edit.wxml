@@ -1,0 +1,32 @@
+<view class="container record-page">
+  <view class="card">
+    <view class="section-title">录入学生咨询记录</view>
+
+    <view class="form-group">
+      <view class="form-label">学生姓名</view>
+      <input class="form-input" value="{{studentName}}" bindinput="onInput" data-field="studentName" placeholder="如：林微光" />
+    </view>
+
+    <view class="form-group">
+      <view class="form-label">学院年级</view>
+      <input class="form-input" value="{{studentMajor}}" bindinput="onInput" data-field="studentMajor" placeholder="如：数字媒体技术 大二" />
+    </view>
+
+    <view class="form-group">
+      <view class="form-label">咨询时长</view>
+      <input class="form-input" value="{{duration}}" bindinput="onInput" data-field="duration" placeholder="如：50分钟" />
+    </view>
+
+    <view class="form-group">
+      <view class="form-label">来访者状态与主诉摘要</view>
+      <textarea class="form-textarea" placeholder="记录学生的谈话主诉与近期情绪问题..." value="{{complaintSummary}}" bindinput="onInput" data-field="complaintSummary" />
+    </view>
+
+    <view class="form-group">
+      <view class="form-label">评估结论与干预策略</view>
+      <textarea class="form-textarea" placeholder="记录评估分析结论与本次采取的疏导方法..." value="{{interventionStrategy}}" bindinput="onInput" data-field="interventionStrategy" />
+    </view>
+
+    <button class="btn-primary btn-block" bindtap="saveRecord">保存咨询档案</button>
+  </view>
+</view>

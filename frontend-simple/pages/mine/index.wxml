@@ -1,0 +1,80 @@
+<view class="container mine-page">
+  <!-- 个人卡片 -->
+  <view class="card user-card flex-between">
+    <view class="flex-row">
+      <image class="u-avatar" src="{{userInfo.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150'}}" mode="aspectFill"></image>
+      <view>
+        <view class="u-name">
+          {{userInfo.name || '同学'}}
+          <text class="tag tag-success" style="margin-left: 10rpx;">已认证</text>
+        </view>
+        <view class="u-role">身份: {{currentRole === 'student' ? '在校学生' : (currentRole === 'counselor' ? '专职咨询师' : '管理员')}}</view>
+        <view class="u-no" wx:if="{{currentRole === 'student'}}">学号: {{userInfo.studentId || '2022030142'}}</view>
+        <view class="u-no" wx:else>工号: {{userInfo.adminId || 'C-2001'}}</view>
+      </view>
+    </view>
+    <button class="btn-default btn-sm" bindtap="navTo" data-url="/pages/mine/auth">认证档案</button>
+  </view>
+
+  <!-- 工作台快捷通道 (咨询师/管理员模式展示) -->
+  <view wx:if="{{currentRole === 'counselor'}}" class="card counselor-box flex-between" bindtap="navTo" data-url="/pages/counselor/dashboard">
+    <view>
+      <view class="c-box-title">咨询师工作台</view>
+      <view class="c-box-sub">排班设置、预约审核、危机预警专区</view>
+    </view>
+    <button class="btn-primary btn-sm">进入工作台</button>
+  </view>
+
+  <view wx:if="{{currentRole === 'admin'}}" class="card admin-box flex-between" bindtap="navTo" data-url="/pages/admin/dashboard">
+    <view>
+      <view class="c-box-title">系统管理员后台</view>
+      <view class="c-box-sub">账号审核、文章发布、树洞审核、数据看板</view>
+    </view>
+    <button class="btn-danger btn-sm">进入后台</button>
+  </view>
+
+  <!-- 数据概览 -->
+  <view class="card flex-around stat-card">
+    <view class="stat-item" bindtap="navTo" data-url="/pages/appointment/my-records">
+      <view class="s-val">{{stats.aptCount}}</view>
+      <view class="s-txt">预约记录</view>
+    </view>
+    <view class="stat-item" bindtap="navTo" data-url="/pages/assessment/index" data-tab="true">
+      <view class="s-val">{{stats.reportCount}}</view>
+      <view class="s-txt">测评记录</view>
+    </view>
+    <view class="stat-item" bindtap="navTo" data-url="/pages/mine/mood-diary">
+      <view class="s-val">{{stats.diaryCount}}</view>
+      <view class="s-txt">情绪日记</view>
+    </view>
+  </view>
+
+  <!-- 菜单项 -->
+  <view class="card menu-card">
+    <view class="menu-item flex-between" bindtap="navTo" data-url="/pages/mine/mood-diary">
+      <text>📔 情绪日记记录</text>
+      <text class="arrow">&gt;</text>
+    </view>
+    <view class="menu-item flex-between" bindtap="navTo" data-url="/pages/mine/auth">
+      <text>🎓 学生身份认证</text>
+      <text class="arrow">&gt;</text>
+    </view>
+    <view class="menu-item flex-between" bindtap="navTo" data-url="/pages/mine/privacy">
+      <text>🔒 隐私设置</text>
+      <text class="arrow">&gt;</text>
+    </view>
+    <view class="menu-item flex-between" bindtap="navTo" data-url="/pages/appointment/my-records">
+      <text>📅 我的预约记录</text>
+      <text class="arrow">&gt;</text>
+    </view>
+    <view class="menu-item flex-between" bindtap="navTo" data-url="/pages/assessment/index" data-tab="true">
+      <text>📊 心理测评档案</text>
+      <text class="arrow">&gt;</text>
+    </view>
+  </view>
+
+  <!-- 退出按钮 -->
+  <view class="logout-btn-wrap">
+    <button class="btn-default btn-block" bindtap="handleLogout">退 出</button>
+  </view>
+</view>

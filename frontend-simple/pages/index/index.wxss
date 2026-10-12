@@ -1,0 +1,147 @@
+.home-page {
+  padding-bottom: 50rpx;
+}
+
+.notice-bar {
+  background: #e8f4ff;
+  border: 1px solid #b3d8ff;
+  border-radius: 8rpx;
+  padding: 14rpx 18rpx;
+  margin-bottom: 20rpx;
+  font-size: 24rpx;
+  color: var(--primary-color);
+}
+
+.notice-icon {
+  margin-right: 10rpx;
+}
+
+.mood-list {
+  margin-top: 10rpx;
+}
+
+.mood-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12rpx;
+  border-radius: 8rpx;
+  border: 1px solid #eee;
+  flex: 1;
+  margin: 0 6rpx;
+}
+
+.mood-item.active {
+  background: #e8f4ff;
+  border-color: var(--primary-color);
+}
+
+.mood-icon {
+  font-size: 36rpx;
+}
+
+.mood-name {
+  font-size: 20rpx;
+  margin-top: 4rpx;
+}
+
+.nav-grid {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.nav-icon-bg {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  margin-bottom: 8rpx;
+}
+
+.bg-blue { background: #e8f4ff; }
+.bg-green { background: #eaf8e6; }
+.bg-orange { background: #fff9e6; }
+.bg-purple { background: #f9f0ff; }
+
+.nav-text {
+  font-size: 22rpx;
+}
+
+.relax-entry-card {
+  padding: 24rpx;
+}
+
+.relax-icon {
+  font-size: 44rpx;
+  margin-right: 16rpx;
+}
+
+.relax-title {
+  font-size: 26rpx;
+  font-weight: bold;
+}
+
+.relax-desc {
+  font-size: 20rpx;
+  color: var(--sub-color);
+}
+
+.more-link {
+  font-size: 22rpx;
+  color: var(--primary-color);
+  font-weight: normal;
+}
+
+.counselor-item {
+  padding: 16rpx 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.c-avatar {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  margin-right: 16rpx;
+}
+
+.c-name {
+  font-size: 26rpx;
+  font-weight: bold;
+}
+
+.c-tags {
+  font-size: 20rpx;
+  color: var(--sub-color);
+  margin-top: 4rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 380rpx;
+}
+
+.article-item {
+  padding: 16rpx 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.article-title {
+  font-size: 26rpx;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.article-meta {
+  font-size: 20rpx;
+  color: var(--sub-color);
+  margin-top: 8rpx;
+}

@@ -1,0 +1,58 @@
+<view class="container records-page">
+  <!-- 状态过滤选项卡 -->
+  <view class="tab-bar flex-around">
+    <view 
+      wx:for="{{tabs}}" 
+      wx:key="key" 
+      class="tab-btn {{currentTab === item.key ? 'active' : ''}}"
+      bindtap="switchTab"
+      data-key="{{item.key}}"
+    >
+      {{item.label}}
+    </view>
+  </view>
+
+  <view wx:if="{{records.length === 0}}" class="empty-tip">
+    暂无预约记录
+  </view>
+
+  <view class="records-list">
+    <view wx:for="{{records}}" wx:key="id" class="card r-card">
+      <view class="r-top flex-between">
+        <text class="r-counselor">{{item.counselorName}} ({{item.counselorTitle}})</text>
+        <text class="tag {{item.status === 'confirmed' ? 'tag-success' : (item.status === 'pending' ? 'tag-warning' : 'tag-error')}}">{{item.statusText}}</text>
+      </view>
+
+      <view class="r-info">
+        <view class="row"><text class="label">预约时间：</text><text class="time">{{item.date}} {{item.timeSlot}}</text></view>
+        <view class="row"><text class="label">咨询方式：</text><text>{{item.mode}}</text></view>
+        <view class="row"><text class="label">咨询地点：</text><text>{{item.location || '待排期分配'}}</text></view>
+        <view class="row"><text class="label">主诉议题：</text><text>{{item.problemCategory}} - {{item.description}}</text></view>
+        <view wx:if="{{item.feedbackNotes}}" class="row feedback"><text class="label">老师回复：</text><text>{{item.feedbackNotes}}</text></view>
+      </view>
+
+      <!-- 操作按钮栏 -->
+      <view class="r-footer flex-between">
+        <text class="r-id">单号: {{item.id}}</text>
+        <view class="btn-group flex-row">
+          <button 
+            wx:if="{{item.status === 'pending' || item.status === 'confirmed'}}" 
+            class="btn-default btn-sm" 
+            bindtap="cancelApt" 
+            data-id="{{item.id}}"
+          >
+            取消预约
+          </button>
+          <button 
+            wx:if="{{item.status === 'pending' || item.status === 'confirmed'}}" 
+            class="btn-primary btn-sm" 
+            bindtap="rescheduleApt" 
+            data-item="{{item}}"
+          >
+            申请改约
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,244 @@
+/**
+ * 校园心理咨询系统 - 简朴基础样式库 (学生作业/课设风格)
+ */
+
+page {
+  --primary-color: #2d8cf0;
+  --success-color: #19be6b;
+  --warning-color: #ff9900;
+  --error-color: #ed4014;
+  --title-color: #17233d;
+  --text-color: #515a6e;
+  --sub-color: #808695;
+  --border-color: #dcdee2;
+  --bg-color: #f8f8f9;
+
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-size: 28rpx;
+  line-height: 1.5;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+view, text, image, input, textarea, button {
+  box-sizing: border-box;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  font-weight: normal;
+  background: transparent;
+  line-height: 1;
+}
+
+button::after {
+  border: none;
+}
+
+.container {
+  padding: 20rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-around {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.flex-1 {
+  flex: 1;
+  min-width: 0;
+}
+
+/* 经典简单卡片 */
+.card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 12rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* 经典板块标题 */
+.section-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: var(--title-color);
+  margin-bottom: 16rpx;
+  border-left: 6rpx solid var(--primary-color);
+  padding-left: 12rpx;
+  display: flex;
+  align-items: center;
+}
+
+/* 按钮样式 (经典课设按钮) */
+.btn-primary {
+  background-color: var(--primary-color) !important;
+  color: #ffffff !important;
+  border-radius: 8rpx !important;
+  font-size: 26rpx !important;
+  padding: 16rpx 28rpx !important;
+  line-height: 1.2 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 1px solid var(--primary-color) !important;
+}
+
+.btn-primary:active {
+  background-color: #2b85e4 !important;
+}
+
+.btn-default {
+  background-color: #ffffff !important;
+  color: var(--text-color) !important;
+  border-radius: 8rpx !important;
+  font-size: 26rpx !important;
+  padding: 16rpx 28rpx !important;
+  line-height: 1.2 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.btn-danger {
+  background-color: var(--error-color) !important;
+  color: #ffffff !important;
+  border-radius: 8rpx !important;
+  font-size: 26rpx !important;
+  padding: 16rpx 28rpx !important;
+  line-height: 1.2 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 1px solid var(--error-color) !important;
+}
+
+.btn-sm {
+  font-size: 22rpx !important;
+  padding: 10rpx 20rpx !important;
+  border-radius: 6rpx !important;
+}
+
+/* 经典标签 */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rpx 14rpx;
+  font-size: 20rpx;
+  border-radius: 6rpx;
+  background: #f8f8f9;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  line-height: 1.2;
+}
+
+.tag-primary {
+  background: #e8f4ff;
+  color: var(--primary-color);
+  border-color: #b3d8ff;
+}
+
+.tag-success {
+  background: #eaf8e6;
+  color: var(--success-color);
+  border-color: #bce8b2;
+}
+
+.tag-warning {
+  background: #fff9e6;
+  color: var(--warning-color);
+  border-color: #ffe58f;
+}
+
+.tag-error {
+  background: #feebee;
+  color: var(--error-color);
+  border-color: #ffcdd2;
+}
+
+/* 表单输入框 (简单工整) */
+.form-group {
+  margin-bottom: 20rpx;
+}
+
+.form-label {
+  font-size: 26rpx;
+  color: var(--title-color);
+  margin-bottom: 8rpx;
+  font-weight: 500;
+}
+
+.form-input {
+  width: 100%;
+  height: 72rpx;
+  line-height: 72rpx;
+  border: 1px solid var(--border-color);
+  border-radius: 8rpx;
+  padding: 0 16rpx;
+  font-size: 26rpx;
+  background: #ffffff;
+}
+
+.form-input:focus {
+  border-color: var(--primary-color);
+}
+
+.form-picker {
+  width: 100%;
+  height: 72rpx;
+  line-height: 72rpx;
+  border: 1px solid var(--border-color);
+  border-radius: 8rpx;
+  padding: 0 16rpx;
+  font-size: 26rpx;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-textarea {
+  width: 100%;
+  height: 160rpx;
+  border: 1px solid var(--border-color);
+  border-radius: 8rpx;
+  padding: 14rpx 16rpx;
+  font-size: 26rpx;
+  background: #ffffff;
+}
+
+.empty-tip {
+  text-align: center;
+  padding: 60rpx 0;
+  color: var(--sub-color);
+  font-size: 26rpx;
+}

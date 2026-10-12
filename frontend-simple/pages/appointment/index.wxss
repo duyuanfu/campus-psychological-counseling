@@ -1,0 +1,95 @@
+.appointment-page {
+  padding-bottom: 50rpx;
+}
+
+.record-btn-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 8rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  font-size: 26rpx;
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+.category-row {
+  display: flex;
+  margin-bottom: 20rpx;
+}
+
+.cat-item {
+  padding: 10rpx 20rpx;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 6rpx;
+  font-size: 24rpx;
+  margin-right: 12rpx;
+}
+
+.cat-item.active {
+  background: var(--primary-color);
+  color: #ffffff;
+  border-color: var(--primary-color);
+}
+
+.c-card {
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.c-avatar {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  margin-right: 16rpx;
+}
+
+.c-name {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.c-title {
+  font-size: 22rpx;
+  color: var(--sub-color);
+  margin-top: 4rpx;
+}
+
+.c-score {
+  font-size: 24rpx;
+  color: var(--warning-color);
+  font-weight: bold;
+}
+
+.c-intro {
+  font-size: 24rpx;
+  color: var(--text-color);
+  margin: 14rpx 0;
+  line-height: 1.4;
+}
+
+.c-tags {
+  display: flex;
+  gap: 10rpx;
+  margin-bottom: 16rpx;
+}
+
+.c-footer {
+  border-top: 1px solid #f0f0f0;
+  padding-top: 16rpx;
+}
+
+.c-time {
+  font-size: 20rpx;
+  color: var(--sub-color);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn-group {
+  gap: 12rpx;
+  flex-shrink: 0;
+}

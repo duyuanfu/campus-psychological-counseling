@@ -1,0 +1,51 @@
+<view class="container detail-page">
+  <!-- 咨询师资料 -->
+  <view class="card">
+    <view class="flex-row">
+      <image class="avatar" src="{{counselor.avatar}}" mode="aspectFill"></image>
+      <view>
+        <view class="name">{{counselor.name}}</view>
+        <view class="title">{{counselor.title}}</view>
+        <view class="dept">{{counselor.college}}</view>
+      </view>
+    </view>
+    <view class="desc">{{counselor.intro}}</view>
+    <view class="location">办公地点: {{counselor.location}}</view>
+  </view>
+
+  <!-- 排班日期与时段选择 -->
+  <view class="card">
+    <view class="section-title">可预约日期与时段</view>
+
+    <view class="dates-row">
+      <view 
+        wx:for="{{daysList}}" 
+        wx:key="date" 
+        class="date-item {{selectedDate === item.date ? 'active' : ''}}"
+        bindtap="selectDate"
+        data-date="{{item.date}}"
+      >
+        <view class="week">{{item.weekDay}}</view>
+        <view class="day">{{item.dayStr}}</view>
+      </view>
+    </view>
+
+    <view class="slots-header">选择时段：</view>
+    <view class="slots-grid">
+      <view 
+        wx:for="{{schedule.slots}}" 
+        wx:key="*this" 
+        class="slot-item {{selectedSlot === item ? 'active' : ''}}"
+        bindtap="selectSlot"
+        data-slot="{{item}}"
+      >
+        {{item}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部预约按钮 -->
+  <view class="footer-action">
+    <button class="btn-primary btn-block" bindtap="goToBook">确认选择，去填写诉求</button>
+  </view>
+</view>

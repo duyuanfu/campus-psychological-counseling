@@ -1,0 +1,39 @@
+.article-manage-page {
+  padding-bottom: 50rpx;
+}
+
+.a-count {
+  font-size: 26rpx;
+  font-weight: 500;
+}
+
+.a-item {
+  padding: 16rpx 20rpx;
+  margin-bottom: 16rpx;
+}
+
+.a-title {
+  font-size: 26rpx;
+  font-weight: bold;
+}
+
+.a-meta {
+  font-size: 20rpx;
+  color: var(--sub-color);
+  margin-top: 4rpx;
+}
+
+.modal-box {
+  position: fixed;
+  left: 0; right: 0; top: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30rpx;
+  z-index: 99;
+}
+
+.modal-content {
+  width: 100%;
+}

@@ -1,0 +1,57 @@
+<view class="container report-page">
+  <!-- 核心得分卡片 -->
+  <view class="card">
+    <view class="flex-between">
+      <view>
+        <view class="scale-title">{{report.scaleTitle}}</view>
+        <view class="report-date">测评时间: {{report.date}}</view>
+      </view>
+      <view class="tag tag-success">{{report.levelTitle}}</view>
+    </view>
+
+    <view class="score-box flex-center">
+      <text class="score-num">{{report.standardScore}}</text>
+      <text class="score-unit">分 (标准分)</text>
+    </view>
+
+    <view class="score-guide">
+      标准分参考：正常(&lt;53) | 轻度(53-62) | 中度(63-72) | 重度(≥73)
+    </view>
+  </view>
+
+  <!-- Canvas 2D 维度雷达图 -->
+  <view class="card">
+    <view class="section-title">各维度雷达图</view>
+    <view class="canvas-wrap">
+      <canvas type="2d" id="radarCanvas" class="my-canvas"></canvas>
+    </view>
+  </view>
+
+  <!-- Canvas 2D 历史趋势图 -->
+  <view class="card">
+    <view class="section-title">历史测评趋势图</view>
+    <view class="canvas-wrap">
+      <canvas type="2d" id="trendCanvas" class="my-canvas"></canvas>
+    </view>
+  </view>
+
+  <!-- 测评解读 -->
+  <view class="card">
+    <view class="section-title">专业解读</view>
+    <view class="analysis-text">{{report.analysis}}</view>
+  </view>
+
+  <!-- 针对建议 -->
+  <view class="card">
+    <view class="section-title">调适建议</view>
+    <view wx:for="{{report.suggestions}}" wx:key="*this" class="sug-item">
+      • {{item}}
+    </view>
+  </view>
+
+  <!-- 按钮 -->
+  <view class="btn-row flex-between">
+    <button class="btn-default flex-1" style="margin-right: 16rpx;" bindtap="retest">重新测试</button>
+    <button class="btn-primary flex-1" bindtap="navToAppoint">预约咨询师</button>
+  </view>
+</view>

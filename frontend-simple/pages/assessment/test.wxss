@@ -1,0 +1,82 @@
+.test-page {
+  padding-bottom: 50rpx;
+}
+
+.progress-bar {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 8rpx;
+  padding: 16rpx 20rpx;
+  margin-bottom: 20rpx;
+  font-size: 24rpx;
+}
+
+.p-scale {
+  font-weight: bold;
+}
+
+.p-count {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.q-card {
+  padding: 30rpx 24rpx;
+  min-height: 500rpx;
+}
+
+.q-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: var(--title-color);
+  line-height: 1.4;
+  margin-bottom: 12rpx;
+}
+
+.q-tip {
+  font-size: 22rpx;
+  color: var(--sub-color);
+  margin-bottom: 30rpx;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.opt-item {
+  padding: 20rpx;
+  border: 1px solid var(--border-color);
+  border-radius: 8rpx;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
+.opt-item.selected {
+  background: #e8f4ff;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.opt-radio {
+  font-size: 28rpx;
+  margin-right: 16rpx;
+}
+
+.opt-text {
+  font-size: 26rpx;
+}
+
+.action-row {
+  margin-top: 30rpx;
+  gap: 20rpx;
+}
+
+.btn-nav {
+  flex: 1;
+  padding: 20rpx 0 !important;
+  font-size: 28rpx !important;
+}

@@ -1,0 +1,74 @@
+.treehole-page {
+  padding-bottom: 50rpx;
+}
+
+.post-entry-card {
+  padding: 20rpx;
+  background: #ffffff;
+}
+
+.entry-hint {
+  font-size: 24rpx;
+  color: var(--sub-color);
+}
+
+.tag-scroll {
+  display: flex;
+  margin-bottom: 20rpx;
+}
+
+.cat-chip {
+  padding: 8rpx 18rpx;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 6rpx;
+  font-size: 22rpx;
+  margin-right: 12rpx;
+}
+
+.cat-chip.active {
+  background: var(--primary-color);
+  color: #ffffff;
+  border-color: var(--primary-color);
+}
+
+.post-card {
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.post-header {
+  margin-bottom: 12rpx;
+}
+
+.post-avatar {
+  font-size: 32rpx;
+  margin-right: 10rpx;
+}
+
+.post-author {
+  font-size: 26rpx;
+  font-weight: bold;
+}
+
+.post-content {
+  font-size: 26rpx;
+  line-height: 1.5;
+  margin-bottom: 16rpx;
+}
+
+.post-footer {
+  border-top: 1px solid #f0f0f0;
+  padding-top: 12rpx;
+  font-size: 20rpx;
+  color: var(--sub-color);
+}
+
+.post-actions {
+  gap: 20rpx;
+}
+
+.act-btn {
+  font-size: 22rpx;
+  color: var(--text-color);
+}

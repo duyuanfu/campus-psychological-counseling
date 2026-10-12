@@ -1,0 +1,59 @@
+.crisis-page {
+  padding-bottom: 50rpx;
+}
+
+.alert-header {
+  background: #feebee;
+  border-color: #ffcdd2;
+}
+
+.a-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: var(--error-color);
+}
+
+.a-desc {
+  font-size: 22rpx;
+  color: #515a6e;
+  margin-top: 6rpx;
+}
+
+.alert-card {
+  border-left: 6rpx solid var(--error-color);
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.a-top {
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 12rpx;
+  margin-bottom: 12rpx;
+}
+
+.a-name {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.row {
+  font-size: 24rpx;
+  margin-bottom: 8rpx;
+}
+
+.lbl {
+  color: var(--sub-color);
+  width: 140rpx;
+  display: inline-block;
+}
+
+.color-red {
+  color: var(--error-color);
+  font-weight: 500;
+}
+
+.a-actions {
+  border-top: 1px solid #f0f0f0;
+  padding-top: 14rpx;
+  margin-top: 12rpx;
+}

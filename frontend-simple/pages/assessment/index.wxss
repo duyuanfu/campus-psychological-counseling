@@ -1,0 +1,65 @@
+.assess-page {
+  padding-bottom: 50rpx;
+}
+
+.tip-card {
+  background: #e8f4ff;
+  border-color: #b3d8ff;
+}
+
+.tip-title {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-bottom: 6rpx;
+}
+
+.tip-desc {
+  font-size: 22rpx;
+  color: #515a6e;
+  line-height: 1.4;
+}
+
+.scale-item {
+  padding: 18rpx 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.scale-name {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.scale-desc {
+  font-size: 22rpx;
+  color: var(--text-color);
+  margin: 6rpx 0;
+  line-height: 1.4;
+}
+
+.scale-meta {
+  font-size: 20rpx;
+  color: var(--sub-color);
+}
+
+.history-item {
+  padding: 16rpx 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.h-title {
+  font-size: 26rpx;
+  font-weight: 500;
+}
+
+.h-date {
+  font-size: 20rpx;
+  color: var(--sub-color);
+  margin-top: 4rpx;
+}
+
+.h-score {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: var(--primary-color);
+}

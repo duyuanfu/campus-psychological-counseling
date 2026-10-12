@@ -1,0 +1,49 @@
+<view class="container article-manage-page">
+  <view class="card flex-between">
+    <text class="a-count">当前科普推文总数: {{articles.length}} 篇</text>
+    <button class="btn-primary btn-sm" bindtap="openAddModal">+ 发布新文章</button>
+  </view>
+
+  <!-- 文章列表 -->
+  <view class="article-list">
+    <view wx:for="{{articles}}" wx:key="id" class="card a-item flex-between">
+      <view class="a-info flex-1">
+        <view class="a-title">{{item.title}}</view>
+        <view class="a-meta">{{item.author}} | {{item.date}}</view>
+      </view>
+      <button class="btn-danger btn-sm" bindtap="deleteArt" data-id="{{item.id}}">删除</button>
+    </view>
+  </view>
+
+  <!-- 新增弹窗 -->
+  <view wx:if="{{showModal}}" class="modal-box">
+    <view class="card modal-content">
+      <view class="section-title">发布科普文章</view>
+      
+      <view class="form-group">
+        <view class="form-label">标题</view>
+        <input class="form-input" placeholder="输入文章标题" value="{{form.title}}" bindinput="onInput" data-field="title" />
+      </view>
+
+      <view class="form-group">
+        <view class="form-label">作者</view>
+        <input class="form-input" placeholder="署名" value="{{form.author}}" bindinput="onInput" data-field="author" />
+      </view>
+
+      <view class="form-group">
+        <view class="form-label">摘要</view>
+        <input class="form-input" placeholder="摘要简介" value="{{form.summary}}" bindinput="onInput" data-field="summary" />
+      </view>
+
+      <view class="form-group">
+        <view class="form-label">正文内容</view>
+        <textarea class="form-textarea" placeholder="科普正文..." value="{{form.content}}" bindinput="onInput" data-field="content" />
+      </view>
+
+      <view class="flex-between" style="margin-top: 20rpx;">
+        <button class="btn-default btn-sm" bindtap="closeModal">取消</button>
+        <button class="btn-primary btn-sm" bindtap="submitArticle">发布推文</button>
+      </view>
+    </view>
+  </view>
+</view>

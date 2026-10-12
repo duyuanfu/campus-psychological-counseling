@@ -1,0 +1,31 @@
+<view class="container diary-page">
+  <view class="card">
+    <view class="section-title">记录今日情绪</view>
+    
+    <view class="mood-radios">
+      <view wx:for="{{moodLevels}}" wx:key="score" class="m-radio {{currentScore === item.score ? 'active' : ''}}" bindtap="selectScore" data-score="{{item.score}}">
+        {{item.emoji}} {{item.text}}
+      </view>
+    </view>
+
+    <view class="form-group" style="margin-top: 20rpx;">
+      <view class="form-label">今日感受与备忘</view>
+      <textarea class="form-textarea" placeholder="写下今天的一点体会或感想..." value="{{content}}" bindinput="onInputContent" />
+    </view>
+
+    <button class="btn-primary btn-block" bindtap="saveDiary">保存今日日记</button>
+  </view>
+
+  <!-- 历史日记列表 -->
+  <view class="card">
+    <view class="section-title">历史日记记录</view>
+    <view wx:if="{{diaries.length === 0}}" class="empty-tip">暂无日记记录</view>
+    <view wx:for="{{diaries}}" wx:key="id" class="diary-item">
+      <view class="d-top flex-between">
+        <text class="d-score">{{item.moodIcon}} {{item.moodText}}</text>
+        <text class="d-date">{{item.date}}</text>
+      </view>
+      <view class="d-txt">{{item.content}}</view>
+    </view>
+  </view>
+</view>

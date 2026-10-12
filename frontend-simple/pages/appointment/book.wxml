@@ -1,0 +1,48 @@
+<view class="container book-page">
+  <view wx:if="{{isReschedule}}" class="reschedule-tip">
+    正在进行改约操作，提交后原时段将重新排期。
+  </view>
+
+  <view class="card">
+    <view class="section-title">预约信息</view>
+    <view class="row"><text class="label">咨询师：</text><text>{{counselor.name}} ({{counselor.title}})</text></view>
+    <view class="row"><text class="label">预约时间：</text><text class="highlight">{{selectedDate}} {{selectedSlot}}</text></view>
+    <view class="row"><text class="label">咨询地点：</text><text>{{counselor.location}}</text></view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">填写诉求</view>
+
+    <view class="form-group">
+      <view class="form-label">咨询形式</view>
+      <radio-group bindchange="onModeChange" class="radio-row">
+        <label class="radio-item"><radio value="线下咨询" checked="{{selectedMode === '线下咨询'}}" color="#2d8cf0"/>线下咨询</label>
+        <label class="radio-item"><radio value="线上视频" checked="{{selectedMode === '线上视频'}}" color="#2d8cf0"/>线上视频</label>
+      </radio-group>
+    </view>
+
+    <view class="form-group">
+      <view class="form-label">困扰分类</view>
+      <picker bindchange="onCategoryChange" value="{{categoryIndex}}" range="{{categories}}">
+        <view class="form-picker">
+          <text>{{categories[categoryIndex]}}</text>
+          <text>▼</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-group">
+      <view class="form-label">详细情况描述</view>
+      <textarea class="form-textarea" placeholder="请简要描述您的近期困惑或希望探讨的问题..." value="{{description}}" bindinput="onInputDesc" />
+    </view>
+
+    <view class="form-group">
+      <view class="form-label">联系电话</view>
+      <input class="form-input" type="number" placeholder="手机号" value="{{phone}}" bindinput="onInputPhone" />
+    </view>
+  </view>
+
+  <button class="btn-primary btn-block" bindtap="submitAppointment">
+    {{isReschedule ? '提交改约申请' : '确认提交预约'}}
+  </button>
+</view>

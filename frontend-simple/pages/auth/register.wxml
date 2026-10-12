@@ -1,0 +1,85 @@
+<view class="container register-page">
+  <view class="card register-card">
+    <view class="role-tabs flex-row">
+      <view class="role-tab {{selectedRole === 'student' ? 'active' : ''}}" bindtap="switchRole" data-role="student">
+        学生注册
+      </view>
+      <view class="role-tab {{selectedRole === 'counselor' ? 'active' : ''}}" bindtap="switchRole" data-role="counselor">
+        咨询师入驻
+      </view>
+    </view>
+
+    <!-- 基础表单项 -->
+    <view class="form-group">
+      <view class="form-label">登录用户名 *</view>
+      <input class="form-input" placeholder="输入账号" value="{{form.username}}" bindinput="onInput" data-field="username" />
+    </view>
+
+    <view class="form-group">
+      <view class="form-label">登录密码 *</view>
+      <input class="form-input" password placeholder="至少6位" value="{{form.password}}" bindinput="onInput" data-field="password" />
+    </view>
+
+    <view class="form-group">
+      <view class="form-label">真实姓名 *</view>
+      <input class="form-input" placeholder="实名认证" value="{{form.name}}" bindinput="onInput" data-field="name" />
+    </view>
+
+    <view class="form-group">
+      <view class="form-label">手机号码 *</view>
+      <input class="form-input" type="number" placeholder="11位手机号" value="{{form.phone}}" bindinput="onInput" data-field="phone" />
+    </view>
+
+    <!-- 学生专属项 -->
+    <block wx:if="{{selectedRole === 'student'}}">
+      <view class="form-group">
+        <view class="form-label">学号 *</view>
+        <input class="form-input" placeholder="输入在校学号" value="{{form.studentId}}" bindinput="onInput" data-field="studentId" />
+      </view>
+
+      <view class="form-group">
+        <view class="form-label">学院</view>
+        <picker bindchange="onCollegeChange" range="{{colleges}}">
+          <view class="form-picker">
+            <text>{{colleges[collegeIndex]}}</text>
+            <text>▼</text>
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-group">
+        <view class="form-label">专业与年级</view>
+        <input class="form-input" placeholder="如：数字媒体技术 大二" value="{{form.major}}" bindinput="onInput" data-field="major" />
+      </view>
+    </block>
+
+    <!-- 咨询师专属项 -->
+    <block wx:if="{{selectedRole === 'counselor'}}">
+      <view class="form-group">
+        <view class="form-label">专业职称 *</view>
+        <input class="form-input" placeholder="如：副教授 / 专职心理师" value="{{form.title}}" bindinput="onInput" data-field="title" />
+      </view>
+
+      <view class="form-group">
+        <view class="form-label">资质证书编号 *</view>
+        <input class="form-input" placeholder="如：国家二级心理咨询师" value="{{form.qualification}}" bindinput="onInput" data-field="qualification" />
+      </view>
+
+      <view class="form-group">
+        <view class="form-label">擅长领域</view>
+        <input class="form-input" placeholder="逗号隔开，如：学业压力,人际关系" value="{{form.tags}}" bindinput="onInput" data-field="tags" />
+      </view>
+
+      <view class="form-group">
+        <view class="form-label">咨询室地点</view>
+        <input class="form-input" placeholder="如：心理中心 302室" value="{{form.location}}" bindinput="onInput" data-field="location" />
+      </view>
+    </block>
+
+    <button class="btn-primary btn-block" style="margin-top: 30rpx;" bindtap="handleRegister">注 册</button>
+
+    <view class="back-link flex-center" bindtap="navToLogin">
+      <text>已有账号？直接登录</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,50 @@
+<view class="container appointment-page">
+  <!-- 查看预约记录入口 -->
+  <view class="record-btn-card flex-between" bindtap="navToRecords">
+    <text>📋 查看我的预约记录</text>
+    <text class="arrow">&gt;</text>
+  </view>
+
+  <!-- 分类选择 -->
+  <view class="category-row">
+    <view 
+      wx:for="{{categories}}" 
+      wx:key="*this"
+      class="cat-item {{selectedCat === item ? 'active' : ''}}"
+      bindtap="selectCategory"
+      data-cat="{{item}}"
+    >
+      {{item}}
+    </view>
+  </view>
+
+  <!-- 咨询师列表 -->
+  <view class="counselor-list">
+    <view wx:for="{{filteredList}}" wx:key="id" class="card c-card">
+      <view class="c-header flex-between">
+        <view class="flex-row">
+          <image class="c-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+          <view>
+            <view class="c-name">{{item.name}}</view>
+            <view class="c-title">{{item.title}}</view>
+          </view>
+        </view>
+        <view class="c-score">评分: {{item.rating}}</view>
+      </view>
+
+      <view class="c-intro">{{item.intro}}</view>
+
+      <view class="c-tags">
+        <text wx:for="{{item.tagList}}" wx:key="*this" wx:for-item="tag" class="tag tag-primary">{{tag}}</text>
+      </view>
+
+      <view class="c-footer flex-between">
+        <text class="c-time">排班: {{item.workHours}}</text>
+        <view class="btn-group flex-row">
+          <button class="btn-default btn-sm" bindtap="navToDetail" data-id="{{item.id}}">详情与排班</button>
+          <button class="btn-primary btn-sm" bindtap="navToBook" data-id="{{item.id}}">立即预约</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

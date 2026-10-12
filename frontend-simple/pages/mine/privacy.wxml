@@ -1,0 +1,31 @@
+<view class="container privacy-page">
+  <view class="card">
+    <view class="section-title">隐私与匿名保护配置</view>
+
+    <view class="setting-row flex-between">
+      <view class="setting-info">
+        <view class="s-title">匿名树洞保护</view>
+        <view class="s-desc">发帖与回复完全隐藏学号姓名</view>
+      </view>
+      <switch checked="{{settings.anonymousTreehole}}" bindchange="onToggle" data-field="anonymousTreehole" color="#2d8cf0" />
+    </view>
+
+    <view class="setting-row flex-between">
+      <view class="setting-info">
+        <view class="s-title">咨询诉求脱敏保护</view>
+        <view class="s-desc">仅预约咨询师可见诉求详述</view>
+      </view>
+      <switch checked="{{settings.hideRealNameFromCounselor}}" bindchange="onToggle" data-field="hideRealNameFromCounselor" color="#2d8cf0" />
+    </view>
+
+    <view class="setting-row flex-between">
+      <view class="setting-info">
+        <view class="s-title">匿名大数据统计授权</view>
+        <view class="s-desc">脱敏数据用于全校健康分析</view>
+      </view>
+      <switch checked="{{settings.allowDataAnalysis}}" bindchange="onToggle" data-field="allowDataAnalysis" color="#2d8cf0" />
+    </view>
+
+    <button class="btn-primary btn-block" style="margin-top: 30rpx;" bindtap="saveSettings">保存隐私设置</button>
+  </view>
+</view>

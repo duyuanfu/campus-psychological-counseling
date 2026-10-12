@@ -1,0 +1,36 @@
+<view class="container assess-page">
+  <view class="card tip-card">
+    <view class="tip-title">📋 心理测评须知</view>
+    <view class="tip-desc">本模块提供国际标准化心理测评量表，用于初步情绪状态筛查，答题结果将自动计分并生成图表报告。</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">标准量表列表</view>
+    <view class="scale-list">
+      <view wx:for="{{scales}}" wx:key="id" class="scale-item flex-between">
+        <view class="scale-info flex-1">
+          <view class="scale-name">{{item.title}} <text class="tag tag-primary">{{item.code}}</text></view>
+          <view class="scale-desc">{{item.desc}}</view>
+          <view class="scale-meta">共 {{item.itemCount}} 题 | 预计 {{item.estimateMin}} 分钟</view>
+        </view>
+        <button class="btn-primary btn-sm" bindtap="startTest" data-id="{{item.id}}">开始答题</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="card" wx:if="{{history.length > 0}}">
+    <view class="section-title">我的测评历史记录</view>
+    <view class="history-list">
+      <view wx:for="{{history}}" wx:key="id" class="history-item flex-between" bindtap="viewReport" data-id="{{item.id}}">
+        <view>
+          <view class="h-title">{{item.scaleTitle}}</view>
+          <view class="h-date">{{item.date}}</view>
+        </view>
+        <view class="flex-row">
+          <text class="h-score">{{item.standardScore}}分</text>
+          <text class="tag tag-success" style="margin-left: 10rpx;">{{item.levelTitle}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

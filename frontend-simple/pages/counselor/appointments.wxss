@@ -1,0 +1,61 @@
+.apts-page {
+  padding-bottom: 50rpx;
+}
+
+.tab-bar {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 8rpx;
+  margin-bottom: 20rpx;
+}
+
+.tab-btn {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx 0;
+  font-size: 26rpx;
+}
+
+.tab-btn.active {
+  color: var(--primary-color);
+  font-weight: bold;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.apt-card {
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.apt-top {
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 12rpx;
+  margin-bottom: 12rpx;
+}
+
+.s-name {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.row {
+  font-size: 24rpx;
+  margin-bottom: 8rpx;
+}
+
+.lbl {
+  color: var(--sub-color);
+  width: 140rpx;
+  display: inline-block;
+}
+
+.time {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.apt-actions {
+  border-top: 1px solid #f0f0f0;
+  padding-top: 14rpx;
+  margin-top: 12rpx;
+}

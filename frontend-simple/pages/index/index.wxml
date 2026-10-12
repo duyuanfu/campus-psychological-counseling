@@ -1,0 +1,93 @@
+<view class="container home-page">
+  <!-- 简单公告栏 -->
+  <view class="notice-bar flex-row">
+    <text class="notice-icon">📢</text>
+    <text class="notice-text">欢迎使用校园心理健康咨询平台，欢迎预约咨询与交流。</text>
+  </view>
+
+  <!-- 今日心情打卡 -->
+  <view class="card mood-card">
+    <view class="section-title">今日心情记录</view>
+    <view class="mood-list flex-between">
+      <view 
+        wx:for="{{moods}}" 
+        wx:key="score" 
+        class="mood-item {{selectedMood === item.score ? 'active' : ''}}"
+        bindtap="quickMood"
+        data-item="{{item}}"
+      >
+        <text class="mood-icon">{{item.icon}}</text>
+        <text class="mood-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 4大核心功能导航 -->
+  <view class="card nav-card">
+    <view class="section-title">核心功能</view>
+    <view class="nav-grid">
+      <view class="nav-btn" bindtap="navTo" data-url="/pages/appointment/index" data-tab="true">
+        <view class="nav-icon-bg bg-blue">📅</view>
+        <text class="nav-text">在线预约</text>
+      </view>
+      <view class="nav-btn" bindtap="navTo" data-url="/pages/assessment/test?id=sds">
+        <view class="nav-icon-bg bg-green">📊</view>
+        <text class="nav-text">SDS抑郁测评</text>
+      </view>
+      <view class="nav-btn" bindtap="navTo" data-url="/pages/assessment/test?id=sas">
+        <view class="nav-icon-bg bg-orange">📈</view>
+        <text class="nav-text">SAS焦虑测评</text>
+      </view>
+      <view class="nav-btn" bindtap="navTo" data-url="/pages/treehole/index" data-tab="true">
+        <view class="nav-icon-bg bg-purple">💌</view>
+        <text class="nav-text">匿名树洞</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 放松减压入口 -->
+  <view class="card relax-entry-card flex-between" bindtap="navTo" data-url="/pages/relax/relax">
+    <view class="flex-row">
+      <text class="relax-icon">🎧</text>
+      <view>
+        <view class="relax-title">4-7-8 呼吸训练 & 自然白噪音</view>
+        <view class="relax-desc">数字媒体身心放松体验专区</view>
+      </view>
+    </view>
+    <button class="btn-primary btn-sm">去放松</button>
+  </view>
+
+  <!-- 咨询师列表 -->
+  <view class="card">
+    <view class="section-title flex-between">
+      <text>专职心理咨询师</text>
+      <text class="more-link" bindtap="navTo" data-url="/pages/appointment/index" data-tab="true">查看全部 &gt;</text>
+    </view>
+    <view class="counselor-list">
+      <view wx:for="{{counselors}}" wx:key="id" class="counselor-item flex-between">
+        <view class="flex-row flex-1">
+          <image class="c-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+          <view class="c-info">
+            <view class="c-name">{{item.name}} <text class="tag tag-primary">{{item.title}}</text></view>
+            <view class="c-tags">{{item.intro}}</view>
+          </view>
+        </view>
+        <button class="btn-primary btn-sm" bindtap="navToBook" data-id="{{item.id}}">预约</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 心理科普文章 -->
+  <view class="card">
+    <view class="section-title">心理科普推文</view>
+    <view class="article-list">
+      <view wx:for="{{articles}}" wx:key="id" class="article-item" bindtap="navToArticle" data-id="{{item.id}}">
+        <view class="article-title">{{item.title}}</view>
+        <view class="article-meta flex-between">
+          <text>{{item.author}}</text>
+          <text>{{item.date}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

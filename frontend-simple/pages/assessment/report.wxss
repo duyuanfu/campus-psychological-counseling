@@ -1,0 +1,65 @@
+.report-page {
+  padding-bottom: 50rpx;
+}
+
+.scale-title {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.report-date {
+  font-size: 20rpx;
+  color: var(--sub-color);
+  margin-top: 4rpx;
+}
+
+.score-box {
+  margin: 30rpx 0 16rpx 0;
+}
+
+.score-num {
+  font-size: 60rpx;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.score-unit {
+  font-size: 24rpx;
+  color: var(--sub-color);
+  margin-left: 10rpx;
+}
+
+.score-guide {
+  font-size: 20rpx;
+  color: var(--sub-color);
+  text-align: center;
+  border-top: 1px dashed #eee;
+  padding-top: 14rpx;
+}
+
+.canvas-wrap {
+  width: 100%;
+  height: 420rpx;
+}
+
+.my-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.analysis-text {
+  font-size: 24rpx;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+.sug-item {
+  font-size: 24rpx;
+  line-height: 1.5;
+  margin-bottom: 8rpx;
+  color: var(--text-color);
+}
+
+.btn-row {
+  margin-top: 24rpx;
+}

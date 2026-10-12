@@ -1,0 +1,40 @@
+.register-page {
+  padding-top: 30rpx;
+  padding-bottom: 60rpx;
+}
+
+.register-card {
+  padding: 30rpx 24rpx;
+}
+
+.role-tabs {
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 24rpx;
+}
+
+.role-tab {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx 0;
+  font-size: 28rpx;
+  color: var(--text-color);
+}
+
+.role-tab.active {
+  color: var(--primary-color);
+  font-weight: bold;
+  border-bottom: 2px solid var(--primary-color);
+  margin-bottom: -2px;
+}
+
+.btn-block {
+  width: 100% !important;
+  padding: 20rpx 0 !important;
+  font-size: 28rpx !important;
+}
+
+.back-link {
+  margin-top: 24rpx;
+  font-size: 24rpx;
+  color: var(--primary-color);
+}
